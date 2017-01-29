@@ -74,7 +74,39 @@ namespace Casepro
             frm.MdiParent = this;
             frm.Dock = DockStyle.Fill;
             frm.Show();
+        }
 
+        private void toolStripButton4_Click(object sender, EventArgs e)
+        {
+            ClientForm frm = new ClientForm();
+            frm.MdiParent = this;
+            frm.Dock = DockStyle.Fill;
+            frm.Show();
+
+        }
+
+        private void toolStripButton5_Click(object sender, EventArgs e)
+        {
+            EventForm frm = new EventForm();
+            frm.MdiParent = this;
+            frm.Dock = DockStyle.Fill;
+            frm.Show();
+        }
+
+        private void toolStripButton6_Click(object sender, EventArgs e)
+        {
+            DocumentForm frm = new DocumentForm();
+            frm.MdiParent = this;
+            frm.Dock = DockStyle.Fill;
+            frm.Show();
+        }
+
+        private void toolStripButton7_Click(object sender, EventArgs e)
+        {
+            SettingForm frm = new SettingForm();
+            frm.MdiParent = this;
+            frm.Dock = DockStyle.Fill;
+            frm.Show();
         }
     }
 }

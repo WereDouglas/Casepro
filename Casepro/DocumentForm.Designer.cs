@@ -1,6 +1,6 @@
 ﻿namespace Casepro
 {
-    partial class FileForm
+    partial class DocumentForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,20 +28,39 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dtGrid = new System.Windows.Forms.DataGridView();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.toolStrip1.SuspendLayout();
+            this.myTreeView = new System.Windows.Forms.TreeView();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtGrid)).BeginInit();
             this.SuspendLayout();
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.myTreeView);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.dtGrid);
+            this.splitContainer1.Size = new System.Drawing.Size(1041, 451);
+            this.splitContainer1.SplitterDistance = 173;
+            this.splitContainer1.TabIndex = 0;
             // 
             // toolStrip1
             // 
@@ -50,13 +69,13 @@
             this.toolStripButton1,
             this.toolStripSeparator1,
             this.toolStripButton2,
-            this.toolStripSeparator2,
+            this.toolStripSeparator3,
             this.toolStripLabel1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.toolStrip1.Size = new System.Drawing.Size(1088, 25);
-            this.toolStrip1.TabIndex = 3;
+            this.toolStrip1.Size = new System.Drawing.Size(1041, 25);
+            this.toolStrip1.TabIndex = 4;
             this.toolStrip1.Text = "toolStrip1";
             // 
             // toolStripSeparator1
@@ -64,44 +83,24 @@
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
-            // toolStripSeparator2
+            // toolStripSeparator3
             // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
             // 
             // toolStripLabel1
             // 
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(110, 22);
-            this.toolStripLabel1.Text = "Files and Cases";
-            // 
-            // splitContainer1
-            // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 25);
-            this.splitContainer1.Name = "splitContainer1";
-            // 
-            // splitContainer1.Panel1
-            // 
-            this.splitContainer1.Panel1.AutoScroll = true;
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.Controls.Add(this.dtGrid);
-            this.splitContainer1.Size = new System.Drawing.Size(1088, 642);
-            this.splitContainer1.SplitterDistance = 46;
-            this.splitContainer1.TabIndex = 4;
+            this.toolStripLabel1.Size = new System.Drawing.Size(82, 22);
+            this.toolStripLabel1.Text = "Documents";
             // 
             // dtGrid
             // 
             this.dtGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dtGrid.Location = new System.Drawing.Point(0, 0);
+            this.dtGrid.Location = new System.Drawing.Point(3, 38);
             this.dtGrid.Name = "dtGrid";
-            this.dtGrid.Size = new System.Drawing.Size(1038, 642);
-            this.dtGrid.TabIndex = 6;
-            this.dtGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtGrid_CellClick);
-            this.dtGrid.SelectionChanged += new System.EventHandler(this.dtGrid_SelectionChanged);
+            this.dtGrid.Size = new System.Drawing.Size(858, 410);
+            this.dtGrid.TabIndex = 7;
             // 
             // toolStripButton1
             // 
@@ -123,24 +122,32 @@
             this.toolStripButton2.Text = "Add";
             this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
-            // FileForm
+            // myTreeView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.myTreeView.Location = new System.Drawing.Point(12, 38);
+            this.myTreeView.Name = "myTreeView";
+            this.myTreeView.Size = new System.Drawing.Size(158, 401);
+            this.myTreeView.TabIndex = 0;
+            this.myTreeView.DoubleClick += new System.EventHandler(this.myTreeView_DoubleClick);
+            // 
+            // DocumentForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1088, 667);
-            this.Controls.Add(this.splitContainer1);
+            this.ClientSize = new System.Drawing.Size(1041, 451);
             this.Controls.Add(this.toolStrip1);
-            this.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Controls.Add(this.splitContainer1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "FileForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Files/ Cases";
-            this.Leave += new System.EventHandler(this.FileForm_Leave);
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
+            this.Name = "DocumentForm";
+            this.Text = "DocumentForm";
+            this.Load += new System.EventHandler(this.DocumentForm_Load);
+            this.Leave += new System.EventHandler(this.DocumentForm_Leave);
+            this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtGrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -149,13 +156,14 @@
 
         #endregion
 
+        private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
-        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.DataGridView dtGrid;
+        private System.Windows.Forms.TreeView myTreeView;
     }
 }

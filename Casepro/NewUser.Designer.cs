@@ -35,11 +35,13 @@
             this.bntStop = new System.Windows.Forms.Button();
             this.bntStart = new System.Windows.Forms.Button();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -64,10 +66,10 @@
             this.updateBtn = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.imgCapture = new System.Windows.Forms.PictureBox();
             this.imgVideo = new System.Windows.Forms.PictureBox();
+            this.button4 = new System.Windows.Forms.Button();
+            this.fileUrlTxtBx = new System.Windows.Forms.TextBox();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgCapture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgVideo)).BeginInit();
@@ -76,7 +78,7 @@
             // bntSave
             // 
             this.bntSave.Location = new System.Drawing.Point(364, 247);
-            this.bntSave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.bntSave.Margin = new System.Windows.Forms.Padding(4);
             this.bntSave.Name = "bntSave";
             this.bntSave.Size = new System.Drawing.Size(105, 34);
             this.bntSave.TabIndex = 15;
@@ -87,7 +89,7 @@
             // bntCapture
             // 
             this.bntCapture.Location = new System.Drawing.Point(243, 247);
-            this.bntCapture.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.bntCapture.Margin = new System.Windows.Forms.Padding(4);
             this.bntCapture.Name = "bntCapture";
             this.bntCapture.Size = new System.Drawing.Size(113, 34);
             this.bntCapture.TabIndex = 14;
@@ -98,7 +100,7 @@
             // bntContinue
             // 
             this.bntContinue.Location = new System.Drawing.Point(154, 247);
-            this.bntContinue.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.bntContinue.Margin = new System.Windows.Forms.Padding(4);
             this.bntContinue.Name = "bntContinue";
             this.bntContinue.Size = new System.Drawing.Size(81, 34);
             this.bntContinue.TabIndex = 13;
@@ -109,7 +111,7 @@
             // bntStop
             // 
             this.bntStop.Location = new System.Drawing.Point(80, 247);
-            this.bntStop.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.bntStop.Margin = new System.Windows.Forms.Padding(4);
             this.bntStop.Name = "bntStop";
             this.bntStop.Size = new System.Drawing.Size(65, 34);
             this.bntStop.TabIndex = 12;
@@ -120,7 +122,7 @@
             // bntStart
             // 
             this.bntStart.Location = new System.Drawing.Point(11, 247);
-            this.bntStart.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.bntStart.Margin = new System.Windows.Forms.Padding(4);
             this.bntStart.Name = "bntStart";
             this.bntStart.Size = new System.Drawing.Size(55, 34);
             this.bntStart.TabIndex = 11;
@@ -146,6 +148,35 @@
             this.toolStrip1.TabIndex = 18;
             this.toolStrip1.Text = "toolStrip1";
             // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = global::Casepro.Properties.Resources.Close_48;
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton1.Text = "toolStripButton1";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton2.Text = "save";
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+            // 
             // toolStripLabel1
             // 
             this.toolStripLabel1.BackColor = System.Drawing.SystemColors.ActiveBorder;
@@ -154,6 +185,11 @@
             this.toolStripLabel1.Text = "Video format";
             this.toolStripLabel1.Click += new System.EventHandler(this.toolStripLabel1_Click);
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
             // toolStripLabel2
             // 
             this.toolStripLabel2.BackColor = System.Drawing.SystemColors.ActiveBorder;
@@ -161,21 +197,6 @@
             this.toolStripLabel2.Size = new System.Drawing.Size(93, 22);
             this.toolStripLabel2.Text = "Video source";
             this.toolStripLabel2.Click += new System.EventHandler(this.toolStripLabel2_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
             // 
             // label1
             // 
@@ -250,7 +271,7 @@
             // nameTxtBx
             // 
             this.nameTxtBx.Location = new System.Drawing.Point(702, 58);
-            this.nameTxtBx.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.nameTxtBx.Margin = new System.Windows.Forms.Padding(4);
             this.nameTxtBx.Name = "nameTxtBx";
             this.nameTxtBx.Size = new System.Drawing.Size(226, 27);
             this.nameTxtBx.TabIndex = 26;
@@ -258,7 +279,7 @@
             // emailTxtBx
             // 
             this.emailTxtBx.Location = new System.Drawing.Point(702, 96);
-            this.emailTxtBx.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.emailTxtBx.Margin = new System.Windows.Forms.Padding(4);
             this.emailTxtBx.Name = "emailTxtBx";
             this.emailTxtBx.Size = new System.Drawing.Size(226, 27);
             this.emailTxtBx.TabIndex = 27;
@@ -266,8 +287,17 @@
             // designationCbx
             // 
             this.designationCbx.FormattingEnabled = true;
+            this.designationCbx.Items.AddRange(new object[] {
+            "Partner",
+            "Associate",
+            "Contract",
+            "Of counsel",
+            "Clerk",
+            "Paralegal",
+            "Administrator",
+            "Other"});
             this.designationCbx.Location = new System.Drawing.Point(702, 134);
-            this.designationCbx.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.designationCbx.Margin = new System.Windows.Forms.Padding(4);
             this.designationCbx.Name = "designationCbx";
             this.designationCbx.Size = new System.Drawing.Size(226, 27);
             this.designationCbx.TabIndex = 28;
@@ -275,7 +305,7 @@
             // contactTxtBx
             // 
             this.contactTxtBx.Location = new System.Drawing.Point(702, 178);
-            this.contactTxtBx.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.contactTxtBx.Margin = new System.Windows.Forms.Padding(4);
             this.contactTxtBx.Name = "contactTxtBx";
             this.contactTxtBx.Size = new System.Drawing.Size(226, 27);
             this.contactTxtBx.TabIndex = 29;
@@ -283,7 +313,7 @@
             // addressTxtBx
             // 
             this.addressTxtBx.Location = new System.Drawing.Point(702, 331);
-            this.addressTxtBx.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.addressTxtBx.Margin = new System.Windows.Forms.Padding(4);
             this.addressTxtBx.Multiline = true;
             this.addressTxtBx.Name = "addressTxtBx";
             this.addressTxtBx.Size = new System.Drawing.Size(226, 62);
@@ -293,7 +323,7 @@
             // chargeTxtBx
             // 
             this.chargeTxtBx.Location = new System.Drawing.Point(702, 420);
-            this.chargeTxtBx.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chargeTxtBx.Margin = new System.Windows.Forms.Padding(4);
             this.chargeTxtBx.Name = "chargeTxtBx";
             this.chargeTxtBx.Size = new System.Drawing.Size(226, 27);
             this.chargeTxtBx.TabIndex = 31;
@@ -310,7 +340,7 @@
             "Administrative",
             "Other"});
             this.supervisorCbx.Location = new System.Drawing.Point(702, 458);
-            this.supervisorCbx.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.supervisorCbx.Margin = new System.Windows.Forms.Padding(4);
             this.supervisorCbx.Name = "supervisorCbx";
             this.supervisorCbx.Size = new System.Drawing.Size(226, 27);
             this.supervisorCbx.TabIndex = 32;
@@ -318,7 +348,7 @@
             // passwordTxtBx
             // 
             this.passwordTxtBx.Location = new System.Drawing.Point(702, 228);
-            this.passwordTxtBx.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.passwordTxtBx.Margin = new System.Windows.Forms.Padding(4);
             this.passwordTxtBx.Name = "passwordTxtBx";
             this.passwordTxtBx.PasswordChar = '*';
             this.passwordTxtBx.Size = new System.Drawing.Size(226, 27);
@@ -328,7 +358,7 @@
             // confirmTxtBx
             // 
             this.confirmTxtBx.Location = new System.Drawing.Point(702, 273);
-            this.confirmTxtBx.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.confirmTxtBx.Margin = new System.Windows.Forms.Padding(4);
             this.confirmTxtBx.Name = "confirmTxtBx";
             this.confirmTxtBx.PasswordChar = '*';
             this.confirmTxtBx.Size = new System.Drawing.Size(226, 27);
@@ -363,7 +393,7 @@
             "true",
             "false"});
             this.statusCbx.Location = new System.Drawing.Point(702, 498);
-            this.statusCbx.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.statusCbx.Margin = new System.Windows.Forms.Padding(4);
             this.statusCbx.Name = "statusCbx";
             this.statusCbx.Size = new System.Drawing.Size(226, 27);
             this.statusCbx.TabIndex = 39;
@@ -436,25 +466,6 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = global::Casepro.Properties.Resources.Close_48;
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton1.Text = "toolStripButton1";
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
-            // 
-            // toolStripButton2
-            // 
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton2.Text = "save";
-            // 
             // imgCapture
             // 
             this.imgCapture.BackColor = System.Drawing.SystemColors.ActiveCaption;
@@ -477,11 +488,34 @@
             this.imgVideo.TabIndex = 9;
             this.imgVideo.TabStop = false;
             // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(11, 308);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(134, 33);
+            this.button4.TabIndex = 96;
+            this.button4.Text = "Browse";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // fileUrlTxtBx
+            // 
+            this.fileUrlTxtBx.Location = new System.Drawing.Point(152, 312);
+            this.fileUrlTxtBx.Margin = new System.Windows.Forms.Padding(4);
+            this.fileUrlTxtBx.Name = "fileUrlTxtBx";
+            this.fileUrlTxtBx.PasswordChar = '*';
+            this.fileUrlTxtBx.Size = new System.Drawing.Size(226, 27);
+            this.fileUrlTxtBx.TabIndex = 97;
+            this.fileUrlTxtBx.UseSystemPasswordChar = true;
+            this.fileUrlTxtBx.TextChanged += new System.EventHandler(this.fileUrlTxtBx_TextChanged);
+            // 
             // NewUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(965, 624);
+            this.Controls.Add(this.fileUrlTxtBx);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.updateBtn);
             this.Controls.Add(this.button3);
@@ -516,7 +550,7 @@
             this.Controls.Add(this.imgVideo);
             this.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "NewUser";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add user";
@@ -570,5 +604,7 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button updateBtn;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.TextBox fileUrlTxtBx;
     }
 }

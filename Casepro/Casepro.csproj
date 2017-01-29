@@ -50,7 +50,25 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClientForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClientForm.Designer.cs">
+      <DependentUpon>ClientForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="DBConnect.cs" />
+    <Compile Include="DocumentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DocumentForm.Designer.cs">
+      <DependentUpon>DocumentForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EventForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EventForm.Designer.cs">
+      <DependentUpon>EventForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FileForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,6 +82,7 @@
     <Compile Include="HomeForm.Designer.cs">
       <DependentUpon>HomeForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ItemInfo.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -88,6 +107,24 @@
     <Compile Include="Model\Task.cs" />
     <Compile Include="Model\Transaction.cs" />
     <Compile Include="Model\User.cs" />
+    <Compile Include="NewClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewClient.Designer.cs">
+      <DependentUpon>NewClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NewDoc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewDoc.Designer.cs">
+      <DependentUpon>NewDoc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NewEvent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewEvent.Designer.cs">
+      <DependentUpon>NewEvent.cs</DependentUpon>
+    </Compile>
     <Compile Include="NewFile.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -108,6 +145,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Server.cs" />
+    <Compile Include="SettingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SettingForm.Designer.cs">
+      <DependentUpon>SettingForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,6 +158,15 @@
       <DependentUpon>UserForm.cs</DependentUpon>
     </Compile>
     <Compile Include="WebCam.cs" />
+    <EmbeddedResource Include="ClientForm.resx">
+      <DependentUpon>ClientForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DocumentForm.resx">
+      <DependentUpon>DocumentForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EventForm.resx">
+      <DependentUpon>EventForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FileForm.resx">
       <DependentUpon>FileForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -123,6 +175,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewClient.resx">
+      <DependentUpon>NewClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewDoc.resx">
+      <DependentUpon>NewDoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewEvent.resx">
+      <DependentUpon>NewEvent.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NewFile.resx">
       <DependentUpon>NewFile.cs</DependentUpon>
@@ -134,6 +195,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SettingForm.resx">
+      <DependentUpon>SettingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserForm.resx">
       <DependentUpon>UserForm.cs</DependentUpon>
@@ -182,6 +246,12 @@
     <None Include="Resources\Date-24.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Settings-01-32.png" />
+    <None Include="Resources\Folder-24 %281%292.png" />
+    <None Include="Resources\Date-321.png" />
+    <None Include="Resources\Folder-24 %281%291.png" />
+    <None Include="Resources\Date-32.png" />
+    <None Include="Resources\Teacher-48.png" />
     <None Include="Resources\Employee-48.png" />
     <None Include="Resources\Home-48.png" />
     <None Include="Resources\Cancel-24.png" />
@@ -192,6 +262,12 @@
     <Content Include="Resources\adds.png" />
     <None Include="Resources\case.png" />
     <None Include="Resources\Folder-24 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\System.Windows.Forms.Calendar\System.Windows.Forms.Calendar\System.Windows.Forms.Calendar.csproj">
+      <Project>{25649F08-3046-4891-ADB8-7EA787B57063}</Project>
+      <Name>System.Windows.Forms.Calendar</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

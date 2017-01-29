@@ -298,8 +298,6 @@ namespace Casepro
                 }
             }
 
-
-
             string Query;
 
             if (passwordTxtBx.Text != "")
@@ -328,7 +326,7 @@ namespace Casepro
         private void button3_Click(object sender, EventArgs e)
         {
             string fileID = Guid.NewGuid().ToString();
-            string Query = "DELETE from user WHERE fileID ='" + id + "'";
+            string Query = "DELETE from user WHERE userID ='" + id + "'";
             MySqlConnection MyConn2 = new MySqlConnection(DBConnect.conn);
             MySqlCommand MyCommand2 = new MySqlCommand(Query, MyConn2);
             MySqlDataReader MyReader2;
@@ -340,6 +338,26 @@ namespace Casepro
             frm.Dock = DockStyle.Fill;
             frm.Show();
             this.Close();
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            // open file dialog 
+            OpenFileDialog open = new OpenFileDialog();
+            // image filters
+            open.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp)|*.jpg; *.jpeg; *.gif; *.bmp";
+            if (open.ShowDialog() == DialogResult.OK)
+            {
+                // display image in picture box
+                imgCapture.Image = new Bitmap(open.FileName);
+                // image file path
+                fileUrlTxtBx.Text = open.FileName;
+            }
+        }
+
+        private void fileUrlTxtBx_TextChanged(object sender, EventArgs e)
+        {
 
         }
     }

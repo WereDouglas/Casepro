@@ -373,7 +373,7 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Image = global::Casepro.Properties.Resources.Garbage_Open_24;
             this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(278, 567);
+            this.button2.Location = new System.Drawing.Point(8, 567);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 37);
             this.button2.TabIndex = 92;
@@ -387,7 +387,7 @@
             this.updateBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.updateBtn.Image = global::Casepro.Properties.Resources.Report_Editor_24;
             this.updateBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.updateBtn.Location = new System.Drawing.Point(107, 567);
+            this.updateBtn.Location = new System.Drawing.Point(176, 567);
             this.updateBtn.Name = "updateBtn";
             this.updateBtn.Size = new System.Drawing.Size(75, 37);
             this.updateBtn.TabIndex = 77;
@@ -401,7 +401,7 @@
             this.saveBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.saveBtn.Image = global::Casepro.Properties.Resources.Save_24__1_;
             this.saveBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.saveBtn.Location = new System.Drawing.Point(188, 567);
+            this.saveBtn.Location = new System.Drawing.Point(257, 567);
             this.saveBtn.Name = "saveBtn";
             this.saveBtn.Size = new System.Drawing.Size(75, 37);
             this.saveBtn.TabIndex = 76;
@@ -415,7 +415,7 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Image = global::Casepro.Properties.Resources.Cancel_24;
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(26, 567);
+            this.button1.Location = new System.Drawing.Point(95, 567);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 37);
             this.button1.TabIndex = 66;

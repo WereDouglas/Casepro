@@ -118,6 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Folder-24 (1)2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Folder-24 (1)2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Save-16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Save-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -130,11 +133,17 @@
   <data name="Folder-24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Folder-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="case" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\case.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Date-321" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Date-321.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Teacher-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Teacher-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Save-24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Save-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="case" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\case.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Garbage-Open-24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Garbage-Open-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -151,8 +160,17 @@
   <data name="Date-24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Date-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Employee-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Employee-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Cancel-16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Cancel-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Add-New-24 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Add-New-24 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Date-32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Date-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Close-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Close-481.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -166,13 +184,13 @@
   <data name="Cancel-24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Cancel-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Cancel-16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Cancel-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Folder-24 (1)1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Folder-24 (1)1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Report-Editor-24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Report-Editor-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Employee-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Employee-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Settings-01-32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Settings-01-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

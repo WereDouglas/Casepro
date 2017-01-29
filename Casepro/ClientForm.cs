@@ -14,43 +14,43 @@ using System.Windows.Forms;
 
 namespace Casepro
 {
-    public partial class UserForm : Form
+    public partial class ClientForm : Form
     {
-        public User _user = new User();
-        public static List<User> _userList = new List<User> { };
+        public Client _client = new Client();
+        public static List<Client> _clientList = new List<Client> { };
         public static DataTable table = new DataTable();
-        public UserForm()
+        MySqlDataReader Reader;
+        public ClientForm()
         {
             InitializeComponent();
-            LoadUsers();
-            //dtGrid.DataSource = _userList;
+            LoadClients();
+            //dtGrid.DataSource = _clientList;
         }
-        public void LoadUsers()
+        public void LoadClients()
         {
-            _userList.Clear();
+            _clientList.Clear();
 
             // connect to database  
 
             MySqlConnection connection = new MySqlConnection(DBConnect.conn);
             MySqlCommand command = connection.CreateCommand();
             MySqlDataReader Reader;
-            command.CommandText = "SELECT userID, orgID, name, email, password, designation, status, contact, image, address, category, created,sync, charge, supervisor FROM users";
+            command.CommandText = "SELECT * FROM client";
             connection.Open();
             Reader = command.ExecuteReader();
             // create and execute query  
 
             DataTable t = new DataTable();
-            t.Columns.Add("userID");
+            t.Columns.Add("clientID");
             t.Columns.Add("uri");
             t.Columns.Add(new DataColumn("Img", typeof(Bitmap)));
             t.Columns.Add("Name");
             t.Columns.Add("E-mail");
             t.Columns.Add("Contact");
-            t.Columns.Add("Designation");
-            t.Columns.Add("Address");
-            t.Columns.Add("Supervisor");
+            t.Columns.Add("Lawyer(C/O)");
+            t.Columns.Add("Address");          
             t.Columns.Add("Status");
-            t.Columns.Add("Charge");
+            t.Columns.Add("created");
 
 
             Bitmap b = new Bitmap(50, 50);
@@ -61,31 +61,32 @@ namespace Casepro
             }
             while (Reader.Read())
             {
-                User _user = new User();
+                Client _client = new Client();
 
-                try { _user.UserID = Reader.GetString(0); }
+                try { _client.ClientID = Reader.GetString(0); }
                 catch (InvalidCastException) { }
 
-                try { _user.Name = Reader.GetString(2); }
+                try { _client.Name = Reader.GetString(2); }
                 catch (InvalidCastException) { }
 
-                try { _user.Email = Reader.GetString(3); }
+                try { _client.Email = Reader.GetString(3); }
                 catch (InvalidCastException) { }
-                try { _user.Image = Reader.GetString(8); }
+                try { _client.Image = Reader.GetString(8); }
                 catch (InvalidCastException) { }
 
 
-                t.Rows.Add(new object[] { Reader.GetString(0), Helper.imageUrl + Reader.GetString(8), b, Reader.GetString(2), Reader.GetString(3), Reader.GetString(7), Reader.GetString(5), Reader.GetString(9), Reader.GetString(14) + "", Reader.GetString(6), "" + Reader.GetString(13) + "" });
-                _userList.Add(_user);
+                t.Rows.Add(new object[] { Reader.GetString(0), Helper.imageUrl + Reader.GetString(6) as string, b, Reader.IsDBNull(2) ? "": Reader.GetString(2), Reader.IsDBNull(3) ? "" : Reader.GetString(3), Reader.IsDBNull(4) ? "" : Reader.GetString(4), Reader.IsDBNull(10) ? "" : Reader.GetString(10), Reader.IsDBNull(7) ? "" : Reader.GetString(7), Reader.IsDBNull(5) ? "" : Reader.GetString(5) + " ", Reader.IsDBNull(8) ? "" : Reader.GetString(8) + "" });
+                _clientList.Add(_client);
             }
 
             dtGrid.DataSource = t;
             dtGrid.RowTemplate.Height = 60;
             dtGrid.Columns[0].Visible = false;
             dtGrid.Columns[1].Visible = false;
+            dtGrid.Columns[0].Visible = false;
+
             ThreadPool.QueueUserWorkItem(delegate
             {
-
                 foreach (DataRow row in t.Rows)
                 {
                     try
@@ -96,10 +97,10 @@ namespace Casepro
                         System.Drawing.Bitmap bmp = new System.Drawing.Bitmap(myResponse.GetResponseStream());
                         myResponse.Close();
                         Bitmap bps = new Bitmap(bmp, 50, 50);
+
                         row["Img"] = bps;
                     }
-                    catch
-                    {
+                    catch {
 
                         HttpWebRequest myRequest = (HttpWebRequest)WebRequest.Create(Helper.imageUrl + "default.png");
                         myRequest.Method = "GET";
@@ -107,36 +108,39 @@ namespace Casepro
                         System.Drawing.Bitmap bmp = new System.Drawing.Bitmap(myResponse.GetResponseStream());
                         myResponse.Close();
                         Bitmap bps = new Bitmap(bmp, 50, 50);
-                        row["Img"] = bps;
-                    }
-                   
-                }
 
+                        row["Img"] = bps;
+
+
+                    }
+                }
             });
 
-            dtGrid.CellEndEdit += dataGridView1_CellEndEdit;
+         
             dtGrid.AllowUserToAddRows = false;
 
             connection.Close();
-            dtGrid.CellClick += dtGrid_CellClick;
+          
+        }
+        public string SafeGetString(MySqlDataReader reader, int colIndex)
+        {
+            if (!reader.IsDBNull(colIndex))
+                return reader.GetString(colIndex);
+            return string.Empty;
         }
         private void dtGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //Do Something with your button.            
+           
+                int rowIndex = e.RowIndex;
+                DataGridViewRow row = dtGrid.Rows[rowIndex];
+                // MessageBox.Show(dtGrid.Rows[rowIndex].Cells[0].Value.ToString());
+                NewClient frm = new NewClient(dtGrid.Rows[rowIndex].Cells[0].Value.ToString());
+                frm.MdiParent = MainForm.ActiveForm;
+                frm.Show();
+                this.Close();
+            
         }
-        private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
-        {
-            string value = dtGrid.Rows[e.RowIndex].Cells["uri"].Value.ToString();
-            ThreadPool.QueueUserWorkItem(delegate
-            {
-                HttpWebRequest myRequest = (HttpWebRequest)WebRequest.Create(value);
-                myRequest.Method = "GET";
-                HttpWebResponse myResponse = (HttpWebResponse)myRequest.GetResponse();
-                System.Drawing.Bitmap bmp = new System.Drawing.Bitmap(myResponse.GetResponseStream());
-                myResponse.Close();
-                dtGrid.Rows[e.RowIndex].Cells["Img"].Value = bmp;
-            });
-        }
+       
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
@@ -157,31 +161,42 @@ namespace Casepro
 
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
-            NewUser frm = new NewUser(null);
+            NewClient frm = new NewClient(null);
             frm.MdiParent = MainForm.ActiveForm;
             frm.Show();
             this.Close();
         }
 
-        private void UserForm_Leave(object sender, EventArgs e)
+        private void ClientForm_Leave(object sender, EventArgs e)
         {
             this.Close();
         }
 
         private void dtGrid_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
+        }
 
-            int rowIndex = e.RowIndex;
-            DataGridViewRow row = dtGrid.Rows[rowIndex];
-            // MessageBox.Show(dtGrid.Rows[rowIndex].Cells[0].Value.ToString());
-            NewUser frm = new NewUser(dtGrid.Rows[rowIndex].Cells[0].Value.ToString());
+        private void toolStripButton2_Click_1(object sender, EventArgs e)
+        {
+            NewClient frm = new NewClient(null);
             frm.MdiParent = MainForm.ActiveForm;
             frm.Show();
             this.Close();
+        }
 
+        private void dtGrid_Leave(object sender, EventArgs e)
+        {
+            this.Close();
+        }
 
+        private void toolStripButton1_Click_2(object sender, EventArgs e)
+        {
+            this.Close();
+        }
 
-
+        private void ClientForm_Leave_1(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

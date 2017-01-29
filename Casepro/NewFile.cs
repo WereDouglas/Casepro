@@ -45,16 +45,12 @@ namespace Casepro
         }
         public void thisFile(string id)
         {
-
-
             MySqlConnection connection = new MySqlConnection(DBConnect.conn);
             MySqlCommand command = connection.CreateCommand();
             MySqlDataReader Reader;
             command.CommandText = "SELECT * FROM file WHERE fileID= '" + id + "'";
             connection.Open();
             Reader = command.ExecuteReader();
-
-
             while (Reader.Read())
             {
                 try { nameTxt.Text = Reader.GetString(11); }
