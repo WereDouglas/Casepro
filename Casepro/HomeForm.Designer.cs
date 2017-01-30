@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange1 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange2 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange3 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange4 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange5 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange11 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange12 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange13 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange14 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange15 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.redTagToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -75,6 +75,8 @@
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.lblStatus = new System.Windows.Forms.Label();
             this.contextMenuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -327,30 +329,30 @@
             // calendar2
             // 
             this.calendar2.Font = new System.Drawing.Font("Segoe UI", 9F);
-            calendarHighlightRange1.DayOfWeek = System.DayOfWeek.Monday;
-            calendarHighlightRange1.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange1.StartTime = System.TimeSpan.Parse("08:00:00");
-            calendarHighlightRange2.DayOfWeek = System.DayOfWeek.Tuesday;
-            calendarHighlightRange2.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange2.StartTime = System.TimeSpan.Parse("08:00:00");
-            calendarHighlightRange3.DayOfWeek = System.DayOfWeek.Wednesday;
-            calendarHighlightRange3.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange3.StartTime = System.TimeSpan.Parse("08:00:00");
-            calendarHighlightRange4.DayOfWeek = System.DayOfWeek.Thursday;
-            calendarHighlightRange4.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange4.StartTime = System.TimeSpan.Parse("08:00:00");
-            calendarHighlightRange5.DayOfWeek = System.DayOfWeek.Friday;
-            calendarHighlightRange5.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange5.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange11.DayOfWeek = System.DayOfWeek.Monday;
+            calendarHighlightRange11.EndTime = System.TimeSpan.Parse("17:00:00");
+            calendarHighlightRange11.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange12.DayOfWeek = System.DayOfWeek.Tuesday;
+            calendarHighlightRange12.EndTime = System.TimeSpan.Parse("17:00:00");
+            calendarHighlightRange12.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange13.DayOfWeek = System.DayOfWeek.Wednesday;
+            calendarHighlightRange13.EndTime = System.TimeSpan.Parse("17:00:00");
+            calendarHighlightRange13.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange14.DayOfWeek = System.DayOfWeek.Thursday;
+            calendarHighlightRange14.EndTime = System.TimeSpan.Parse("17:00:00");
+            calendarHighlightRange14.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange15.DayOfWeek = System.DayOfWeek.Friday;
+            calendarHighlightRange15.EndTime = System.TimeSpan.Parse("17:00:00");
+            calendarHighlightRange15.StartTime = System.TimeSpan.Parse("08:00:00");
             this.calendar2.HighlightRanges = new System.Windows.Forms.Calendar.CalendarHighlightRange[] {
-        calendarHighlightRange1,
-        calendarHighlightRange2,
-        calendarHighlightRange3,
-        calendarHighlightRange4,
-        calendarHighlightRange5};
-            this.calendar2.Location = new System.Drawing.Point(254, 43);
+        calendarHighlightRange11,
+        calendarHighlightRange12,
+        calendarHighlightRange13,
+        calendarHighlightRange14,
+        calendarHighlightRange15};
+            this.calendar2.Location = new System.Drawing.Point(254, 28);
             this.calendar2.Name = "calendar2";
-            this.calendar2.Size = new System.Drawing.Size(1014, 725);
+            this.calendar2.Size = new System.Drawing.Size(895, 596);
             this.calendar2.TabIndex = 1;
             this.calendar2.Text = "calendar2";
             this.calendar2.TimeScale = System.Windows.Forms.Calendar.CalendarTimeScale.SixtyMinutes;
@@ -366,13 +368,13 @@
             this.monthView2.DaySelectedColor = System.Drawing.SystemColors.WindowText;
             this.monthView2.DaySelectedTextColor = System.Drawing.SystemColors.HighlightText;
             this.monthView2.ItemPadding = new System.Windows.Forms.Padding(2);
-            this.monthView2.Location = new System.Drawing.Point(12, 43);
+            this.monthView2.Location = new System.Drawing.Point(12, 28);
             this.monthView2.MonthTitleColor = System.Drawing.SystemColors.ActiveCaption;
             this.monthView2.MonthTitleColorInactive = System.Drawing.SystemColors.InactiveCaption;
             this.monthView2.MonthTitleTextColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.monthView2.MonthTitleTextColorInactive = System.Drawing.SystemColors.InactiveCaptionText;
             this.monthView2.Name = "monthView2";
-            this.monthView2.Size = new System.Drawing.Size(236, 725);
+            this.monthView2.Size = new System.Drawing.Size(216, 538);
             this.monthView2.TabIndex = 2;
             this.monthView2.Text = "monthView2";
             this.monthView2.TodayBorderColor = System.Drawing.Color.Maroon;
@@ -389,7 +391,7 @@
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.toolStrip1.Size = new System.Drawing.Size(1280, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(1177, 25);
             this.toolStrip1.TabIndex = 4;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -419,11 +421,30 @@
             this.toolStripLabel1.Size = new System.Drawing.Size(139, 22);
             this.toolStripLabel1.Text = "Events and activites";
             // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(254, 626);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(895, 23);
+            this.progressBar1.TabIndex = 5;
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Location = new System.Drawing.Point(14, 627);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(25, 13);
+            this.lblStatus.TabIndex = 6;
+            this.lblStatus.Text = "Info";
+            // 
             // HomeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1280, 780);
+            this.AutoScroll = true;
+            this.ClientSize = new System.Drawing.Size(1177, 661);
+            this.Controls.Add(this.lblStatus);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.monthView2);
             this.Controls.Add(this.calendar2);
@@ -485,5 +506,7 @@
         private System.Windows.Forms.ToolStripButton toolStripButton2;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
+        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.Label lblStatus;
     }
 }

@@ -16,6 +16,8 @@ namespace Casepro
         private MySqlDataAdapter da;        // Data Adapter
         private DataSet ds;
         private string sTable = "files";
+        DataTable dt = new DataTable();
+        DataTable t = new DataTable();
         public EventForm()
         {
             InitializeComponent();
@@ -24,33 +26,46 @@ namespace Casepro
         private void LoadFiles()
         {
 
+            MySqlConnection connection = new MySqlConnection(DBConnect.conn);
+            MySqlCommand command = connection.CreateCommand();
+            MySqlDataReader Reader;
+            command.CommandText = "SELECT * FROM events;";
+            connection.Open();
+            Reader = command.ExecuteReader();
+            // create and execute query  
+            //t = new DataTable();
+            t.Columns.Add("id", typeof(string));
+            t.Columns.Add(new DataColumn("Select", typeof(bool)));
+            t.Columns.Add("Date", typeof(string));
+            t.Columns.Add("Name", typeof(string));
+            t.Columns.Add("Start", typeof(string));
+            t.Columns.Add("End", typeof(string));
+            t.Columns.Add("User", typeof(string));
+            t.Columns.Add("Client");
+            t.Columns.Add("File");
+            t.Columns.Add("Progress");
+            searchCbx.Items.Add("Date");
+            searchCbx.Items.Add("Client");
+            searchCbx.Items.Add("File");
+            searchCbx.Items.Add("Progress");
 
-            MySqlConnection conn = null;
-            try
+
+            while (Reader.Read())
             {
-                conn = new MySqlConnection(DBConnect.conn);
+                t.Rows.Add(new object[] { Reader.GetString(0),false,(Reader.IsDBNull(10) ? "none" : Reader.GetString(10)), (Reader.IsDBNull(1) ? "none" : Reader.GetString(1)), (Reader.IsDBNull(2) ? "none" : Convert.ToDateTime( Reader.GetString(2)).ToString("HH:MM")), (Reader.IsDBNull(3) ? "none" : Convert.ToDateTime(Reader.GetString(3)).ToString("HH:MM")), (Reader.IsDBNull(4) ? "none" : Reader.GetString(4)), (Reader.IsDBNull(17) ? "none" : Reader.GetString(17)), (Reader.IsDBNull(5) ? "none" : Reader.GetString(5)), (Reader.IsDBNull(16) ? "none" : Reader.GetString(16)) });
 
-                conn.Open();
-                da = new MySqlDataAdapter("SELECT * FROM events;", conn);
-                ds = new DataSet();
-                da.Fill(ds, sTable);
-                conn.Close();
-            }
-            catch (MySql.Data.MySqlClient.MySqlException ex)
-            {
-                MessageBox.Show(ex.Message);
-                conn.Close();
-            }
-            finally
-            {
-
-                dtGrid.Refresh();
-                dtGrid.DataSource = ds;
-                dtGrid.DataMember = sTable;
-                this.dtGrid.Columns[0].Visible = false;
-               // this.dtGrid.Columns[1].Visible = false;
+                //t.Rows.Add(new object[] {Reader.GetString(0),Reader.GetString(1),Reader.GetString(2),Reader.GetString(3),Reader.GetString(4)});
 
             }
+            dtGrid.DataSource = t;
+
+
+            this.dtGrid.Columns[0].Visible = false;
+            this.dtGrid.Columns[3].DefaultCellStyle.BackColor = Color.Green;
+            this.dtGrid.Columns[4].DefaultCellStyle.BackColor = Color.Red;
+            // this.dtGrid.Columns[1].Visible = false;
+
+
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
@@ -73,18 +88,44 @@ namespace Casepro
 
         private void dtGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-           
-                int rowIndex = e.RowIndex;
-                DataGridViewRow row = dtGrid.Rows[rowIndex];
-                // MessageBox.Show(dtGrid.Rows[rowIndex].Cells[0].Value.ToString());
-                NewEvent frm = new NewEvent(dtGrid.Rows[rowIndex].Cells[0].Value.ToString());
-                frm.MdiParent = MainForm.ActiveForm;
-                frm.Show();
-                this.Close();
 
-                //  textBox5.Text = dtGrid.Rows[1].Cells[1].Value.ToString();// row.Cells[1].Value;
-                // MessageBox.Show();
-            
+            int rowIndex = e.RowIndex;
+            DataGridViewRow row = dtGrid.Rows[rowIndex];
+            // MessageBox.Show(dtGrid.Rows[rowIndex].Cells[0].Value.ToString());
+            NewEvent frm = new NewEvent(dtGrid.Rows[rowIndex].Cells[0].Value.ToString());
+            frm.MdiParent = MainForm.ActiveForm;
+            frm.Show();
+            this.Close();
+
+            //  textBox5.Text = dtGrid.Rows[1].Cells[1].Value.ToString();// row.Cells[1].Value;
+            // MessageBox.Show();
+
+        }
+
+        private void toolStripTextBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+        string filterField = "Date";
+        private void toolStripTextBox1_TextChanged(object sender, EventArgs e)
+        {
+            t.DefaultView.RowFilter = string.Format("[{0}] LIKE '%{1}%'", filterField, DateTxt.Text);
+          
+        }
+
+        private void searchCbx_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void searchCbx_DropDownClosed(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void searchCbx_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            filterField = searchCbx.Text;
         }
     }
 }

@@ -12,9 +12,15 @@ namespace Casepro
 {
     class Helper
     {
-        public static string fileUrl = "http://localhost/caseprofessionals/files/";
-        public static string imageUrl = "http://localhost/caseprofessionals/uploads/";
-        public static string uploadUrl = "http://localhost/caseprofessionals/uploads/uploads.php";
+        public static string fileUrl;
+        public static string imageUrl;
+        public static string uploadUrl;
+        public static string RemoteUploadUrl;
+        public static string msgUrl;
+        public static string serverName;
+        public static string serverIP;
+        public static string port;
+
 
 
         public static void SaveImageCapture(System.Drawing.Image image)

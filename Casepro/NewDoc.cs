@@ -181,14 +181,16 @@ namespace Casepro
                 frm.MdiParent = MainForm.ActiveForm;
                 frm.Show();
                 this.Close();
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+        }
 
-
+        private void NewDoc_Leave(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

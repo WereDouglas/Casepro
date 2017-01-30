@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -39,6 +40,8 @@ namespace Casepro
                 // saveBtn.Visible = false;
                 // updateBtn.Visible = true;
             }
+            startMinTxt.Text = "00";
+            endMinTxt.Text = "00";
         }
         public void LoadUsers()
         {
@@ -197,9 +200,7 @@ namespace Casepro
             {
                 notify = "true";
             }
-
-
-            string Query = "INSERT INTO `events`(`id`, `name`, `start`, `end`, `user`, `file`, `created`, `action`, `status`, `orgID`, `date`, `hours`, `court`, `notify`,`priority`, `sync`,`progress`,`client`) VALUES ('" + ID + "','" + this.detailsTxt.Text + "','" + start + "','" + end + "','" + lawyerCbx.Text + "','" + fileCbx.Text + "','" + DateTime.Now.Date.ToString("yyyy-MM-dd") + "','create','" + progressTxt.Text + "','A3CEA444-1F39-4F91-955D-0CA57E3C7962','" + DateTime.Now.Date.ToString("yyyy-MM-dd") + "','1','" + court + "','" + notify + "','" + priorityCbx.Text + "','f','" + progressTxt.Text + "','" + clientCbx.Text + "');";
+            string Query = "INSERT INTO `events`(`id`, `name`, `start`, `end`, `user`, `file`, `created`, `action`, `status`, `orgID`, `date`, `hours`, `court`, `notify`,`priority`, `sync`,`progress`,`client`) VALUES ('" + ID + "','" + this.detailsTxt.Text + "','" + start + "','" + end + "','" + lawyerCbx.Text + "','" + fileCbx.Text + "','" + DateTime.Now.Date.ToString("yyyy-MM-dd") + "','create','" + progressTxt.Text + "','A3CEA444-1F39-4F91-955D-0CA57E3C7962','" + Convert.ToDateTime(this.openedDate.Text).ToString("yyyy-MM-dd") + "','1','" + court + "','" + notify + "','" + priorityCbx.Text + "','f','" + progressTxt.Text + "','" + clientCbx.Text + "');";
             MySqlConnection MyConn2 = new MySqlConnection(DBConnect.conn);
 
             MySqlCommand MyCommand2 = new MySqlCommand(Query, MyConn2);
@@ -207,6 +208,9 @@ namespace Casepro
             MyConn2.Open();
             MyReader2 = MyCommand2.ExecuteReader();
             MessageBox.Show("Information saved");
+         
+            var request = (HttpWebRequest)WebRequest.Create(Helper.msgUrl);
+            request.GetResponse();
 
             //HomeForm frm = new HomeForm();
             //frm.MdiParent = MainForm.ActiveForm;
@@ -267,6 +271,7 @@ namespace Casepro
             MyConn2.Open();
             MyReader2 = MyCommand2.ExecuteReader();
             MessageBox.Show("Information Updated");
+            MyConn2.Close();
             EventForm frm = new EventForm();
             frm.MdiParent = MainForm.ActiveForm;
             frm.Dock = DockStyle.Fill;

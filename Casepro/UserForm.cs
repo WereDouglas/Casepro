@@ -19,6 +19,7 @@ namespace Casepro
         public User _user = new User();
         public static List<User> _userList = new List<User> { };
         public static DataTable table = new DataTable();
+        DataTable t = new DataTable();
         public UserForm()
         {
             InitializeComponent();
@@ -28,7 +29,6 @@ namespace Casepro
         public void LoadUsers()
         {
             _userList.Clear();
-
             // connect to database  
 
             MySqlConnection connection = new MySqlConnection(DBConnect.conn);
@@ -39,9 +39,10 @@ namespace Casepro
             Reader = command.ExecuteReader();
             // create and execute query  
 
-            DataTable t = new DataTable();
+           
             t.Columns.Add("userID");
             t.Columns.Add("uri");
+            t.Columns.Add(new DataColumn("Select", typeof(bool)));
             t.Columns.Add(new DataColumn("Img", typeof(Bitmap)));
             t.Columns.Add("Name");
             t.Columns.Add("E-mail");
@@ -51,6 +52,12 @@ namespace Casepro
             t.Columns.Add("Supervisor");
             t.Columns.Add("Status");
             t.Columns.Add("Charge");
+            searchCbx.Items.Add("Name");
+            searchCbx.Items.Add("E-mail");
+            searchCbx.Items.Add("Contact");
+            searchCbx.Items.Add("Designation");
+            searchCbx.Items.Add("Status");
+
 
 
             Bitmap b = new Bitmap(50, 50);
@@ -75,7 +82,7 @@ namespace Casepro
                 catch (InvalidCastException) { }
 
 
-                t.Rows.Add(new object[] { Reader.GetString(0), Helper.imageUrl + Reader.GetString(8), b, Reader.GetString(2), Reader.GetString(3), Reader.GetString(7), Reader.GetString(5), Reader.GetString(9), Reader.GetString(14) + "", Reader.GetString(6), "" + Reader.GetString(13) + "" });
+                t.Rows.Add(new object[] { Reader.GetString(0), Helper.imageUrl + Reader.GetString(8), false, b, Reader.GetString(2), Reader.GetString(3), Reader.GetString(7), Reader.GetString(5), Reader.GetString(9), Reader.GetString(14) + "", Reader.GetString(6), "" + Reader.GetString(13) + "" });
                 _userList.Add(_user);
             }
 
@@ -118,24 +125,17 @@ namespace Casepro
             dtGrid.AllowUserToAddRows = false;
 
             connection.Close();
-            dtGrid.CellClick += dtGrid_CellClick;
+            dtGrid.Columns[0].Visible = false;
+            //dtGrid.CellClick += dtGrid_CellClick;
         }
+        string filterField="Name";
+      
         private void dtGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             //Do Something with your button.            
         }
         private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            string value = dtGrid.Rows[e.RowIndex].Cells["uri"].Value.ToString();
-            ThreadPool.QueueUserWorkItem(delegate
-            {
-                HttpWebRequest myRequest = (HttpWebRequest)WebRequest.Create(value);
-                myRequest.Method = "GET";
-                HttpWebResponse myResponse = (HttpWebResponse)myRequest.GetResponse();
-                System.Drawing.Bitmap bmp = new System.Drawing.Bitmap(myResponse.GetResponseStream());
-                myResponse.Close();
-                dtGrid.Rows[e.RowIndex].Cells["Img"].Value = bmp;
-            });
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
@@ -178,10 +178,16 @@ namespace Casepro
             frm.MdiParent = MainForm.ActiveForm;
             frm.Show();
             this.Close();
+        }
 
+        private void searchCbx_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            filterField = searchCbx.Text;
+        }
 
-
-
+        private void DateTxt_TextChanged(object sender, EventArgs e)
+        {
+            t.DefaultView.RowFilter = string.Format("[{0}] LIKE '%{1}%'", filterField, DateTxt.Text);
         }
     }
 }

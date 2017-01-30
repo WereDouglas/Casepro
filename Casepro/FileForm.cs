@@ -15,12 +15,10 @@ namespace Casepro
 {
     public partial class FileForm : Form
     {
-        private MySqlDataAdapter da;        // Data Adapter
-        private DataSet ds;
-        private string sTable = "files";
+      
         private User _user = new User();
+        DataTable t = new DataTable();
         private List<User> _userList = new List<User>();
-
         private Client _client = new Client();
         private List<Client> _clientList = new List<Client>();
 
@@ -33,35 +31,65 @@ namespace Casepro
     
         private void LoadFiles()
         {
+            _userList.Clear();
+            // connect to database  
 
+            MySqlConnection connection = new MySqlConnection(DBConnect.conn);
+            MySqlCommand command = connection.CreateCommand();
+            MySqlDataReader Reader;
+            command.CommandText = "SELECT userID, orgID, name, email, password, designation, status, contact, image, address, category, created,sync, charge, supervisor FROM users";
+            connection.Open();
+            Reader = command.ExecuteReader();
+            // create and execute query  
+            t.Columns.Add("fileID");  //0         
+            t.Columns.Add(new DataColumn("Select", typeof(bool)));
+            t.Columns.Add("No");//05
+            t.Columns.Add("Name");//11
+            t.Columns.Add("Client");//2
+            t.Columns.Add("Lawyer");//4
+            t.Columns.Add("Contact");//3
+            t.Columns.Add("Description");//6
+            t.Columns.Add("Type");//7
+            t.Columns.Add("Subject");//8
+            t.Columns.Add("Citation");//9 
+            t.Columns.Add("Law");//10
+            t.Columns.Add("Created");//12 
+            t.Columns.Add("Status");//13 
+            t.Columns.Add("Case");//15 
+            t.Columns.Add("Note");//16
+            t.Columns.Add("Progress");//17 
+            t.Columns.Add("Opened");//18
+            t.Columns.Add("Due");//19
+            t.Columns.Add("C/O");//20 
+           
 
-            MySqlConnection conn = null;
-            try
+            searchCbx.Items.Add("Name");
+            searchCbx.Items.Add("Lawyer");
+            searchCbx.Items.Add("Description");
+            searchCbx.Items.Add("Status");
+            searchCbx.Items.Add("Due");
+
+            while (Reader.Read())
             {
-                conn = new MySqlConnection(DBConnect.conn);
 
-                conn.Open();
-                da = new MySqlDataAdapter("SELECT * FROM file;", conn);
-                ds = new DataSet();
-                da.Fill(ds, sTable);
-                conn.Close();
+                t.Rows.Add(new object[] { Reader.GetString(0), false, (Reader.IsDBNull(5) ? "none" : Reader.GetString(5)), (Reader.IsDBNull(11) ? "none" : Reader.GetString(11)), (Reader.IsDBNull(2) ? "none" : Reader.GetString(2)), (Reader.IsDBNull(4) ? "none" : Reader.GetString(4)), (Reader.IsDBNull(3) ? "none" : Reader.GetString(3)), (Reader.IsDBNull(6) ? "none" : Reader.GetString(6)), (Reader.IsDBNull(7) ? "none" : Reader.GetString(7)), (Reader.IsDBNull(8) ? "none" : Reader.GetString(8)), (Reader.IsDBNull(9) ? "none" : Reader.GetString(9)), (Reader.IsDBNull(10) ? "none" : Reader.GetString(10)), (Reader.IsDBNull(12) ? "none" : Reader.GetString(12)), (Reader.IsDBNull(13) ? "none" : Reader.GetString(13)), (Reader.IsDBNull(15) ? "none" : Reader.GetString(15)), (Reader.IsDBNull(16) ? "none" : Reader.GetString(16)), (Reader.IsDBNull(17) ? "none" : Reader.GetString(17)), (Reader.IsDBNull(18) ? "none" : Reader.GetString(18)), (Reader.IsDBNull(19) ? "none" : Reader.GetString(19)), (Reader.IsDBNull(20) ? "none" : Reader.GetString(20)), (Reader.IsDBNull(20) ? "none" : Reader.GetString(20)) });
+              
             }
-            catch (MySql.Data.MySqlClient.MySqlException ex)
-            {
-                MessageBox.Show(ex.Message);
-                conn.Close();
-            }
-            finally
-            {
-                
-                dtGrid.Refresh();
-                dtGrid.DataSource = ds;
-                dtGrid.DataMember = sTable;
-                this.dtGrid.Columns[0].Visible = false;
-                this.dtGrid.Columns[1].Visible = false;
 
-            }
+            dtGrid.DataSource = t;
+            dtGrid.RowTemplate.Height = 60;
+            dtGrid.Columns[0].Visible = false;
+            dtGrid.Columns[1].Visible = false;           
+            dtGrid.AllowUserToAddRows = false;
+            this.dtGrid.Columns[3].DefaultCellStyle.BackColor = Color.Green;
+            this.dtGrid.Columns[4].DefaultCellStyle.BackColor = Color.Red;
+
+            connection.Close();
+            dtGrid.Columns[0].Visible = false;
+            //dtGrid.CellClick += dtGrid_CellClick;
+
         }
+        string filterField = "Name";
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
 
@@ -133,6 +161,16 @@ namespace Casepro
         private void dtGrid_SelectionChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void DateTxt_TextChanged(object sender, EventArgs e)
+        {
+            t.DefaultView.RowFilter = string.Format("[{0}] LIKE '%{1}%'", filterField, DateTxt.Text);
+        }
+
+        private void searchCbx_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            filterField = searchCbx.Text;
         }
     }
 }

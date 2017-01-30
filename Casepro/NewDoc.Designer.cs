@@ -171,6 +171,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "NewDoc";
             this.Text = "NewDoc";
+            this.Leave += new System.EventHandler(this.NewDoc_Leave);
             this.ResumeLayout(false);
             this.PerformLayout();
 

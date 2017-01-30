@@ -19,6 +19,7 @@ namespace Casepro
         public Client _client = new Client();
         public static List<Client> _clientList = new List<Client> { };
         public static DataTable table = new DataTable();
+        DataTable t = new DataTable();
         MySqlDataReader Reader;
         public ClientForm()
         {
@@ -40,9 +41,10 @@ namespace Casepro
             Reader = command.ExecuteReader();
             // create and execute query  
 
-            DataTable t = new DataTable();
-            t.Columns.Add("clientID");
+           
+            t.Columns.Add("clientID");           
             t.Columns.Add("uri");
+            t.Columns.Add(new DataColumn("Select", typeof(bool)));
             t.Columns.Add(new DataColumn("Img", typeof(Bitmap)));
             t.Columns.Add("Name");
             t.Columns.Add("E-mail");
@@ -51,7 +53,10 @@ namespace Casepro
             t.Columns.Add("Address");          
             t.Columns.Add("Status");
             t.Columns.Add("created");
-
+            searchCbx.Items.Add("Name");
+            searchCbx.Items.Add("E-mail");
+            searchCbx.Items.Add("Contact");
+            searchCbx.Items.Add("Status");
 
             Bitmap b = new Bitmap(50, 50);
 
@@ -74,8 +79,7 @@ namespace Casepro
                 try { _client.Image = Reader.GetString(8); }
                 catch (InvalidCastException) { }
 
-
-                t.Rows.Add(new object[] { Reader.GetString(0), Helper.imageUrl + Reader.GetString(6) as string, b, Reader.IsDBNull(2) ? "": Reader.GetString(2), Reader.IsDBNull(3) ? "" : Reader.GetString(3), Reader.IsDBNull(4) ? "" : Reader.GetString(4), Reader.IsDBNull(10) ? "" : Reader.GetString(10), Reader.IsDBNull(7) ? "" : Reader.GetString(7), Reader.IsDBNull(5) ? "" : Reader.GetString(5) + " ", Reader.IsDBNull(8) ? "" : Reader.GetString(8) + "" });
+                t.Rows.Add(new object[] { Reader.GetString(0), Helper.imageUrl + Reader.GetString(6) as string, false, b, Reader.IsDBNull(2) ? "": Reader.GetString(2), Reader.IsDBNull(3) ? "" : Reader.GetString(3), Reader.IsDBNull(4) ? "" : Reader.GetString(4), Reader.IsDBNull(10) ? "" : Reader.GetString(10), Reader.IsDBNull(7) ? "" : Reader.GetString(7), Reader.IsDBNull(5) ? "" : Reader.GetString(5) + " ", Reader.IsDBNull(8) ? "" : Reader.GetString(8) + "" });
                 _clientList.Add(_client);
             }
 
@@ -118,6 +122,7 @@ namespace Casepro
 
          
             dtGrid.AllowUserToAddRows = false;
+            dtGrid.Columns[0].Visible = false;
 
             connection.Close();
           
@@ -197,6 +202,16 @@ namespace Casepro
         private void ClientForm_Leave_1(object sender, EventArgs e)
         {
             this.Close();
+        }
+        string filterField = "Name";
+        private void DateTxt_TextChanged(object sender, EventArgs e)
+        {
+            t.DefaultView.RowFilter = string.Format("[{0}] LIKE '%{1}%'", filterField, DateTxt.Text);
+        }
+
+        private void searchCbx_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            filterField = searchCbx.Text;
         }
     }
 }

@@ -18,7 +18,7 @@ namespace Casepro
         private string database;
         private string uid;
         private string password;
-        public static string conn = "SERVER=localhost;" + "DATABASE=cases;" + "UID=root;" + "PASSWORD=;";
+        public static string conn = "SERVER="+ Helper.serverIP+";" + "DATABASE=cases;" + "UID=daga;" + "PASSWORD=Case.2016;";
         public static string remoteConn = "SERVER=caseprofessional.org;" + "DATABASE=caseprof_case;"+ "UID=caseprof_case;" + "PASSWORD=Case.2016;";
         //caseprofessional.org
         //50.87.14.145
