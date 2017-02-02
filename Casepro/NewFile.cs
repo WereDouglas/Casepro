@@ -171,12 +171,8 @@ namespace Casepro
 
             string fileID = Guid.NewGuid().ToString();
 
-            string Query = "INSERT INTO file(fileID,orgID, client, contact, lawyer, no, details, type, subject, citation, law, name, created, status, sync,`case`,note, progress, opened, due, contact_person, contact_number) VALUES ('" + fileID + "','A3CEA444-1F39-4F91-955D-0CA57E3C7962','" + this.clientCbx.Text + "','" + this.contactTxt.Text + "','" + this.lawyerCbx.Text + "','" + this.noLbl.Text + "','" + this.descriptionTxt.Text + "','" + this.typeCbx.Text + "','" + subjectTxt.Text + "','" + this.citationTxt.Text + "','" + this.lawCbx.Text + "','" + this.nameTxt.Text + "','" + DateTime.Now.Date.ToString("yyyy-MM-dd") + "','" + this.stateCbx.Text + "','f','" + this.caseTxt.Text + "','" + this.noteTxt.Text + "','" + this.progressTxt.Text + "','" + Convert.ToDateTime(this.openedDate.Text).ToString("yyyy-MM-dd") + "','" + Convert.ToDateTime(this.dueDate.Text).ToString("yyyy-MM-dd") + "','" + this.contactpersonTxt.Text + "','" + this.contactTxt.Text + "');";
-            MySqlConnection MyConn2 = new MySqlConnection(DBConnect.conn);
-            MySqlCommand MyCommand2 = new MySqlCommand(Query, MyConn2);
-            MySqlDataReader MyReader2;
-            MyConn2.Open();
-            MyReader2 = MyCommand2.ExecuteReader();
+            string Query = "INSERT INTO file(fileID,orgID, client, contact, lawyer, no, details, type, subject, citation, law, name, created, status, sync,`case`,note, progress, opened, due, contact_person, contact_number) VALUES ('" + fileID + "','" + Helper.orgID + "','" + this.clientCbx.Text + "','" + this.contactTxt.Text + "','" + this.lawyerCbx.Text + "','" + this.noLbl.Text + "','" + this.descriptionTxt.Text + "','" + this.typeCbx.Text + "','" + subjectTxt.Text + "','" + this.citationTxt.Text + "','" + this.lawCbx.Text + "','" + this.nameTxt.Text + "','" + DateTime.Now.Date.ToString("yyyy-MM-dd") + "','" + this.stateCbx.Text + "','f','" + this.caseTxt.Text + "','" + this.noteTxt.Text + "','" + this.progressTxt.Text + "','" + Convert.ToDateTime(this.openedDate.Text).ToString("yyyy-MM-dd") + "','" + Convert.ToDateTime(this.dueDate.Text).ToString("yyyy-MM-dd") + "','" + this.contactpersonTxt.Text + "','" + this.contactTxt.Text + "');";
+            Helper.Execute(Query, DBConnect.conn);
             MessageBox.Show("Information saved");
             FileForm frm = new FileForm();
             frm.MdiParent = MainForm.ActiveForm;
@@ -204,12 +200,8 @@ namespace Casepro
         private void updateBtn_Click(object sender, EventArgs e)
         {
             string fileID = Guid.NewGuid().ToString();
-            string Query = "UPDATE file SET client='" + this.clientCbx.Text + "', contact='" + this.contactTxt.Text + "' , lawyer='" + this.lawyerCbx.Text + "', no='" + this.noLbl.Text + "', details='" + this.descriptionTxt.Text + "', type='" + this.typeCbx.Text + "', subject='" + subjectTxt.Text + "', citation='" + this.citationTxt.Text + "', law='" + this.lawCbx.Text + "', name='" + this.nameTxt.Text + "', status='" + this.stateCbx.Text + "',`case`='" + this.caseTxt.Text + "',note='" + this.noteTxt.Text + "', progress='" + this.progressTxt.Text + "', opened='" + Convert.ToDateTime(this.openedDate.Text).ToString("yyyy-MM-dd") + "', due='" + Convert.ToDateTime(this.dueDate.Text).ToString("yyyy-MM-dd") + "', contact_person='" + this.contactpersonTxt.Text + "', contact_number='" + this.contactTxt.Text + "' WHERE fileID ='"+id+"'";
-            MySqlConnection MyConn2 = new MySqlConnection(DBConnect.conn);
-            MySqlCommand MyCommand2 = new MySqlCommand(Query, MyConn2);
-            MySqlDataReader MyReader2;
-            MyConn2.Open();
-            MyReader2 = MyCommand2.ExecuteReader();
+            string Query = "UPDATE file SET client='" + this.clientCbx.Text + "', sync='f',contact='" + this.contactTxt.Text + "' , lawyer='" + this.lawyerCbx.Text + "', no='" + this.noLbl.Text + "', details='" + this.descriptionTxt.Text + "', type='" + this.typeCbx.Text + "', subject='" + subjectTxt.Text + "', citation='" + this.citationTxt.Text + "', law='" + this.lawCbx.Text + "', name='" + this.nameTxt.Text + "', status='" + this.stateCbx.Text + "',`case`='" + this.caseTxt.Text + "',note='" + this.noteTxt.Text + "', progress='" + this.progressTxt.Text + "', opened='" + Convert.ToDateTime(this.openedDate.Text).ToString("yyyy-MM-dd") + "', due='" + Convert.ToDateTime(this.dueDate.Text).ToString("yyyy-MM-dd") + "', contact_person='" + this.contactpersonTxt.Text + "', contact_number='" + this.contactTxt.Text + "' WHERE fileID ='"+id+"'";
+            Helper.Execute(Query, DBConnect.conn);
             MessageBox.Show("Information Updated");
             FileForm frm = new FileForm();
             frm.MdiParent = MainForm.ActiveForm;
@@ -223,11 +215,7 @@ namespace Casepro
         {
             string fileID = Guid.NewGuid().ToString();
             string Query = "DELETE from file WHERE fileID ='" + id + "'";
-            MySqlConnection MyConn2 = new MySqlConnection(DBConnect.conn);
-            MySqlCommand MyCommand2 = new MySqlCommand(Query, MyConn2);
-            MySqlDataReader MyReader2;
-            MyConn2.Open();
-            MyReader2 = MyCommand2.ExecuteReader();
+            Helper.Execute(Query, DBConnect.conn);
             MessageBox.Show("Information deleted");
             FileForm frm = new FileForm();
             frm.MdiParent = MainForm.ActiveForm;

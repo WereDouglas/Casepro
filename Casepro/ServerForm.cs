@@ -29,7 +29,10 @@ namespace Casepro
             )
             );
 
-            xml.Save("LocalXMLFile.xml");
+            xml.Save("LocalXMLFile.xml");            
+            LoginForm frm = new LoginForm();
+            frm.Show();
+            this.Close();
         }
         private void LoadSettings()
         {

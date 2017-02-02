@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -21,47 +22,83 @@ namespace Casepro
         }
         private void LoadSettings()
         {
+            
+
+
+            // MessageBox.Show(Helper.serverIP);
+            if (TestServerConnection())
+            {
+                lblStatus.Text = ("You are connected  to the server ");
+                lblStatus.ForeColor = Color.Green;
+                HomeForm frms = new HomeForm();
+                frms.MdiParent = this;
+                frms.Dock = DockStyle.Fill;
+                frms.Show();
+
+            }
+            else
+            {
+                ServerForm frm = new ServerForm();
+                frm.Show();
+                lblStatus.Text = ("You are not able to connect to the server contact the administrator for further assistance");
+                lblStatus.ForeColor = Color.Red;
+
+            }
+            if (TestOnlineServerConnection())
+            {
+                onlineLbl.Text = ("connection successful to online server");
+                onlineLbl.ForeColor = Color.Green;
+            }
+            else
+            {
+                onlineLbl.Text = ("You are not able to connect to the online server contact the administrator for further assistance");
+                onlineLbl.ForeColor = Color.Red;
+            }
+
+
+
+
+        }
+        private bool TestServerConnection()
+        {
             try
             {
-                XDocument xmlDoc = XDocument.Load("LocalXMLFile.xml");
-
-
-                var servers = from person in xmlDoc.Descendants("Server")
-                              select new
-                              {
-                                  Name = person.Element("Name").Value,
-                                  Ip = person.Element("Ip").Value,
-                                  Port = person.Element("Port").Value,
-                              };
-
-
-                foreach (var server in servers)
-                {
-                    Helper.serverName = server.Name;
-                    Helper.serverIP = server.Ip;
-                    Helper.port = server.Port;
-
-                    Helper.fileUrl = "http://" + server.Ip + "/caseprofessionals/files/";
-                    Helper.imageUrl = "http://" + server.Ip + "/caseprofessionals/uploads/";
-                    Helper.uploadUrl = "http://" + server.Ip + "/caseprofessionals/uploads/uploads.php";
-                    Helper.RemoteUploadUrl = "http://caseprofessional.org/uploads/uploads.php";
-                    Helper.msgUrl = "http://" + server.Ip + "/caseprofessionals/index.php/message/event";
-                }
-               // MessageBox.Show(Helper.serverIP);
-                HomeForm frm = new HomeForm();
-                frm.MdiParent = this;
-                frm.Dock = DockStyle.Fill;
-                frm.Show();
+                MySqlConnection connection = new MySqlConnection(DBConnect.conn);
+                MySqlCommand command = connection.CreateCommand();
+                // MySqlDataReader Reader;
+                command.CommandText = "SELECT * FROM events WHERE sync ='f' ;";
+                connection.Open();
+                connection.Close();
+                lblStatus.Text = ("Local server connection successful");
+                lblStatus.ForeColor = Color.Green;
+                return true;
             }
             catch
             {
-
-                ServerForm frm = new ServerForm();
-                frm.Show();
-                this.Close();
+                lblStatus.Text = ("You are not able to connect to the server contact the administrator for further assistance");
+                lblStatus.ForeColor = Color.Red;
+                return false;
             }
+        }
+        private bool TestOnlineServerConnection()
+        {
+            try
+            {
+                MySqlConnection connection = new MySqlConnection(DBConnect.remoteConn);
+                MySqlCommand command = connection.CreateCommand();
 
-
+                connection.Open();
+                connection.Close();
+                onlineLbl.Text = ("connection successful to online server");
+                onlineLbl.ForeColor = Color.Green;
+                return true;
+            }
+            catch
+            {
+                onlineLbl.Text = ("You are not able to connect to the online server contact the administrator for further assistance");
+                onlineLbl.ForeColor = Color.Red;
+                return false;
+            }
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
@@ -159,6 +196,25 @@ namespace Casepro
         private void settingToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ServerForm frm = new ServerForm();
+            frm.Show();
+        }
+
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            LoginForm frm = new LoginForm();
+            frm.Show();
+            this.Hide();
+        }
+
+        private void companyProfileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           
+           // this.Hide();
+        }
+
+        private void companyProfileToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            OrganisationForm frm = new OrganisationForm();
             frm.Show();
         }
     }

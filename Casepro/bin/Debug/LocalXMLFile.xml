@@ -2,7 +2,7 @@
 <Servers>
   <Server>
     <Name>daga</Name>
-    <Ip>192.168.1.4</Ip>
+    <Ip>192.168.1.196</Ip>
     <Port>3306</Port>
   </Server>
 </Servers>

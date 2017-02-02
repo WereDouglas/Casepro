@@ -49,33 +49,37 @@ namespace Casepro
             Reader = command.ExecuteReader();
             while (Reader.Read())
             {
-                try { nameTxtBx.Text = Reader.GetString(2); }
+                try { nameTxtBx.Text = Reader.IsDBNull(2) ? "" : Reader.GetString(2); }
                 catch (InvalidCastException) { }
 
-                try { emailTxtBx.Text = Reader.GetString(3); }
+                try { emailTxtBx.Text = Reader.IsDBNull(3) ? "" : Reader.GetString(3); }
                 catch (InvalidCastException) { }
-                designationCbx.Text = Reader.GetString(5);
-                contactTxtBx.Text = Reader.GetString(7);
+                designationCbx.Text = Reader.IsDBNull(5) ? "" : Reader.GetString(5);
+                contactTxtBx.Text = Reader.IsDBNull(7) ? "" : Reader.GetString(7);
                 try
                 {
-                    addressTxtBx.Text = Reader.GetString(9);
+                    addressTxtBx.Text = Reader.IsDBNull(9) ? "" : Reader.GetString(9);
                 }
                 catch { }
-                chargeTxtBx.Text = Reader.GetString(13);
-                supervisorCbx.Text = Reader.GetString(14);
+                chargeTxtBx.Text = Reader.IsDBNull(13) ? "" : Reader.GetString(13);
+                supervisorCbx.Text = Reader.IsDBNull(14) ? "" : Reader.GetString(14);
                 try
                 {
-                    statusCbx.Text = Reader.GetString(6);
+                    statusCbx.Text = Reader.IsDBNull(6) ? "" : Reader.GetString(6);
                 }
                 catch { }
-                var request = WebRequest.Create(Helper.imageUrl + Reader.GetString(8).ToString());
+                try
+                {
+                    var request = WebRequest.Create(Helper.imageUrl + (Reader.IsDBNull(8) ? "" : Reader.GetString(8)));
 
                 using (var response = request.GetResponse())
                 using (var stream = response.GetResponseStream())
                 {
                     imgCapture.Image = Bitmap.FromStream(stream);
-                    
+
                 }
+                }
+                catch { }
 
             }
             connection.Close();
@@ -180,17 +184,9 @@ namespace Casepro
 
             try
             {
-                string Query = "INSERT INTO users(userID, orgID, name, email, password, designation, status, contact, image, address, category, created, sync, charge, supervisor) VALUES ('" + userID + "','A3CEA444-1F39-4F91-955D-0CA57E3C7962','" + this.nameTxtBx.Text + "','" + this.emailTxtBx.Text + "','" + Helper.MD5Hash(this.passwordTxtBx.Text) + "','" + this.designationCbx.Text + "','" + this.statusCbx.Text + "','" + this.contactTxtBx.Text + "','" + userID.Trim() + ".jpg" + "','" + this.addressTxtBx.Text + "','staff','" + DateTime.Now.Date.ToString("yyyy-MM-dd") + "','f','" + this.chargeTxtBx.Text + "','" + supervisorCbx.Text + "');";
-                MySqlConnection MyConn2 = new MySqlConnection(DBConnect.conn);
-
-                MySqlCommand MyCommand2 = new MySqlCommand(Query, MyConn2);
-                MySqlDataReader MyReader2;
-                MyConn2.Open();
-                MyReader2 = MyCommand2.ExecuteReader();
+                string Query = "INSERT INTO users(userID, orgID, name, email, password, designation, status, contact, image, address, category, created, sync, charge, supervisor) VALUES ('" + userID + "','" + Helper.orgID + "','" + this.nameTxtBx.Text + "','" + this.emailTxtBx.Text + "','" + Helper.MD5Hash(this.passwordTxtBx.Text) + "','" + this.designationCbx.Text + "','" + this.statusCbx.Text + "','" + this.contactTxtBx.Text + "','" + userID.Trim() + ".jpg" + "','" + this.addressTxtBx.Text + "','staff','" + DateTime.Now.Date.ToString("yyyy-MM-dd") + "','f','" + this.chargeTxtBx.Text + "','" + supervisorCbx.Text + "');";
+                Helper.Execute(Query, DBConnect.conn);
                 MessageBox.Show("Information saved");
-
-                MyConn2.Close();
-
                 UserForm frm = new UserForm();
                 frm.MdiParent = MainForm.ActiveForm;
                 frm.Show();
@@ -302,19 +298,15 @@ namespace Casepro
 
             if (passwordTxtBx.Text != "")
             {
-                 Query = "UPDATE `users` SET `name`='" + this.nameTxtBx.Text + "',`email`='" + this.emailTxtBx.Text + "',`image`='" + id.Trim() + ".jpg" + "' ,`password`='" + Helper.MD5Hash(this.passwordTxtBx.Text) + "',`designation`='" + this.designationCbx.Text + "',`status`='" + this.statusCbx.Text + "',`contact`='" + this.contactTxtBx.Text + "',`address`='" + this.addressTxtBx.Text + "',`sync`='f',`charge`='" + this.chargeTxtBx.Text + "',`supervisor`='" + supervisorCbx.Text + "',`action`='update' WHERE userID = '" + id + "'";
+                Query = "UPDATE `users` SET `name`='" + this.nameTxtBx.Text + "',`email`='" + this.emailTxtBx.Text + "',`image`='" + id.Trim() + ".jpg" + "' ,`password`='" + Helper.MD5Hash(this.passwordTxtBx.Text) + "',`designation`='" + this.designationCbx.Text + "',`status`='" + this.statusCbx.Text + "',`contact`='" + this.contactTxtBx.Text + "',`address`='" + this.addressTxtBx.Text + "',`sync`='f',`charge`='" + this.chargeTxtBx.Text + "',`supervisor`='" + supervisorCbx.Text + "',`action`='update' WHERE userID = '" + id + "'";
 
             }
-            else {
+            else
+            {
                 Query = "UPDATE `users` SET `name`='" + this.nameTxtBx.Text + "',`email`='" + this.emailTxtBx.Text + "',`image`='" + id.Trim() + ".jpg" + "',`designation`='" + this.designationCbx.Text + "',`status`='" + this.statusCbx.Text + "',`contact`='" + this.contactTxtBx.Text + "',`address`='" + this.addressTxtBx.Text + "',`sync`='f',`charge`='" + this.chargeTxtBx.Text + "',`supervisor`='" + supervisorCbx.Text + "',`action`='update' WHERE userID = '" + id + "'";
 
             }
-            string fileID = Guid.NewGuid().ToString();
-             MySqlConnection MyConn2 = new MySqlConnection(DBConnect.conn);
-            MySqlCommand MyCommand2 = new MySqlCommand(Query, MyConn2);
-            MySqlDataReader MyReader2;
-            MyConn2.Open();
-            MyReader2 = MyCommand2.ExecuteReader();
+            Helper.Execute(Query,DBConnect.conn);          
             MessageBox.Show("Information Updated");
             UserForm frm = new UserForm();
             frm.MdiParent = MainForm.ActiveForm;
@@ -325,19 +317,18 @@ namespace Casepro
 
         private void button3_Click(object sender, EventArgs e)
         {
-            string fileID = Guid.NewGuid().ToString();
-            string Query = "DELETE from user WHERE userID ='" + id + "'";
-            MySqlConnection MyConn2 = new MySqlConnection(DBConnect.conn);
-            MySqlCommand MyCommand2 = new MySqlCommand(Query, MyConn2);
-            MySqlDataReader MyReader2;
-            MyConn2.Open();
-            MyReader2 = MyCommand2.ExecuteReader();
-            MessageBox.Show("Information deleted");
-            UserForm frm = new UserForm();
-            frm.MdiParent = MainForm.ActiveForm;
-            frm.Dock = DockStyle.Fill;
-            frm.Show();
-            this.Close();
+            if (MessageBox.Show("Confirm or no?", "Confirm deletion", MessageBoxButtons.YesNo,MessageBoxIcon.Information) == DialogResult.Yes)
+            {
+                string fileID = Guid.NewGuid().ToString();
+                string Query = "DELETE from user WHERE userID ='" + id + "'";
+                Helper.Execute(Query, DBConnect.conn);
+                MessageBox.Show("Information deleted");
+                UserForm frm = new UserForm();
+                frm.MdiParent = MainForm.ActiveForm;
+                frm.Dock = DockStyle.Fill;
+                frm.Show();
+                this.Close();
+            }
 
         }
 

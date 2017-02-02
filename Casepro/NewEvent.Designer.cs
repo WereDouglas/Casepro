@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.startHrTxt = new System.Windows.Forms.TextBox();
-            this.endHrTxt = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -58,6 +56,8 @@
             this.label12 = new System.Windows.Forms.Label();
             this.updateBtn = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+            this.startHrTxt = new System.Windows.Forms.ComboBox();
+            this.endHrTxt = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -68,20 +68,6 @@
             this.label1.Size = new System.Drawing.Size(41, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Priority:";
-            // 
-            // startHrTxt
-            // 
-            this.startHrTxt.Location = new System.Drawing.Point(119, 148);
-            this.startHrTxt.Name = "startHrTxt";
-            this.startHrTxt.Size = new System.Drawing.Size(28, 20);
-            this.startHrTxt.TabIndex = 1;
-            // 
-            // endHrTxt
-            // 
-            this.endHrTxt.Location = new System.Drawing.Point(118, 180);
-            this.endHrTxt.Name = "endHrTxt";
-            this.endHrTxt.Size = new System.Drawing.Size(29, 20);
-            this.endHrTxt.TabIndex = 2;
             // 
             // label3
             // 
@@ -334,11 +320,63 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
+            // startHrTxt
+            // 
+            this.startHrTxt.Items.AddRange(new object[] {
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23"});
+            this.startHrTxt.Location = new System.Drawing.Point(119, 145);
+            this.startHrTxt.Name = "startHrTxt";
+            this.startHrTxt.Size = new System.Drawing.Size(35, 21);
+            this.startHrTxt.TabIndex = 113;
+            // 
+            // endHrTxt
+            // 
+            this.endHrTxt.FormattingEnabled = true;
+            this.endHrTxt.Items.AddRange(new object[] {
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18"});
+            this.endHrTxt.Location = new System.Drawing.Point(118, 175);
+            this.endHrTxt.Name = "endHrTxt";
+            this.endHrTxt.Size = new System.Drawing.Size(35, 21);
+            this.endHrTxt.TabIndex = 114;
+            // 
             // NewEvent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(374, 499);
+            this.Controls.Add(this.endHrTxt);
+            this.Controls.Add(this.startHrTxt);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.updateBtn);
             this.Controls.Add(this.label12);
@@ -366,8 +404,6 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.endHrTxt);
-            this.Controls.Add(this.startHrTxt);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "NewEvent";
@@ -381,8 +417,6 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox startHrTxt;
-        private System.Windows.Forms.TextBox endHrTxt;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
@@ -410,5 +444,7 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button updateBtn;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.ComboBox startHrTxt;
+        private System.Windows.Forms.ComboBox endHrTxt;
     }
 }

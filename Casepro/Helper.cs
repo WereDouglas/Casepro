@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -21,6 +22,13 @@ namespace Casepro
         public static string serverIP;
         public static string port;
 
+        public static string username;
+        public static string orgID;
+        public static string email;
+        public static string contact;
+        public static string image;
+        public static string designation;
+
 
 
         public static void SaveImageCapture(System.Drawing.Image image)
@@ -42,6 +50,17 @@ namespace Casepro
                 fstream.Close();
 
             }
+
+        }
+        public static void Execute(string query,string conn){
+            //t.Rows.Add(new object[] {Reader.GetString(0),Reader.GetString(1),Reader.GetString(2),Reader.GetString(3),Reader.GetString(4)});
+            MySqlConnection MyConn = new MySqlConnection(conn);
+            MySqlCommand MyCommand = new MySqlCommand(query, MyConn);
+            MySqlDataReader MyReader;
+            MyConn.Open();
+            MyReader = MyCommand.ExecuteReader();
+            MyConn.Close();
+
 
         }
         public static string MD5Hash(string text)

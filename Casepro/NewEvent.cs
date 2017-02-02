@@ -200,22 +200,12 @@ namespace Casepro
             {
                 notify = "true";
             }
-            string Query = "INSERT INTO `events`(`id`, `name`, `start`, `end`, `user`, `file`, `created`, `action`, `status`, `orgID`, `date`, `hours`, `court`, `notify`,`priority`, `sync`,`progress`,`client`) VALUES ('" + ID + "','" + this.detailsTxt.Text + "','" + start + "','" + end + "','" + lawyerCbx.Text + "','" + fileCbx.Text + "','" + DateTime.Now.Date.ToString("yyyy-MM-dd") + "','create','" + progressTxt.Text + "','A3CEA444-1F39-4F91-955D-0CA57E3C7962','" + Convert.ToDateTime(this.openedDate.Text).ToString("yyyy-MM-dd") + "','1','" + court + "','" + notify + "','" + priorityCbx.Text + "','f','" + progressTxt.Text + "','" + clientCbx.Text + "');";
-            MySqlConnection MyConn2 = new MySqlConnection(DBConnect.conn);
-
-            MySqlCommand MyCommand2 = new MySqlCommand(Query, MyConn2);
-            MySqlDataReader MyReader2;
-            MyConn2.Open();
-            MyReader2 = MyCommand2.ExecuteReader();
+            string Query = "INSERT INTO `events`(`id`, `name`, `start`, `end`, `user`, `file`, `created`, `action`, `status`, `orgID`, `date`, `hours`, `court`, `notify`,`priority`, `sync`,`progress`,`client`) VALUES ('" + ID + "','" + this.detailsTxt.Text + "','" + start + "','" + end + "','" + lawyerCbx.Text + "','" + fileCbx.Text + "','" + DateTime.Now.Date.ToString("yyyy-MM-dd") + "','create','" + progressTxt.Text + "','" + Helper.orgID + "','" + Convert.ToDateTime(this.openedDate.Text).ToString("yyyy-MM-dd") + "','1','" + court + "','" + notify + "','" + priorityCbx.Text + "','f','" + progressTxt.Text + "','" + clientCbx.Text + "');";
+            Helper.Execute(Query, DBConnect.conn);
             MessageBox.Show("Information saved");
          
-            var request = (HttpWebRequest)WebRequest.Create(Helper.msgUrl);
-            request.GetResponse();
-
-            //HomeForm frm = new HomeForm();
-            //frm.MdiParent = MainForm.ActiveForm;
-            //frm.Dock = DockStyle.Fill;
-            //frm.Show();
+           // var request = (HttpWebRequest)WebRequest.Create(Helper.msgUrl);
+            //request.GetResponse();           
             this.Close();
         }
 
@@ -233,16 +223,8 @@ namespace Casepro
         {
             string fileID = Guid.NewGuid().ToString();
             string Query = "DELETE from events WHERE id ='" + id + "'";
-            MySqlConnection MyConn2 = new MySqlConnection(DBConnect.conn);
-            MySqlCommand MyCommand2 = new MySqlCommand(Query, MyConn2);
-            MySqlDataReader MyReader2;
-            MyConn2.Open();
-            MyReader2 = MyCommand2.ExecuteReader();
-            MessageBox.Show("Information deleted");
-            EventForm frm = new EventForm();
-            frm.MdiParent = MainForm.ActiveForm;
-            frm.Dock = DockStyle.Fill;
-            frm.Show();
+            Helper.Execute(Query, DBConnect.conn);
+            MessageBox.Show("Information deleted");           
             this.Close();
 
         }
@@ -265,17 +247,8 @@ namespace Casepro
 
             string fileID = Guid.NewGuid().ToString();
             string Query = "UPDATE `events` SET `name`='" + this.detailsTxt.Text + "',`start`='" + start + "',`end`='" + end + "',`user`='" + lawyerCbx.Text + "',`file`='" + fileCbx.Text + "',`action`='update',`status`='true',`date`='"+ Convert.ToDateTime(this.openedDate.Text).ToString("yyyy-MM-dd") + "',`hours`='"+daysTxt.Text+ "',`court`='" + court + "',`priority`='" + priorityCbx.Text + "',`sync`='f',`notify`='" + notify + "',`progress`='" + progressTxt.Text + "',`client`='" + clientCbx.Text + "' WHERE id ='" + id + "'";
-            MySqlConnection MyConn2 = new MySqlConnection(DBConnect.conn);
-            MySqlCommand MyCommand2 = new MySqlCommand(Query, MyConn2);
-            MySqlDataReader MyReader2;
-            MyConn2.Open();
-            MyReader2 = MyCommand2.ExecuteReader();
-            MessageBox.Show("Information Updated");
-            MyConn2.Close();
-            EventForm frm = new EventForm();
-            frm.MdiParent = MainForm.ActiveForm;
-            frm.Dock = DockStyle.Fill;
-            frm.Show();
+            Helper.Execute(Query, DBConnect.conn);
+           
             this.Close();
         }
     }

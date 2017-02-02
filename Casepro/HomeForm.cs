@@ -43,13 +43,32 @@ namespace Casepro
             m_oWorker.WorkerReportsProgress = true;
             m_oWorker.WorkerSupportsCancellation = true;
             background();
+            userprofile();
+        }
+        void userprofile() {
+            try
+            {
+
+                var request = WebRequest.Create(Helper.imageUrl + Helper.image);
+
+                using (var response = request.GetResponse())
+                using (var stream = response.GetResponseStream())
+                {
+                    imgCapture.Image = Bitmap.FromStream(stream);
+
+                }
+            }
+            catch { }
+            orgLbl.Text = Helper.orgID;
+            nameLbl.Text = Helper.username;
+            contactLbl.Text = Helper.contact;
+
+
         }
         private void background()
         {
 
-
             m_oWorker.RunWorkerAsync();
-
 
         }
 
@@ -71,7 +90,14 @@ namespace Casepro
             MySqlCommand command = connection.CreateCommand();
             MySqlDataReader Reader;
             command.CommandText = "SELECT * FROM events";
-            connection.Open();
+            try
+            {
+                connection.Open();
+            }
+            catch {
+                MessageBox.Show("Server is offline");
+
+            }
             Reader = command.ExecuteReader();
             string state = "";
             while (Reader.Read())
@@ -327,6 +353,7 @@ namespace Casepro
             //Change the status of the buttons on the UI accordingly
 
         }
+       
         void m_oWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
 
@@ -356,10 +383,19 @@ namespace Casepro
             // report progress and check for cancellation.
             //NOTE : Never play with the UI thread here...
             Thread.Sleep(100);
-            SyncEvents();
-            SyncUsers();
-            SyncClients();
-            SyncFiles();
+            try
+            {
+                SyncEvents();
+                SyncUsers();
+                SyncClients();
+                SyncFiles();
+                SyncOrg();
+            }
+            catch
+            {
+              
+                return;
+            }
             m_oWorker.ReportProgress(1);
             // Periodically check if a cancellation request is pending.
             // If the user clicks cancel the line
@@ -383,8 +419,6 @@ namespace Casepro
         int count;
         private void SyncEvents()
         {
-
-
             MySqlConnection connection = new MySqlConnection(DBConnect.conn);
             MySqlCommand command = connection.CreateCommand();
             MySqlDataReader Reader;
@@ -396,33 +430,16 @@ namespace Casepro
             while (Reader.Read())
             {
                 totalRow++;
-
-                // Periodically report progress to the main thread so that it can
-                // update the UI.  In most cases you'll just need to send an
-                // integer that will update a ProgressBar
-                //t.Rows.Add(new object[] { Reader.GetString(0), false, (Reader.IsDBNull(10) ? "none" : Reader.GetString(10)), (Reader.IsDBNull(1) ? "none" : Reader.GetString(1)), (Reader.IsDBNull(2) ? "none" : Convert.ToDateTime(Reader.GetString(2)).ToString("HH:MM")), (Reader.IsDBNull(3) ? "none" : Convert.ToDateTime(Reader.GetString(3)).ToString("HH:MM")), (Reader.IsDBNull(4) ? "none" : Reader.GetString(4)), (Reader.IsDBNull(17) ? "none" : Reader.GetString(17)), (Reader.IsDBNull(5) ? "none" : Reader.GetString(5)), (Reader.IsDBNull(16) ? "none" : Reader.GetString(16)) });
-
-                //t.Rows.Add(new object[] {Reader.GetString(0),Reader.GetString(1),Reader.GetString(2),Reader.GetString(3),Reader.GetString(4)});
+                string Query2 = "DELETE from events WHERE id ='" + Reader.GetString(0) + "'";
+                Helper.Execute(Query2, DBConnect.remoteConn);                              
                 string Query = "INSERT INTO `events`(`id`, `name`, `start`, `end`, `user`, `file`, `created`, `action`, `status`, `orgID`, `date`, `hours`, `court`, `notify`,`priority`, `sync`,`progress`,`client`) VALUES ('" + Reader.GetString(0) + "','" + (Reader.IsDBNull(1) ? "none" : Reader.GetString(1)) + "','" + (Reader.IsDBNull(2) ? "none" : Reader.GetString(2)) + "','" + (Reader.IsDBNull(3) ? "none" : Reader.GetString(3)) + "','" + (Reader.IsDBNull(4) ? "none" : Reader.GetString(4)) + "','" + (Reader.IsDBNull(5) ? "none" : Reader.GetString(5)) + "','" + (Reader.IsDBNull(6) ? "none" : Reader.GetString(6)) + "','" + (Reader.IsDBNull(7) ? "none" : Reader.GetString(7)) + "','" + (Reader.IsDBNull(8) ? "none" : Reader.GetString(8)) + "','" + (Reader.IsDBNull(9) ? "none" : Reader.GetString(9)) + "','" + (Reader.IsDBNull(10) ? "none" : Reader.GetString(10)) + "','" + (Reader.IsDBNull(11) ? "none" : Reader.GetString(11)) + "','" + (Reader.IsDBNull(12) ? "none" : Reader.GetString(12)) + "','" + (Reader.IsDBNull(13) ? "none" : Reader.GetString(13)) + "','t','" + (Reader.IsDBNull(15) ? "none" : Reader.GetString(15)) + "','" + (Reader.IsDBNull(16) ? "none" : Reader.GetString(16)) + "','" + (Reader.IsDBNull(17) ? "none" : Reader.GetString(17)) + "');";
-                MySqlConnection MyConn2 = new MySqlConnection(DBConnect.remoteConn);
-                MySqlCommand MyCommand2 = new MySqlCommand(Query, MyConn2);
-                MySqlDataReader MyReader2;
-                MyConn2.Open();
-                MyReader2 = MyCommand2.ExecuteReader();
-                MyConn2.Close();
-
+                Helper.Execute(Query, DBConnect.remoteConn);
                 string Query3 = "UPDATE `events` SET `sync`='t' WHERE id ='" + Reader.GetString(0) + "'";
-                MySqlConnection MyConn3 = new MySqlConnection(DBConnect.conn);
-                MySqlCommand MyCommand3 = new MySqlCommand(Query3, MyConn3);
-                MySqlDataReader MyReader3;
-                MyConn3.Open();
-                MyReader3 = MyCommand3.ExecuteReader();
-                // MessageBox.Show("Information Updated");
-                MyConn3.Close();
+                Helper.Execute(Query3, DBConnect.conn);
+               
 
             }
             connection.Close();
-
 
         }
         private void SyncFiles()
@@ -439,22 +456,14 @@ namespace Casepro
             while (Reader.Read())
             {
                 totalRow++;
+                string Query2 = "DELETE from file WHERE fileID ='" + Reader.GetString(0) + "'";
+                Helper.Execute(Query2, DBConnect.remoteConn);
+
                 string Query = "INSERT INTO `file`(`fileID`, `orgID`, `client`, `contact`, `lawyer`, `no`, `details`, `type`, `subject`, `citation`, `law`, `name`, `created`, `status`, `sync`, `case`, `note`, `progress`, `opened`, `due`, `contact_person`, `contact_number`,`action`) VALUES ('" + Reader.GetString(0) + "','" + (Reader.IsDBNull(1) ? "none" : Reader.GetString(1)) + "','" + (Reader.IsDBNull(2) ? "none" : Reader.GetString(2)) + "','" + (Reader.IsDBNull(3) ? "none" : Reader.GetString(3)) + "','" + (Reader.IsDBNull(4) ? "none" : Reader.GetString(4)) + "','" + (Reader.IsDBNull(5) ? "none" : Reader.GetString(5)) + "','" + (Reader.IsDBNull(6) ? "none" : Reader.GetString(6)) + "','" + (Reader.IsDBNull(7) ? "none" : Reader.GetString(7)) + "','" + (Reader.IsDBNull(8) ? "none" : Reader.GetString(8)) + "','" + (Reader.IsDBNull(9) ? "none" : Reader.GetString(9)) + "','" + (Reader.IsDBNull(10) ? "none" : Reader.GetString(10)) + "','" + (Reader.IsDBNull(11) ? "none" : Reader.GetString(11)) + "','" + (Reader.IsDBNull(12) ? "none" : Reader.GetString(12)) + "','" + (Reader.IsDBNull(13) ? "none" : Reader.GetString(13)) + "','t','" + (Reader.IsDBNull(15) ? "none" : Reader.GetString(15)) + "','" + (Reader.IsDBNull(16) ? "none" : Reader.GetString(16)) + "','" + (Reader.IsDBNull(17) ? "none" : Reader.GetString(17)) + "','" + (Reader.IsDBNull(18) ? "none" : Reader.GetString(18)) + "','" + (Reader.IsDBNull(19) ? "none" : Reader.GetString(19)) + "','" + (Reader.IsDBNull(20) ? "none" : Reader.GetString(20)) + "','" + (Reader.IsDBNull(21) ? "none" : Reader.GetString(21)) + "','none');";
-                MySqlConnection MyConn2 = new MySqlConnection(DBConnect.remoteConn);
-                MySqlCommand MyCommand2 = new MySqlCommand(Query, MyConn2);
-                MySqlDataReader MyReader2;
-                MyConn2.Open();
-                MyReader2 = MyCommand2.ExecuteReader();
-                MyConn2.Close();
+                Helper.Execute(Query, DBConnect.remoteConn);
 
                 string Query3 = "UPDATE `file` SET `sync`='t' WHERE fileID ='" + Reader.GetString(0) + "'";
-                MySqlConnection MyConn3 = new MySqlConnection(DBConnect.conn);
-                MySqlCommand MyCommand3 = new MySqlCommand(Query3, MyConn3);
-                MySqlDataReader MyReader3;
-                MyConn3.Open();
-                MyReader3 = MyCommand3.ExecuteReader();
-                // MessageBox.Show("Information Updated");
-                MyConn3.Close();
+                Helper.Execute(Query3, DBConnect.conn);
 
             }
             connection.Close();
@@ -526,23 +535,14 @@ namespace Casepro
 
                 }
                 // return;
+                string Query2 = "DELETE from users WHERE userID ='" + Reader.GetString(0) + "'";
+                Helper.Execute(Query2, DBConnect.remoteConn);
 
                 string Query = "INSERT INTO `users`(`userID`, `orgID`, `name`, `email`, `password`, `designation`, `status`, `contact`, `image`, `address`, `category`, `created`, `sync`, `charge`, `supervisor`, `action`) VALUES ('" + Reader.GetString(0) + "','" + (Reader.IsDBNull(1) ? "none" : Reader.GetString(1)) + "','" + (Reader.IsDBNull(2) ? "none" : Reader.GetString(2)) + "','" + (Reader.IsDBNull(3) ? "none" : Reader.GetString(3)) + "','" + (Reader.IsDBNull(4) ? "none" : Reader.GetString(4)) + "','" + (Reader.IsDBNull(5) ? "none" : Reader.GetString(5)) + "','" + (Reader.IsDBNull(6) ? "none" : Reader.GetString(6)) + "','" + (Reader.IsDBNull(7) ? "none" : Reader.GetString(7)) + "','" + (Reader.IsDBNull(8) ? "none" : Reader.GetString(8)) + "','" + (Reader.IsDBNull(9) ? "none" : Reader.GetString(9)) + "','" + (Reader.IsDBNull(10) ? "none" : Reader.GetString(10)) + "','" + (Reader.IsDBNull(11) ? "none" : Reader.GetString(11)) + "','t','" + (Reader.IsDBNull(13) ? "none" : Reader.GetString(13)) + "','" + (Reader.IsDBNull(14) ? "none" : Reader.GetString(14)) + "','none');";
-                MySqlConnection MyConn2 = new MySqlConnection(DBConnect.remoteConn);
-                MySqlCommand MyCommand2 = new MySqlCommand(Query, MyConn2);
-                MySqlDataReader MyReader2;
-                MyConn2.Open();
-                MyReader2 = MyCommand2.ExecuteReader();
-                MyConn2.Close();
+                Helper.Execute(Query, DBConnect.remoteConn);
 
                 string Query3 = "UPDATE `users` SET `sync`='t' WHERE userID ='" + Reader.GetString(0) + "'";
-                MySqlConnection MyConn3 = new MySqlConnection(DBConnect.conn);
-                MySqlCommand MyCommand3 = new MySqlCommand(Query3, MyConn3);
-                MySqlDataReader MyReader3;
-                MyConn3.Open();
-                MyReader3 = MyCommand3.ExecuteReader();
-                // MessageBox.Show("Information Updated");
-                MyConn3.Close();
+                Helper.Execute(Query3, DBConnect.conn);
 
             }
             connection.Close();
@@ -616,23 +616,94 @@ namespace Casepro
 
                 }
                 // return;
+                string Query2 = "DELETE from client WHERE clientID ='" + Reader.GetString(0) + "'";
+                Helper.Execute(Query2, DBConnect.remoteConn);
 
                 string Query = "INSERT INTO `client`(`clientID`, `orgID`, `name`, `email`, `contact`, `status`, `image`, `address`, `created`, `action`, `lawyer`, `registration`, `password`, `sync`) VALUES ('" + Reader.GetString(0) + "','" + (Reader.IsDBNull(1) ? "none" : Reader.GetString(1)) + "','" + (Reader.IsDBNull(2) ? "none" : Reader.GetString(2)) + "','" + (Reader.IsDBNull(3) ? "none" : Reader.GetString(3)) + "','" + (Reader.IsDBNull(4) ? "none" : Reader.GetString(4)) + "','" + (Reader.IsDBNull(5) ? "none" : Reader.GetString(5)) + "','" + (Reader.IsDBNull(6) ? "none" : Reader.GetString(6)) + "','" + (Reader.IsDBNull(7) ? "none" : Reader.GetString(7)) + "','" + (Reader.IsDBNull(8) ? "none" : Reader.GetString(8)) + "','none','" + (Reader.IsDBNull(10) ? "none" : Reader.GetString(10)) + "','" + (Reader.IsDBNull(11) ? "none" : Reader.GetString(11)) + "','" + (Reader.IsDBNull(12) ? "none" : Reader.GetString(12)) + "','t');";
-                MySqlConnection MyConn2 = new MySqlConnection(DBConnect.remoteConn);
-                MySqlCommand MyCommand2 = new MySqlCommand(Query, MyConn2);
-                MySqlDataReader MyReader2;
-                MyConn2.Open();
-                MyReader2 = MyCommand2.ExecuteReader();
-                MyConn2.Close();
+                Helper.Execute(Query, DBConnect.remoteConn);
 
                 string Query3 = "UPDATE `client` SET `sync`='t' WHERE clientID ='" + Reader.GetString(0) + "'";
-                MySqlConnection MyConn3 = new MySqlConnection(DBConnect.conn);
-                MySqlCommand MyCommand3 = new MySqlCommand(Query3, MyConn3);
-                MySqlDataReader MyReader3;
-                MyConn3.Open();
-                MyReader3 = MyCommand3.ExecuteReader();
-                // MessageBox.Show("Information Updated");
-                MyConn3.Close();
+                Helper.Execute(Query3, DBConnect.conn);
+
+            }
+            connection.Close();
+
+
+        }
+
+
+        private void SyncOrg()
+        {
+
+            string paths = @"c:\Case\images";
+            if (!Directory.Exists(paths))
+            {
+                DirectoryInfo dim = Directory.CreateDirectory(paths);
+                Console.WriteLine("The directory was created successfully at {0}.",
+                Directory.GetCreationTime(paths));
+            }
+            MySqlConnection connection = new MySqlConnection(DBConnect.conn);
+            MySqlCommand command = connection.CreateCommand();
+            MySqlDataReader Reader;
+            command.CommandText = "SELECT * FROM org WHERE sync ='f' ;";
+            connection.Open();
+            Reader = command.ExecuteReader();
+            int totalRow = 0;
+
+            while (Reader.Read())
+            {
+                totalRow++;
+
+                try
+                {
+                    string filepath = (Helper.imageUrl + (Reader.IsDBNull(9) ? "none" : Reader.GetString(9)));
+                    string image = @"c:\Case\\images\" + (Reader.IsDBNull(9) ? "none" : Reader.GetString(9));
+
+                    string remotePath = (Helper.RemoteUploadUrl).Replace("\\", "/");
+                    WebClient theClient = new WebClient();
+                    theClient.DownloadFile(filepath, image);
+                    //Console.WriteLine("\nResponse Received.The contents of the file uploaded are:\n{0}", System.Text.Encoding.ASCII.GetString(responseArray));
+                    theClient.Dispose();
+
+
+                    string images = @"c:\Case\\images\" + (Reader.IsDBNull(9) ? "none" : Reader.GetString(9));
+                    if (System.IO.File.Exists(images))
+                    {
+                        try
+                        {
+                            string filepaths = images;
+                            // string localPaths = new Uri(filepaths).LocalPath;
+                            string remotePaths = Helper.RemoteUploadUrl;
+
+                            WebClient theClients = new WebClient();
+                            byte[] responseArray = theClients.UploadFile(remotePaths, filepaths);
+                            Console.WriteLine("\nResponse Received.The contents of the file uploaded are:\n{0}", System.Text.Encoding.ASCII.GetString(responseArray));
+                            theClients.Dispose();
+                        }
+                        catch (Exception c)
+                        {
+
+                        }
+                    }
+
+                    // MessageBox.Show("done");
+
+                }
+                catch (Exception c)
+                {
+                    //  MessageBox.Show(c.ToString());
+                    Console.WriteLine(c.ToString());
+
+                }
+                // return;
+                string Query2 = "DELETE from org WHERE orgID ='" + Reader.GetString(0) + "'";
+                Helper.Execute(Query2, DBConnect.remoteConn);
+
+                string Query = "INSERT INTO `org`(`orgID`, `name`, `license`, `starts`, `ends`, `code`, `address`, `email`, `status`, `image`, `currency`, `country`, `region`, `city`, `action`, `tin`, `vat`, `top`, `sync`) VALUES ('" + Reader.GetString(0) + "','" + (Reader.IsDBNull(1) ? "none" : Reader.GetString(1)) + "','" + (Reader.IsDBNull(2) ? "none" : Reader.GetString(2)) + "','" + (Reader.IsDBNull(3) ? "none" : Reader.GetString(3)) + "','" + (Reader.IsDBNull(4) ? "none" : Reader.GetString(4)) + "','" + (Reader.IsDBNull(5) ? "none" : Reader.GetString(5)) + "','" + (Reader.IsDBNull(6) ? "none" : Reader.GetString(6)) + "','" + (Reader.IsDBNull(7) ? "none" : Reader.GetString(7)) + "','" + (Reader.IsDBNull(8) ? "none" : Reader.GetString(8)) + "','" + (Reader.IsDBNull(9) ? "none" : Reader.GetString(9)) + "','" + (Reader.IsDBNull(10) ? "none" : Reader.GetString(10)) + "','" + (Reader.IsDBNull(11) ? "none" : Reader.GetString(11)) + "','" + (Reader.IsDBNull(12) ? "none" : Reader.GetString(12)) + "','" + (Reader.IsDBNull(13) ? "none" : Reader.GetString(13)) + "','" + (Reader.IsDBNull(14) ? "none" : Reader.GetString(14)) + "','" + (Reader.IsDBNull(15) ? "none" : Reader.GetString(15)) + "','" + (Reader.IsDBNull(16) ? "none" : Reader.GetString(16)) + "','" + (Reader.IsDBNull(17) ? "none" : Reader.GetString(17)) + "','" + (Reader.IsDBNull(18) ? "none" : Reader.GetString(18)) + "','t');";
+                Helper.Execute(Query, DBConnect.remoteConn);
+
+                string Query3 = "UPDATE `org` SET `sync`='t' WHERE orgID ='" + Reader.GetString(0) + "'";
+                Helper.Execute(Query3, DBConnect.conn);
 
             }
             connection.Close();

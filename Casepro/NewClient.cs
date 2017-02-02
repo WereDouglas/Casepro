@@ -277,17 +277,9 @@ namespace Casepro
 
             try
             {
-                string Query = "INSERT INTO client(clientID, orgID, name, email, password, status, contact, image, address, created, sync,action, lawyer,registration) VALUES ('" + clientID + "','A3CEA444-1F39-4F91-955D-0CA57E3C7962','" + this.nameTxtBx.Text + "','" + this.emailTxtBx.Text + "','" + Helper.MD5Hash(this.passwordTxtBx.Text) + "','" + this.statusCbx.Text + "','" + this.contactTxtBx.Text + "','" + clientID.Trim() + ".jpg" + "','" + this.addressTxtBx.Text + "','" + DateTime.Now.Date.ToString("yyyy-MM-dd") + "','f','create','" + supervisorCbx.Text + "','" + Convert.ToDateTime(this.regDate.Text).ToString("yyyy-MM-dd") + "');";
-                MySqlConnection MyConn2 = new MySqlConnection(DBConnect.conn);
-
-                MySqlCommand MyCommand2 = new MySqlCommand(Query, MyConn2);
-                MySqlDataReader MyReader2;
-                MyConn2.Open();
-                MyReader2 = MyCommand2.ExecuteReader();
-                MessageBox.Show("Information saved");
-
-                MyConn2.Close();
-
+                string Query = "INSERT INTO client(clientID, orgID, name, email, password, status, contact, image, address, created, sync,action, lawyer,registration) VALUES ('" + clientID + "','"+ Helper.orgID + "','" + this.nameTxtBx.Text + "','" + this.emailTxtBx.Text + "','" + Helper.MD5Hash(this.passwordTxtBx.Text) + "','" + this.statusCbx.Text + "','" + this.contactTxtBx.Text + "','" + clientID.Trim() + ".jpg" + "','" + this.addressTxtBx.Text + "','" + DateTime.Now.Date.ToString("yyyy-MM-dd") + "','f','create','" + supervisorCbx.Text + "','" + Convert.ToDateTime(this.regDate.Text).ToString("yyyy-MM-dd") + "');";
+                Helper.Execute(Query, DBConnect.conn);
+                MessageBox.Show("Information saved");          
                 ClientForm frm = new ClientForm();
                 frm.MdiParent = MainForm.ActiveForm;
                 frm.Show();
@@ -340,12 +332,7 @@ namespace Casepro
                 Query = "UPDATE `client` SET `name`='" + this.nameTxtBx.Text + "',`email`='" + this.emailTxtBx.Text + "',`image`='" + id.Trim() + ".jpg" + "',`status`='" + this.statusCbx.Text + "',`contact`='" + this.contactTxtBx.Text + "',`address`='" + this.addressTxtBx.Text + "',`sync`='f',`lawyer`='" + supervisorCbx.Text + "',`action`='update' WHERE clientID = '" + id + "'";
 
             }
-            string fileID = Guid.NewGuid().ToString();
-            MySqlConnection MyConn2 = new MySqlConnection(DBConnect.conn);
-            MySqlCommand MyCommand2 = new MySqlCommand(Query, MyConn2);
-            MySqlDataReader MyReader2;
-            MyConn2.Open();
-            MyReader2 = MyCommand2.ExecuteReader();
+            Helper.Execute(Query, DBConnect.conn);
             MessageBox.Show("Information Updated");
             ClientForm frm = new ClientForm();
             frm.MdiParent = MainForm.ActiveForm;
@@ -359,11 +346,7 @@ namespace Casepro
         {
             string fileID = Guid.NewGuid().ToString();
             string Query = "DELETE from client WHERE clientID ='" + id + "'";
-            MySqlConnection MyConn2 = new MySqlConnection(DBConnect.conn);
-            MySqlCommand MyCommand2 = new MySqlCommand(Query, MyConn2);
-            MySqlDataReader MyReader2;
-            MyConn2.Open();
-            MyReader2 = MyCommand2.ExecuteReader();
+            Helper.Execute(Query, DBConnect.conn);
             MessageBox.Show("Information deleted");
             ClientForm frm = new ClientForm();
             frm.MdiParent = MainForm.ActiveForm;

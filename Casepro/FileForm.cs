@@ -17,11 +17,11 @@ namespace Casepro
     {
       
         private User _user = new User();
-        DataTable t = new DataTable();
+        
         private List<User> _userList = new List<User>();
         private Client _client = new Client();
         private List<Client> _clientList = new List<Client>();
-
+        DataTable t = new DataTable();
         public FileForm()
         {
             InitializeComponent();
@@ -30,14 +30,12 @@ namespace Casepro
         }
     
         private void LoadFiles()
-        {
-            _userList.Clear();
-            // connect to database  
+        {        
 
             MySqlConnection connection = new MySqlConnection(DBConnect.conn);
             MySqlCommand command = connection.CreateCommand();
             MySqlDataReader Reader;
-            command.CommandText = "SELECT userID, orgID, name, email, password, designation, status, contact, image, address, category, created,sync, charge, supervisor FROM users";
+            command.CommandText = "SELECT * FROM file";
             connection.Open();
             Reader = command.ExecuteReader();
             // create and execute query  
@@ -72,15 +70,15 @@ namespace Casepro
             while (Reader.Read())
             {
 
-                t.Rows.Add(new object[] { Reader.GetString(0), false, (Reader.IsDBNull(5) ? "none" : Reader.GetString(5)), (Reader.IsDBNull(11) ? "none" : Reader.GetString(11)), (Reader.IsDBNull(2) ? "none" : Reader.GetString(2)), (Reader.IsDBNull(4) ? "none" : Reader.GetString(4)), (Reader.IsDBNull(3) ? "none" : Reader.GetString(3)), (Reader.IsDBNull(6) ? "none" : Reader.GetString(6)), (Reader.IsDBNull(7) ? "none" : Reader.GetString(7)), (Reader.IsDBNull(8) ? "none" : Reader.GetString(8)), (Reader.IsDBNull(9) ? "none" : Reader.GetString(9)), (Reader.IsDBNull(10) ? "none" : Reader.GetString(10)), (Reader.IsDBNull(12) ? "none" : Reader.GetString(12)), (Reader.IsDBNull(13) ? "none" : Reader.GetString(13)), (Reader.IsDBNull(15) ? "none" : Reader.GetString(15)), (Reader.IsDBNull(16) ? "none" : Reader.GetString(16)), (Reader.IsDBNull(17) ? "none" : Reader.GetString(17)), (Reader.IsDBNull(18) ? "none" : Reader.GetString(18)), (Reader.IsDBNull(19) ? "none" : Reader.GetString(19)), (Reader.IsDBNull(20) ? "none" : Reader.GetString(20)), (Reader.IsDBNull(20) ? "none" : Reader.GetString(20)) });
+                t.Rows.Add(new object[] { Reader.GetString(0), false, (Reader.IsDBNull(5) ? "none" : Reader.GetString(5)), (Reader.IsDBNull(11) ? "none" : Reader.GetString(11)), (Reader.IsDBNull(2) ? "none" : Reader.GetString(2)), (Reader.IsDBNull(4) ? "none" : Reader.GetString(4)), (Reader.IsDBNull(3) ? "none" : Reader.GetString(3)), (Reader.IsDBNull(6) ? "none" : Reader.GetString(6)), (Reader.IsDBNull(7) ? "none" : Reader.GetString(7)), (Reader.IsDBNull(8) ? "none" : Reader.GetString(8)), (Reader.IsDBNull(9) ? "none" : Reader.GetString(9)), (Reader.IsDBNull(10) ? "none" : Reader.GetString(10)), (Reader.IsDBNull(12) ? "none" : Reader.GetString(12)), (Reader.IsDBNull(13) ? "none" : Reader.GetString(13)), (Reader.IsDBNull(15) ? "none" : Reader.GetString(15)), (Reader.IsDBNull(16) ? "none" : Reader.GetString(16)), (Reader.IsDBNull(17) ? "none" : Reader.GetString(17)), (Reader.IsDBNull(18) ? "none" : Reader.GetString(18)), (Reader.IsDBNull(19) ? "none" : Reader.GetString(19)), (Reader.IsDBNull(20) ? "none" : Reader.GetString(20)) });
               
             }
 
             dtGrid.DataSource = t;
-            dtGrid.RowTemplate.Height = 60;
+           // dtGrid.RowTemplate.Height = 60;
             dtGrid.Columns[0].Visible = false;
             dtGrid.Columns[1].Visible = false;           
-            dtGrid.AllowUserToAddRows = false;
+          //  dtGrid.AllowUserToAddRows = false;
             this.dtGrid.Columns[3].DefaultCellStyle.BackColor = Color.Green;
             this.dtGrid.Columns[4].DefaultCellStyle.BackColor = Color.Red;
 

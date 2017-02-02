@@ -72,13 +72,18 @@
             this.monthView2 = new System.Windows.Forms.Calendar.MonthView();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.lblStatus = new System.Windows.Forms.Label();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.imgCapture = new System.Windows.Forms.PictureBox();
+            this.orgLbl = new System.Windows.Forms.Label();
+            this.nameLbl = new System.Windows.Forms.Label();
+            this.contactLbl = new System.Windows.Forms.Label();
             this.contextMenuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imgCapture)).BeginInit();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -374,7 +379,7 @@
             this.monthView2.MonthTitleTextColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.monthView2.MonthTitleTextColorInactive = System.Drawing.SystemColors.InactiveCaptionText;
             this.monthView2.Name = "monthView2";
-            this.monthView2.Size = new System.Drawing.Size(216, 538);
+            this.monthView2.Size = new System.Drawing.Size(216, 313);
             this.monthView2.TabIndex = 2;
             this.monthView2.Text = "monthView2";
             this.monthView2.TodayBorderColor = System.Drawing.Color.Maroon;
@@ -399,16 +404,6 @@
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripButton2
-            // 
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton2.Image = global::Casepro.Properties.Resources.Add_New_24__1_;
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton2.Text = "Add";
-            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
             // toolStripSeparator2
             // 
@@ -437,12 +432,67 @@
             this.lblStatus.TabIndex = 6;
             this.lblStatus.Text = "Info";
             // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton2.Image = global::Casepro.Properties.Resources.Add_New_24__1_;
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton2.Text = "Add";
+            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
+            // 
+            // imgCapture
+            // 
+            this.imgCapture.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.imgCapture.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.imgCapture.Location = new System.Drawing.Point(12, 348);
+            this.imgCapture.Margin = new System.Windows.Forms.Padding(4);
+            this.imgCapture.Name = "imgCapture";
+            this.imgCapture.Size = new System.Drawing.Size(216, 151);
+            this.imgCapture.TabIndex = 11;
+            this.imgCapture.TabStop = false;
+            // 
+            // orgLbl
+            // 
+            this.orgLbl.AutoSize = true;
+            this.orgLbl.Location = new System.Drawing.Point(14, 587);
+            this.orgLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.orgLbl.Name = "orgLbl";
+            this.orgLbl.Size = new System.Drawing.Size(38, 13);
+            this.orgLbl.TabIndex = 20;
+            this.orgLbl.Text = "Name:";
+            // 
+            // nameLbl
+            // 
+            this.nameLbl.AutoSize = true;
+            this.nameLbl.Location = new System.Drawing.Point(14, 524);
+            this.nameLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.nameLbl.Name = "nameLbl";
+            this.nameLbl.Size = new System.Drawing.Size(38, 13);
+            this.nameLbl.TabIndex = 21;
+            this.nameLbl.Text = "Name:";
+            // 
+            // contactLbl
+            // 
+            this.contactLbl.AutoSize = true;
+            this.contactLbl.Location = new System.Drawing.Point(14, 553);
+            this.contactLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.contactLbl.Name = "contactLbl";
+            this.contactLbl.Size = new System.Drawing.Size(38, 13);
+            this.contactLbl.TabIndex = 22;
+            this.contactLbl.Text = "Name:";
+            // 
             // HomeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1177, 661);
+            this.Controls.Add(this.contactLbl);
+            this.Controls.Add(this.nameLbl);
+            this.Controls.Add(this.orgLbl);
+            this.Controls.Add(this.imgCapture);
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.toolStrip1);
@@ -456,6 +506,7 @@
             this.contextMenuStrip1.ResumeLayout(false);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imgCapture)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -508,5 +559,9 @@
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Label lblStatus;
+        private System.Windows.Forms.PictureBox imgCapture;
+        private System.Windows.Forms.Label orgLbl;
+        private System.Windows.Forms.Label nameLbl;
+        private System.Windows.Forms.Label contactLbl;
     }
 }

@@ -166,16 +166,9 @@ namespace Casepro
             }
             try
             {
-                string Query = "INSERT INTO document(documentID, orgID, fileID, name, client, details,fileUrl, created, action,lawyer, sync,note, sizes) VALUES ('" + docID + "','A3CEA444-1F39-4F91-955D-0CA57E3C7962','" + this.fileCbx.Text + "','" + image + "','" + clientCbx.Text + "','" + this.fileCbx.Text + "','" + fileUrlTxtBx.Text + "','" + DateTime.Now.Date.ToString("yyyy-MM-dd") + "','create','" + this.lawyerCbx.Text + "','f','" + noteTxt.Text + "','2.0');";
-                MySqlConnection MyConn2 = new MySqlConnection(DBConnect.conn);
-
-                MySqlCommand MyCommand2 = new MySqlCommand(Query, MyConn2);
-                MySqlDataReader MyReader2;
-                MyConn2.Open();
-                MyReader2 = MyCommand2.ExecuteReader();
+                string Query = "INSERT INTO document(documentID, orgID, fileID, name, client, details,fileUrl, created, action,lawyer, sync,note, sizes) VALUES ('" + docID + "','" + Helper.orgID + "','" + this.fileCbx.Text + "','" + image + "','" + clientCbx.Text + "','" + this.fileCbx.Text + "','" + fileUrlTxtBx.Text + "','" + DateTime.Now.Date.ToString("yyyy-MM-dd") + "','create','" + this.lawyerCbx.Text + "','f','" + noteTxt.Text + "','2.0');";
+                Helper.Execute(Query, DBConnect.conn);
                 MessageBox.Show("Information saved");
-
-                MyConn2.Close();
 
                 DocumentForm frm = new DocumentForm();
                 frm.MdiParent = MainForm.ActiveForm;

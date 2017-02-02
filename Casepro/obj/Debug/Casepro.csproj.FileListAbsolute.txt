@@ -26,3 +26,5 @@ C:\Users\DOUGLAS\Documents\Visual Studio 2015\Projects\Casepro\Casepro\obj\Debug
 C:\Users\DOUGLAS\Documents\Visual Studio 2015\Projects\Casepro\Casepro\obj\Debug\Casepro.NewDoc.resources
 C:\Users\DOUGLAS\Documents\Visual Studio 2015\Projects\Casepro\Casepro\obj\Debug\Casepro.SettingForm.resources
 C:\Users\DOUGLAS\documents\visual studio 2015\Projects\Casepro\Casepro\obj\Debug\Casepro.ServerForm.resources
+C:\Users\DOUGLAS\documents\visual studio 2015\Projects\Casepro\Casepro\obj\Debug\Casepro.LoginForm.resources
+C:\Users\DOUGLAS\documents\visual studio 2015\Projects\Casepro\Casepro\obj\Debug\Casepro.OrganisationForm.resources
