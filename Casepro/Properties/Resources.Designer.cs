@@ -93,9 +93,29 @@ namespace Casepro.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap bg {
+            get {
+                object obj = ResourceManager.GetObject("bg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Business_Man_Add_01_24 {
             get {
                 object obj = ResourceManager.GetObject("Business-Man-Add-01-24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Calendar_48 {
+            get {
+                object obj = ResourceManager.GetObject("Calendar-48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -123,6 +143,26 @@ namespace Casepro.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Cancel_241 {
+            get {
+                object obj = ResourceManager.GetObject("Cancel-241", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Cheque_48 {
+            get {
+                object obj = ResourceManager.GetObject("Cheque-48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Close_24 {
             get {
                 object obj = ResourceManager.GetObject("Close-24", resourceCulture);
@@ -136,6 +176,36 @@ namespace Casepro.Properties {
         internal static System.Drawing.Bitmap Close_48 {
             get {
                 object obj = ResourceManager.GetObject("Close-48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Compose_48 {
+            get {
+                object obj = ResourceManager.GetObject("Compose-48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap cp_logo {
+            get {
+                object obj = ResourceManager.GetObject("cp_logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Customize_02_48 {
+            get {
+                object obj = ResourceManager.GetObject("Customize-02-48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -166,6 +236,26 @@ namespace Casepro.Properties {
         internal static System.Drawing.Bitmap Date_321 {
             get {
                 object obj = ResourceManager.GetObject("Date-321", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Debit_Card_48 {
+            get {
+                object obj = ResourceManager.GetObject("Debit-Card-48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Donate__48 {
+            get {
+                object obj = ResourceManager.GetObject("Donate -48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -223,6 +313,26 @@ namespace Casepro.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Folder_48 {
+            get {
+                object obj = ResourceManager.GetObject("Folder-48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Folder_Copy_48 {
+            get {
+                object obj = ResourceManager.GetObject("Folder-Copy-48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Garbage_Open_24 {
             get {
                 object obj = ResourceManager.GetObject("Garbage-Open-24", resourceCulture);
@@ -236,6 +346,46 @@ namespace Casepro.Properties {
         internal static System.Drawing.Bitmap Home_48 {
             get {
                 object obj = ResourceManager.GetObject("Home-48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Home_48__1_ {
+            get {
+                object obj = ResourceManager.GetObject("Home-48 (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap IMG_172747__1_ {
+            get {
+                object obj = ResourceManager.GetObject("IMG_172747 (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap mail {
+            get {
+                object obj = ResourceManager.GetObject("mail", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Media_Play_256 {
+            get {
+                object obj = ResourceManager.GetObject("Media-Play-256", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -303,6 +453,26 @@ namespace Casepro.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Settings_01_48 {
+            get {
+                object obj = ResourceManager.GetObject("Settings-01-48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Tab_History_48 {
+            get {
+                object obj = ResourceManager.GetObject("Tab-History-48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Teacher_48 {
             get {
                 object obj = ResourceManager.GetObject("Teacher-48", resourceCulture);
@@ -316,6 +486,26 @@ namespace Casepro.Properties {
         internal static System.Drawing.Bitmap temp {
             get {
                 object obj = ResourceManager.GetObject("temp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap User_Group_48__1_ {
+            get {
+                object obj = ResourceManager.GetObject("User-Group-48 (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap wallpaper_12617 {
+            get {
+                object obj = ResourceManager.GetObject("wallpaper_12617", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

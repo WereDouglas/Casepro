@@ -53,10 +53,15 @@ namespace Casepro
             t.Columns.Add("Address");          
             t.Columns.Add("Status");
             t.Columns.Add("created");
+            t.Columns.Add("Edit");  //0 
+            t.Columns.Add("Delete");  //0 
+
+
             searchCbx.Items.Add("Name");
             searchCbx.Items.Add("E-mail");
             searchCbx.Items.Add("Contact");
             searchCbx.Items.Add("Status");
+           
 
             Bitmap b = new Bitmap(50, 50);
 
@@ -79,12 +84,12 @@ namespace Casepro
                 try { _client.Image = Reader.GetString(8); }
                 catch (InvalidCastException) { }
 
-                t.Rows.Add(new object[] { Reader.GetString(0), Helper.imageUrl + Reader.GetString(6) as string, false, b, Reader.IsDBNull(2) ? "": Reader.GetString(2), Reader.IsDBNull(3) ? "" : Reader.GetString(3), Reader.IsDBNull(4) ? "" : Reader.GetString(4), Reader.IsDBNull(10) ? "" : Reader.GetString(10), Reader.IsDBNull(7) ? "" : Reader.GetString(7), Reader.IsDBNull(5) ? "" : Reader.GetString(5) + " ", Reader.IsDBNull(8) ? "" : Reader.GetString(8) + "" });
+                t.Rows.Add(new object[] { Reader.GetString(0), Helper.imageUrl + Reader.GetString(6) as string, false, b, Reader.IsDBNull(2) ? "": Reader.GetString(2), Reader.IsDBNull(3) ? "" : Reader.GetString(3), Reader.IsDBNull(4) ? "" : Reader.GetString(4), Reader.IsDBNull(10) ? "" : Reader.GetString(10), Reader.IsDBNull(7) ? "" : Reader.GetString(7), Reader.IsDBNull(5) ? "" : Reader.GetString(5) + " ", Reader.IsDBNull(8) ? "" : Reader.GetString(8) + "", "Edit", "Delete" });
                 _clientList.Add(_client);
             }
 
             dtGrid.DataSource = t;
-            dtGrid.RowTemplate.Height = 60;
+            dtGrid.RowTemplate.Height = 50;
             dtGrid.Columns[0].Visible = false;
             dtGrid.Columns[1].Visible = false;
             dtGrid.Columns[0].Visible = false;
@@ -125,7 +130,8 @@ namespace Casepro
             dtGrid.Columns[0].Visible = false;
 
             connection.Close();
-          
+            dtGrid.Columns[0].Visible = false;
+
         }
         public string SafeGetString(MySqlDataReader reader, int colIndex)
         {
@@ -136,13 +142,13 @@ namespace Casepro
         private void dtGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
            
-                int rowIndex = e.RowIndex;
-                DataGridViewRow row = dtGrid.Rows[rowIndex];
-                // MessageBox.Show(dtGrid.Rows[rowIndex].Cells[0].Value.ToString());
-                NewClient frm = new NewClient(dtGrid.Rows[rowIndex].Cells[0].Value.ToString());
-                frm.MdiParent = MainForm.ActiveForm;
-                frm.Show();
-                this.Close();
+                //int rowIndex = e.RowIndex;
+                //DataGridViewRow row = dtGrid.Rows[rowIndex];
+                //// MessageBox.Show(dtGrid.Rows[rowIndex].Cells[0].Value.ToString());
+                //NewClient frm = new NewClient(dtGrid.Rows[rowIndex].Cells[0].Value.ToString());
+                //frm.MdiParent = MainForm.ActiveForm;
+                //frm.Show();
+                //this.Close();
             
         }
        
@@ -212,6 +218,73 @@ namespace Casepro
         private void searchCbx_SelectedIndexChanged(object sender, EventArgs e)
         {
             filterField = searchCbx.Text;
+        }
+
+        private void dtGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+        List<string> fileIDs = new List<string>();
+        private void dtGrid_CellClick_2(object sender, DataGridViewCellEventArgs e)
+        {
+            var senderGrid = (DataGridView)sender;
+           
+            if (e.ColumnIndex == dtGrid.Columns[2].Index && e.RowIndex >= 0)
+            {
+                if (fileIDs.Contains(dtGrid.Rows[e.RowIndex].Cells[0].Value.ToString()))
+                {
+                    fileIDs.Remove(dtGrid.Rows[e.RowIndex].Cells[0].Value.ToString());
+                    Console.WriteLine("REMOVED this id " + dtGrid.Rows[e.RowIndex].Cells[0].Value.ToString());
+
+                }
+                else
+                {
+                    fileIDs.Add(dtGrid.Rows[e.RowIndex].Cells[0].Value.ToString());
+                    Console.WriteLine("ADDED ITEM " + dtGrid.Rows[e.RowIndex].Cells[0].Value.ToString());
+                }
+            }
+            if (e.ColumnIndex == dtGrid.Columns[11].Index && e.RowIndex >= 0)
+            {
+                NewClient frm = new NewClient(dtGrid.Rows[e.RowIndex].Cells[0].Value.ToString());
+                frm.MdiParent = MainForm.ActiveForm;
+                frm.Show();
+                this.Close();
+            }
+            try
+            {
+
+                if (e.ColumnIndex == dtGrid.Columns[12].Index && e.RowIndex >= 0)
+                {
+                    if (MessageBox.Show("YES or No?", "Are you sure you want to delete this file? ", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                    {
+                        string Query = "DELETE from file WHERE fileID ='" + dtGrid.Rows[e.RowIndex].Cells[0].Value.ToString() + "'";
+                        Helper.Execute(Query, DBConnect.conn);
+                        MessageBox.Show("Information deleted");
+
+                    }
+                    Console.WriteLine("DELETE on row {0} clicked", e.RowIndex + dtGrid.Rows[e.RowIndex].Cells[0].Value.ToString() + dtGrid.Rows[e.RowIndex].Cells[2].Value.ToString());
+
+
+                }
+            }
+            catch { }
+
+        }
+
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("YES or No?", "Are you sure you want to delete these clients? ", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+            {
+
+                foreach (var item in fileIDs)
+                {
+                    string Query = "DELETE from client WHERE clientID ='" + item + "'";
+                    Helper.Execute(Query, DBConnect.conn);
+                    //  MessageBox.Show("Information deleted");
+                }
+
+            }
+
         }
     }
 }

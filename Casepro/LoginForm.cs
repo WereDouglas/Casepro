@@ -137,11 +137,29 @@ namespace Casepro
                         Helper.designation = (Reader.IsDBNull(5) ? "none" : Reader.GetString(5));
                         Helper.email = (Reader.IsDBNull(3) ? "none" : Reader.GetString(3));
                         Helper.image = (Reader.IsDBNull(8) ? "none" : Reader.GetString(8));
-                        Helper.orgID = (Reader.IsDBNull(1) ? "none" : Reader.GetString(1));
-                        
+                        Helper.orgID = (Reader.IsDBNull(1) ? "none" : Reader.GetString(1));                  
+
+
                         loginBtn.Visible = false;
                     }
                 }
+            connection.Close();
+
+            MySqlConnection connection2 = new MySqlConnection(DBConnect.conn);
+            MySqlCommand command2 = connection2.CreateCommand();
+            MySqlDataReader Reader2;
+            command2.CommandText = "SELECT * FROM org WHERE orgID = '" + Helper.orgID + "'";
+            connection2.Open();
+            Reader2 = command2.ExecuteReader();
+
+            while (Reader2.Read())
+            {
+                Helper.logo = (Reader2.IsDBNull(9) ? "none" : Reader2.GetString(9));
+                Helper.address = (Reader2.IsDBNull(6) ? "none" : Reader2.GetString(6));
+                Helper.orgName = (Reader2.IsDBNull(1) ? "none" : Reader2.GetString(1));
+                Helper.code = (Reader2.IsDBNull(5) ? "none" : Reader2.GetString(5));
+
+            }
             if (Helper.contact != "" && Helper.orgID !="")
             {
                 loginBtn.Visible = false;

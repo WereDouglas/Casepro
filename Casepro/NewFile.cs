@@ -62,14 +62,14 @@ namespace Casepro
                 typeCbx.Text = Reader.GetString(7);
                 try
                 {
-                    openedDate.Text = Reader.GetString(18);
+                    openedDate.Text = (Reader.IsDBNull(18) ? "none" : Reader.GetString(18));
                 }
                 catch { }
-                lawCbx.Text = Reader.GetString(10);
-                citationTxt.Text = Reader.GetString(9);
-                descriptionTxt.Text = Reader.GetString(6);
-                clientCbx.Text = Reader.GetString(2);
-                lawyerCbx.Text = Reader.GetString(4);
+                lawCbx.Text = (Reader.IsDBNull(10) ? "none" : Reader.GetString(10));
+                citationTxt.Text = (Reader.IsDBNull(9) ? "none" : Reader.GetString(9));
+                descriptionTxt.Text = (Reader.IsDBNull(6) ? "none" : Reader.GetString(6));
+                clientCbx.Text = (Reader.IsDBNull(2) ? "none" : Reader.GetString(2));
+                lawyerCbx.Text = (Reader.IsDBNull(4) ? "none" : Reader.GetString(4));
                 try
                 {
                     noLbl.Text = Reader.GetString(5);
@@ -90,8 +90,11 @@ namespace Casepro
                     contactTxt.Text = Reader.GetString(21);
                 }
                 catch { }
-                dueDate.Text = Reader.GetString(19);
-
+                try
+                {
+                    dueDate.Text = Convert.ToDateTime (Reader.IsDBNull(19) ? "none" : Reader.GetString(19)).ToString("dd-mm-yyyy");
+                }
+                catch { }
 
 
             }
@@ -185,7 +188,7 @@ namespace Casepro
 
         private void NewFile_Leave(object sender, EventArgs e)
         {
-            this.Close();
+           // this.Close();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -213,7 +216,7 @@ namespace Casepro
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-            string fileID = Guid.NewGuid().ToString();
+            
             string Query = "DELETE from file WHERE fileID ='" + id + "'";
             Helper.Execute(Query, DBConnect.conn);
             MessageBox.Show("Information deleted");

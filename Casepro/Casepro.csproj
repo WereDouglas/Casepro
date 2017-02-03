@@ -57,6 +57,12 @@
       <DependentUpon>ClientForm.cs</DependentUpon>
     </Compile>
     <Compile Include="DBConnect.cs" />
+    <Compile Include="DisForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DisForm.Designer.cs">
+      <DependentUpon>DisForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="DocumentForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,6 +74,18 @@
     </Compile>
     <Compile Include="EventForm.Designer.cs">
       <DependentUpon>EventForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExpenseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExpenseForm.Designer.cs">
+      <DependentUpon>ExpenseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FeesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FeesForm.Designer.cs">
+      <DependentUpon>FeesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="FileForm.cs">
       <SubType>Form</SubType>
@@ -119,6 +137,12 @@
     <Compile Include="NewClient.Designer.cs">
       <DependentUpon>NewClient.cs</DependentUpon>
     </Compile>
+    <Compile Include="NewDis.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewDis.Designer.cs">
+      <DependentUpon>NewDis.cs</DependentUpon>
+    </Compile>
     <Compile Include="NewDoc.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -130,6 +154,18 @@
     </Compile>
     <Compile Include="NewEvent.Designer.cs">
       <DependentUpon>NewEvent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NewExpense.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewExpense.Designer.cs">
+      <DependentUpon>NewExpense.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NewFee.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewFee.Designer.cs">
+      <DependentUpon>NewFee.cs</DependentUpon>
     </Compile>
     <Compile Include="NewFile.cs">
       <SubType>Form</SubType>
@@ -179,11 +215,20 @@
     <EmbeddedResource Include="ClientForm.resx">
       <DependentUpon>ClientForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DisForm.resx">
+      <DependentUpon>DisForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DocumentForm.resx">
       <DependentUpon>DocumentForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EventForm.resx">
       <DependentUpon>EventForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExpenseForm.resx">
+      <DependentUpon>ExpenseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FeesForm.resx">
+      <DependentUpon>FeesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FileForm.resx">
       <DependentUpon>FileForm.cs</DependentUpon>
@@ -200,11 +245,20 @@
     <EmbeddedResource Include="NewClient.resx">
       <DependentUpon>NewClient.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="NewDis.resx">
+      <DependentUpon>NewDis.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="NewDoc.resx">
       <DependentUpon>NewDoc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NewEvent.resx">
       <DependentUpon>NewEvent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewExpense.resx">
+      <DependentUpon>NewExpense.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewFee.resx">
+      <DependentUpon>NewFee.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NewFile.resx">
       <DependentUpon>NewFile.cs</DependentUpon>
@@ -273,6 +327,25 @@
     <None Include="Resources\Date-24.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\IMG_172747 %281%29.jpg" />
+    <None Include="Resources\wallpaper_12617.jpg" />
+    <None Include="Resources\Tab-History-48.png" />
+    <None Include="Resources\Settings-01-48.png" />
+    <None Include="Resources\Customize-02-48.png" />
+    <None Include="Resources\Donate -48.png" />
+    <None Include="Resources\Cheque-48.png" />
+    <None Include="Resources\Debit-Card-48.png" />
+    <None Include="Resources\Folder-48.png" />
+    <None Include="Resources\User-Group-48 %281%29.png" />
+    <None Include="Resources\Compose-48.png" />
+    <None Include="Resources\Folder-Copy-48.png" />
+    <None Include="Resources\Home-48 %281%29.png" />
+    <None Include="Resources\Calendar-48.png" />
+    <None Include="Resources\mail.png" />
+    <None Include="Resources\Cancel-241.png" />
+    <None Include="Resources\Media-Play-256.png" />
+    <None Include="Resources\bg.jpg" />
+    <None Include="Resources\cp_logo.png" />
     <None Include="Resources\Print-24.png" />
     <None Include="Resources\Settings-01-32.png" />
     <None Include="Resources\Folder-24 %281%292.png" />

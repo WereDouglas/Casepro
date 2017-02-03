@@ -32,12 +32,16 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.searchCbx = new System.Windows.Forms.ToolStripComboBox();
             this.DateTxt = new System.Windows.Forms.ToolStripTextBox();
+            this.searchCbx = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             ((System.ComponentModel.ISupportInitialize)(this.dtGrid)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -58,7 +62,11 @@
             this.toolStrip1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton1,
+            this.toolStripSeparator4,
             this.toolStripButton2,
+            this.toolStripSeparator3,
+            this.toolStripButton3,
+            this.toolStripSeparator2,
             this.DateTxt,
             this.searchCbx,
             this.toolStripLabel1,
@@ -91,20 +99,11 @@
             this.toolStripButton2.Text = "Add";
             this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
-            // panel1
+            // DateTxt
             // 
-            this.panel1.Controls.Add(this.dtGrid);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 25);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1025, 391);
-            this.panel1.TabIndex = 2;
-            // 
-            // toolStripLabel1
-            // 
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(75, 22);
-            this.toolStripLabel1.Text = "Search by:";
+            this.DateTxt.Name = "DateTxt";
+            this.DateTxt.Size = new System.Drawing.Size(100, 25);
+            this.DateTxt.TextChanged += new System.EventHandler(this.DateTxt_TextChanged);
             // 
             // searchCbx
             // 
@@ -112,11 +111,11 @@
             this.searchCbx.Size = new System.Drawing.Size(121, 25);
             this.searchCbx.SelectedIndexChanged += new System.EventHandler(this.searchCbx_SelectedIndexChanged);
             // 
-            // DateTxt
+            // toolStripLabel1
             // 
-            this.DateTxt.Name = "DateTxt";
-            this.DateTxt.Size = new System.Drawing.Size(100, 25);
-            this.DateTxt.TextChanged += new System.EventHandler(this.DateTxt_TextChanged);
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(75, 22);
+            this.toolStripLabel1.Text = "Search by:";
             // 
             // toolStripSeparator1
             // 
@@ -128,6 +127,40 @@
             this.toolStripLabel2.Name = "toolStripLabel2";
             this.toolStripLabel2.Size = new System.Drawing.Size(94, 22);
             this.toolStripLabel2.Text = "System users";
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.dtGrid);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 25);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1025, 391);
+            this.panel1.TabIndex = 2;
+            // 
+            // toolStripButton3
+            // 
+            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton3.Image = global::Casepro.Properties.Resources.Garbage_Open_24;
+            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton3.Name = "toolStripButton3";
+            this.toolStripButton3.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton3.Text = "toolStripButton3";
+            this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
             // 
             // UserForm
             // 
@@ -163,5 +196,9 @@
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripLabel toolStripLabel2;
+        private System.Windows.Forms.ToolStripButton toolStripButton3;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
     }
 }

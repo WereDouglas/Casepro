@@ -217,5 +217,34 @@ namespace Casepro
             OrganisationForm frm = new OrganisationForm();
             frm.Show();
         }
+
+        private void toolStripButton4_Click_1(object sender, EventArgs e)
+        {
+            FeesForm frm = new FeesForm();
+            frm.MdiParent = this;
+            frm.Dock = DockStyle.Fill;
+            frm.Show();
+        }
+
+        private void toolStripButton8_Click(object sender, EventArgs e)
+        {
+            DisForm frm = new DisForm();
+            frm.MdiParent = this;
+            frm.Dock = DockStyle.Fill;
+            frm.Show();
+        }
+
+        private void toolStripButton9_Click(object sender, EventArgs e)
+        {
+            ExpenseForm frm = new ExpenseForm();
+            frm.MdiParent = this;
+            frm.Dock = DockStyle.Fill;
+            frm.Show();
+        }
+
+        private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
     }
 }

@@ -370,6 +370,7 @@
             // button2
             // 
             this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.button2.FlatAppearance.BorderSize = 0;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Image = global::Casepro.Properties.Resources.Garbage_Open_24;
             this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -384,6 +385,7 @@
             // 
             // updateBtn
             // 
+            this.updateBtn.FlatAppearance.BorderSize = 0;
             this.updateBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.updateBtn.Image = global::Casepro.Properties.Resources.Report_Editor_24;
             this.updateBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -398,6 +400,7 @@
             // 
             // saveBtn
             // 
+            this.saveBtn.FlatAppearance.BorderSize = 0;
             this.saveBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.saveBtn.Image = global::Casepro.Properties.Resources.Save_24__1_;
             this.saveBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -412,6 +415,7 @@
             // 
             // button1
             // 
+            this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Image = global::Casepro.Properties.Resources.Cancel_24;
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -429,6 +433,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
+            this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(392, 608);
             this.ControlBox = false;
             this.Controls.Add(this.button2);

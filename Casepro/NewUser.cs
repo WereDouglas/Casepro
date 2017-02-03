@@ -351,5 +351,10 @@ namespace Casepro
         {
 
         }
+
+        private void NewUser_Leave(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

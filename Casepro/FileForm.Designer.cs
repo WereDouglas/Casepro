@@ -39,6 +39,8 @@
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dtGrid = new System.Windows.Forms.DataGridView();
+            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -53,11 +55,13 @@
             this.toolStripButton1,
             this.toolStripSeparator1,
             this.toolStripButton2,
+            this.toolStripSeparator3,
+            this.toolStripButton3,
             this.toolStripSeparator2,
-            this.toolStripLabel1,
             this.DateTxt,
             this.searchCbx,
-            this.toolStripLabel2});
+            this.toolStripLabel2,
+            this.toolStripLabel1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -144,8 +148,26 @@
             this.dtGrid.Name = "dtGrid";
             this.dtGrid.Size = new System.Drawing.Size(1038, 642);
             this.dtGrid.TabIndex = 6;
+            this.dtGrid.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dtGrid_CellBeginEdit);
             this.dtGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtGrid_CellClick);
+            this.dtGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtGrid_CellContentClick);
+            this.dtGrid.RowStateChanged += new System.Windows.Forms.DataGridViewRowStateChangedEventHandler(this.dtGrid_RowStateChanged);
             this.dtGrid.SelectionChanged += new System.EventHandler(this.dtGrid_SelectionChanged);
+            // 
+            // toolStripButton3
+            // 
+            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton3.Image = global::Casepro.Properties.Resources.Garbage_Open_24;
+            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton3.Name = "toolStripButton3";
+            this.toolStripButton3.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton3.Text = "toolStripButton3";
+            this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click_1);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
             // 
             // FileForm
             // 
@@ -184,5 +206,7 @@
         private System.Windows.Forms.ToolStripLabel toolStripLabel2;
         private System.Windows.Forms.ToolStripComboBox searchCbx;
         private System.Windows.Forms.ToolStripTextBox DateTxt;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripButton toolStripButton3;
     }
 }

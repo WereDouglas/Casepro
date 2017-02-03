@@ -56,10 +56,10 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Image = global::Casepro.Properties.Resources.Save_16;
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(258, 228);
+            this.button1.Location = new System.Drawing.Point(211, 240);
             this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(76, 25);
+            this.button1.Size = new System.Drawing.Size(71, 25);
             this.button1.TabIndex = 119;
             this.button1.Text = "Save";
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -69,6 +69,8 @@
             // button4
             // 
             this.button4.BackColor = System.Drawing.SystemColors.Window;
+            this.button4.FlatAppearance.BorderSize = 0;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.Image = global::Casepro.Properties.Resources.Folder_24__1_2;
             this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button4.Location = new System.Drawing.Point(161, 104);
@@ -135,18 +137,18 @@
             // 
             // noteTxt
             // 
-            this.noteTxt.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.noteTxt.Location = new System.Drawing.Point(161, 131);
+            this.noteTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.noteTxt.Location = new System.Drawing.Point(161, 141);
             this.noteTxt.Margin = new System.Windows.Forms.Padding(4);
             this.noteTxt.Multiline = true;
             this.noteTxt.Name = "noteTxt";
-            this.noteTxt.Size = new System.Drawing.Size(173, 45);
+            this.noteTxt.Size = new System.Drawing.Size(173, 65);
             this.noteTxt.TabIndex = 126;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(107, 131);
+            this.label1.Location = new System.Drawing.Point(107, 141);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(33, 13);
             this.label1.TabIndex = 127;
@@ -156,7 +158,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(463, 287);
+            this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.ClientSize = new System.Drawing.Size(463, 322);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.noteTxt);
             this.Controls.Add(this.fileCbx);

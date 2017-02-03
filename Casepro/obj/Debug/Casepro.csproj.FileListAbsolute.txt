@@ -28,3 +28,9 @@ C:\Users\DOUGLAS\Documents\Visual Studio 2015\Projects\Casepro\Casepro\obj\Debug
 C:\Users\DOUGLAS\documents\visual studio 2015\Projects\Casepro\Casepro\obj\Debug\Casepro.ServerForm.resources
 C:\Users\DOUGLAS\documents\visual studio 2015\Projects\Casepro\Casepro\obj\Debug\Casepro.LoginForm.resources
 C:\Users\DOUGLAS\documents\visual studio 2015\Projects\Casepro\Casepro\obj\Debug\Casepro.OrganisationForm.resources
+C:\Users\DOUGLAS\Documents\Visual Studio 2015\Projects\Casepro\Casepro\obj\Debug\Casepro.FeesForm.resources
+C:\Users\DOUGLAS\Documents\Visual Studio 2015\Projects\Casepro\Casepro\obj\Debug\Casepro.NewFee.resources
+C:\Users\DOUGLAS\Documents\Visual Studio 2015\Projects\Casepro\Casepro\obj\Debug\Casepro.NewDis.resources
+C:\Users\DOUGLAS\Documents\Visual Studio 2015\Projects\Casepro\Casepro\obj\Debug\Casepro.NewExpense.resources
+C:\Users\DOUGLAS\Documents\Visual Studio 2015\Projects\Casepro\Casepro\obj\Debug\Casepro.DisForm.resources
+C:\Users\DOUGLAS\Documents\Visual Studio 2015\Projects\Casepro\Casepro\obj\Debug\Casepro.ExpenseForm.resources
