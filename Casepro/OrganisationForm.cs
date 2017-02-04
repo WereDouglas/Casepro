@@ -195,8 +195,8 @@ namespace Casepro
 
         private void button2_Click(object sender, EventArgs e)
         {
-            LoginForm frm = new LoginForm();
-            frm.Show();            
+            //LoginForm frm = new LoginForm();
+            //frm.Show();            
             this.Close();
         }
     }
