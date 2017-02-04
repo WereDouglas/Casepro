@@ -54,6 +54,8 @@ namespace Casepro
             t.Columns.Add("Approved");//13
             t.Columns.Add("Paid");//14
             t.Columns.Add("Received by");//11
+            t.Columns.Add("View");  //0 
+            t.Columns.Add("Delete");  //0 
 
             searchCbx.Items.Add("Date");
             searchCbx.Items.Add("Client");
@@ -67,7 +69,7 @@ namespace Casepro
                 {
                     System.Diagnostics.Debug.WriteLine(h + "-" + (Reader.IsDBNull(h) ? "" : Reader.GetString(h)));
                 }
-                t.Rows.Add(new object[] { Reader.GetString(0), false, (Reader.IsDBNull(15) ? "none" : Reader.GetString(15)), (Reader.IsDBNull(7) ? "none" : Reader.GetString(7)), (Reader.IsDBNull(54) ? "none" :Reader.GetString(54)), (Reader.IsDBNull(53) ? "none" : Reader.GetString(53)), (Reader.IsDBNull(10) ? "none" : Reader.GetString(10)), (Reader.IsDBNull(12) ? "none" : Reader.GetString(12)), (Reader.IsDBNull(9) ? "none" : Reader.GetString(9)), (Reader.IsDBNull(5) ? "none" : Reader.GetString(5)), (Reader.IsDBNull(36) ? "none" : Reader.GetString(36)), (Reader.IsDBNull(13) ? "none" : Reader.GetString(13)), (Reader.IsDBNull(14) ? "none" : Reader.GetString(14)), (Reader.IsDBNull(11) ? "none" : Reader.GetString(11)) });
+                t.Rows.Add(new object[] { Reader.GetString(0), false, (Reader.IsDBNull(15) ? "none" : Reader.GetString(15)), (Reader.IsDBNull(7) ? "none" : Reader.GetString(7)), (Reader.IsDBNull(54) ? "none" :Reader.GetString(54)), (Reader.IsDBNull(53) ? "none" : Reader.GetString(53)), (Reader.IsDBNull(10) ? "none" : Reader.GetString(10)), (Reader.IsDBNull(12) ? "none" : Reader.GetString(12)), (Reader.IsDBNull(9) ? "none" : Reader.GetString(9)), (Reader.IsDBNull(5) ? "none" : Reader.GetString(5)), (Reader.IsDBNull(36) ? "none" : Reader.GetString(36)), (Reader.IsDBNull(13) ? "none" : Reader.GetString(13)), (Reader.IsDBNull(14) ? "none" : Reader.GetString(14)), (Reader.IsDBNull(11) ? "none" : Reader.GetString(11)),"Edit", "Delete" });
 
                 //t.Rows.Add(new object[] {Reader.GetString(0),Reader.GetString(1),Reader.GetString(2),Reader.GetString(3),Reader.GetString(4)});
 
@@ -76,8 +78,8 @@ namespace Casepro
 
 
             this.dtGrid.Columns[0].Visible = false;
-            this.dtGrid.Columns[3].DefaultCellStyle.BackColor = Color.Green;
-            this.dtGrid.Columns[4].DefaultCellStyle.BackColor = Color.Red;
+            this.dtGrid.Columns[14].DefaultCellStyle.BackColor = Color.Green;
+            this.dtGrid.Columns[15].DefaultCellStyle.BackColor = Color.Red;
             // this.dtGrid.Columns[1].Visible = false;
 
 
@@ -269,10 +271,66 @@ namespace Casepro
 
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
-            NewFee frm = new NewFee();
+            NewFee frm = new NewFee(null);
             frm.MdiParent = MainForm.ActiveForm;
             frm.Show();
             this.Close();
+        }
+        List<string> fileIDs = new List<string>();
+        private void dtGrid_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            var senderGrid = (DataGridView)sender;
+
+            if (e.ColumnIndex == dtGrid.Columns[1].Index && e.RowIndex >= 0)
+            {
+                if (fileIDs.Contains(dtGrid.Rows[e.RowIndex].Cells[0].Value.ToString()))
+                {
+                    fileIDs.Remove(dtGrid.Rows[e.RowIndex].Cells[0].Value.ToString());
+                    Console.WriteLine("REMOVED this id " + dtGrid.Rows[e.RowIndex].Cells[0].Value.ToString());
+                }
+                else
+                {
+                    fileIDs.Add(dtGrid.Rows[e.RowIndex].Cells[0].Value.ToString());
+                    Console.WriteLine("ADDED ITEM " + dtGrid.Rows[e.RowIndex].Cells[0].Value.ToString());
+                }
+            }
+            if (e.ColumnIndex == dtGrid.Columns[14].Index && e.RowIndex >= 0)
+            {
+                NewFee frm = new NewFee(dtGrid.Rows[e.RowIndex].Cells[0].Value.ToString());
+                frm.MdiParent = MainForm.ActiveForm;
+                frm.Show();
+                this.Close();
+            }
+            try
+            {
+
+                if (e.ColumnIndex == dtGrid.Columns[15].Index && e.RowIndex >= 0)
+                {
+                    if (MessageBox.Show("YES or NO?", "Are you sure you want to delete this fee? ", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                    {
+                        string Query = "DELETE from fees WHERE feeID ='" + dtGrid.Rows[e.RowIndex].Cells[0].Value.ToString() + "'";
+                        Helper.Execute(Query, DBConnect.conn);
+                        MessageBox.Show("Information deleted");
+                    }
+                    Console.WriteLine("DELETE on row {0} clicked", e.RowIndex + dtGrid.Rows[e.RowIndex].Cells[0].Value.ToString() + dtGrid.Rows[e.RowIndex].Cells[2].Value.ToString());
+                }
+            }
+            catch { }
+
+        }
+
+        private void toolStripButton4_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("YES or NO?", "Are you sure you want to delete these fee? ", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+            {
+                foreach (var item in fileIDs)
+                {
+                    string Query = "DELETE from fees WHERE feeID ='" + item + "'";
+                    Helper.Execute(Query, DBConnect.conn);
+                    //  MessageBox.Show("Information deleted");
+                }
+            }
         }
     }
 }

@@ -32,6 +32,16 @@
             this.print = new System.Windows.Forms.Button();
             this.Submit = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.detailsTxt = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.paidCbx = new System.Windows.Forms.ComboBox();
+            this.fileCbx = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.balanceTxt = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lawyerCbx = new System.Windows.Forms.ComboBox();
+            this.nameLbl = new System.Windows.Forms.Label();
             this.clientCbx = new System.Windows.Forms.ComboBox();
             this.addressLbl = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
@@ -49,18 +59,11 @@
             this.paymentDate = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.nameLbl = new System.Windows.Forms.Label();
-            this.lawyerCbx = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.balanceTxt = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
             this.logoBx = new System.Windows.Forms.PictureBox();
-            this.fileCbx = new System.Windows.Forms.ComboBox();
-            this.paidCbx = new System.Windows.Forms.ComboBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.detailsTxt = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
+            this.approveCbx = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoBx)).BeginInit();
             this.SuspendLayout();
@@ -99,6 +102,8 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.approveCbx);
+            this.panel1.Controls.Add(this.label11);
             this.panel1.Controls.Add(this.detailsTxt);
             this.panel1.Controls.Add(this.label13);
             this.panel1.Controls.Add(this.label8);
@@ -132,6 +137,96 @@
             this.panel1.Size = new System.Drawing.Size(509, 485);
             this.panel1.TabIndex = 6;
             // 
+            // detailsTxt
+            // 
+            this.detailsTxt.Location = new System.Drawing.Point(117, 368);
+            this.detailsTxt.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.detailsTxt.Name = "detailsTxt";
+            this.detailsTxt.Size = new System.Drawing.Size(303, 22);
+            this.detailsTxt.TabIndex = 217;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(51, 370);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(50, 14);
+            this.label13.TabIndex = 216;
+            this.label13.Text = "Details:";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(68, 433);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(34, 14);
+            this.label8.TabIndex = 215;
+            this.label8.Text = "Paid:";
+            // 
+            // paidCbx
+            // 
+            this.paidCbx.FormattingEnabled = true;
+            this.paidCbx.Items.AddRange(new object[] {
+            "true",
+            "false"});
+            this.paidCbx.Location = new System.Drawing.Point(120, 430);
+            this.paidCbx.Name = "paidCbx";
+            this.paidCbx.Size = new System.Drawing.Size(182, 22);
+            this.paidCbx.TabIndex = 214;
+            // 
+            // fileCbx
+            // 
+            this.fileCbx.FormattingEnabled = true;
+            this.fileCbx.Location = new System.Drawing.Point(114, 167);
+            this.fileCbx.Name = "fileCbx";
+            this.fileCbx.Size = new System.Drawing.Size(306, 22);
+            this.fileCbx.TabIndex = 213;
+            this.fileCbx.SelectedIndexChanged += new System.EventHandler(this.fileCbx_SelectedIndexChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(52, 312);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(51, 14);
+            this.label5.TabIndex = 212;
+            this.label5.Text = "Balance";
+            // 
+            // balanceTxt
+            // 
+            this.balanceTxt.Location = new System.Drawing.Point(117, 309);
+            this.balanceTxt.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.balanceTxt.Name = "balanceTxt";
+            this.balanceTxt.Size = new System.Drawing.Size(303, 22);
+            this.balanceTxt.TabIndex = 211;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(70, 341);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(26, 14);
+            this.label1.TabIndex = 210;
+            this.label1.Text = "C/O";
+            // 
+            // lawyerCbx
+            // 
+            this.lawyerCbx.FormattingEnabled = true;
+            this.lawyerCbx.Location = new System.Drawing.Point(117, 338);
+            this.lawyerCbx.Name = "lawyerCbx";
+            this.lawyerCbx.Size = new System.Drawing.Size(303, 22);
+            this.lawyerCbx.TabIndex = 209;
+            // 
+            // nameLbl
+            // 
+            this.nameLbl.AutoSize = true;
+            this.nameLbl.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nameLbl.Location = new System.Drawing.Point(165, 10);
+            this.nameLbl.Name = "nameLbl";
+            this.nameLbl.Size = new System.Drawing.Size(56, 26);
+            this.nameLbl.TabIndex = 208;
+            this.nameLbl.Text = "INFO";
+            // 
             // clientCbx
             // 
             this.clientCbx.FormattingEnabled = true;
@@ -161,7 +256,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(72, 429);
+            this.label12.Location = new System.Drawing.Point(71, 403);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(31, 14);
             this.label12.TabIndex = 199;
@@ -169,7 +264,7 @@
             // 
             // vatTxt
             // 
-            this.vatTxt.Location = new System.Drawing.Point(120, 426);
+            this.vatTxt.Location = new System.Drawing.Point(120, 400);
             this.vatTxt.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.vatTxt.Name = "vatTxt";
             this.vatTxt.Size = new System.Drawing.Size(182, 22);
@@ -243,7 +338,7 @@
             // noLbl
             // 
             this.noLbl.AutoSize = true;
-            this.noLbl.Location = new System.Drawing.Point(111, 93);
+            this.noLbl.Location = new System.Drawing.Point(111, 98);
             this.noLbl.Name = "noLbl";
             this.noLbl.Size = new System.Drawing.Size(21, 14);
             this.noLbl.TabIndex = 158;
@@ -288,49 +383,15 @@
             this.label2.Text = "Plot 516 and 844 Najjanankumbi-Entebbe Rd,Slightly Opposite FDC Offices,P.O.Box 7" +
     "483 Kampala-Uganda";
             // 
-            // nameLbl
+            // logoBx
             // 
-            this.nameLbl.AutoSize = true;
-            this.nameLbl.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nameLbl.Location = new System.Drawing.Point(165, 10);
-            this.nameLbl.Name = "nameLbl";
-            this.nameLbl.Size = new System.Drawing.Size(56, 26);
-            this.nameLbl.TabIndex = 208;
-            this.nameLbl.Text = "INFO";
-            // 
-            // lawyerCbx
-            // 
-            this.lawyerCbx.FormattingEnabled = true;
-            this.lawyerCbx.Location = new System.Drawing.Point(117, 338);
-            this.lawyerCbx.Name = "lawyerCbx";
-            this.lawyerCbx.Size = new System.Drawing.Size(303, 22);
-            this.lawyerCbx.TabIndex = 209;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(70, 341);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(26, 14);
-            this.label1.TabIndex = 210;
-            this.label1.Text = "C/O";
-            // 
-            // balanceTxt
-            // 
-            this.balanceTxt.Location = new System.Drawing.Point(117, 309);
-            this.balanceTxt.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.balanceTxt.Name = "balanceTxt";
-            this.balanceTxt.Size = new System.Drawing.Size(303, 22);
-            this.balanceTxt.TabIndex = 211;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(52, 312);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(51, 14);
-            this.label5.TabIndex = 212;
-            this.label5.Text = "Balance";
+            this.logoBx.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.logoBx.InitialImage = null;
+            this.logoBx.Location = new System.Drawing.Point(10, 10);
+            this.logoBx.Name = "logoBx";
+            this.logoBx.Size = new System.Drawing.Size(122, 76);
+            this.logoBx.TabIndex = 0;
+            this.logoBx.TabStop = false;
             // 
             // button2
             // 
@@ -345,61 +406,35 @@
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // logoBx
+            // button3
             // 
-            this.logoBx.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.logoBx.InitialImage = null;
-            this.logoBx.Location = new System.Drawing.Point(10, 10);
-            this.logoBx.Name = "logoBx";
-            this.logoBx.Size = new System.Drawing.Size(122, 76);
-            this.logoBx.TabIndex = 0;
-            this.logoBx.TabStop = false;
+            this.button3.Location = new System.Drawing.Point(202, 531);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 25);
+            this.button3.TabIndex = 11;
+            this.button3.Text = "Update";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // fileCbx
+            // label11
             // 
-            this.fileCbx.FormattingEnabled = true;
-            this.fileCbx.Location = new System.Drawing.Point(114, 167);
-            this.fileCbx.Name = "fileCbx";
-            this.fileCbx.Size = new System.Drawing.Size(306, 22);
-            this.fileCbx.TabIndex = 213;
-            this.fileCbx.SelectedIndexChanged += new System.EventHandler(this.fileCbx_SelectedIndexChanged);
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(43, 459);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(58, 14);
+            this.label11.TabIndex = 218;
+            this.label11.Text = "Approved";
             // 
-            // paidCbx
+            // approveCbx
             // 
-            this.paidCbx.FormattingEnabled = true;
-            this.paidCbx.Items.AddRange(new object[] {
+            this.approveCbx.FormattingEnabled = true;
+            this.approveCbx.Items.AddRange(new object[] {
             "true",
             "false"});
-            this.paidCbx.Location = new System.Drawing.Point(120, 456);
-            this.paidCbx.Name = "paidCbx";
-            this.paidCbx.Size = new System.Drawing.Size(182, 22);
-            this.paidCbx.TabIndex = 214;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(72, 459);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(34, 14);
-            this.label8.TabIndex = 215;
-            this.label8.Text = "Paid:";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(51, 370);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(50, 14);
-            this.label13.TabIndex = 216;
-            this.label13.Text = "Details:";
-            // 
-            // detailsTxt
-            // 
-            this.detailsTxt.Location = new System.Drawing.Point(117, 368);
-            this.detailsTxt.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.detailsTxt.Name = "detailsTxt";
-            this.detailsTxt.Size = new System.Drawing.Size(303, 22);
-            this.detailsTxt.TabIndex = 217;
+            this.approveCbx.Location = new System.Drawing.Point(120, 456);
+            this.approveCbx.Name = "approveCbx";
+            this.approveCbx.Size = new System.Drawing.Size(182, 22);
+            this.approveCbx.TabIndex = 219;
             // 
             // NewFee
             // 
@@ -407,6 +442,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(544, 558);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.print);
@@ -459,5 +495,8 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox detailsTxt;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.ComboBox approveCbx;
+        private System.Windows.Forms.Label label11;
     }
 }

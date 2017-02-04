@@ -385,11 +385,14 @@ namespace Casepro
             Thread.Sleep(100);
             try
             {
+                SyncOrg();
                 SyncEvents();
                 SyncUsers();
                 SyncClients();
-                SyncFiles();
-                SyncOrg();
+                SyncFiles();              
+                SyncExpense();
+                SyncFees();
+                SyncDisbbursements();
             }
             catch
             {
@@ -707,8 +710,88 @@ namespace Casepro
 
             }
             connection.Close();
-
-
         }
+        private void SyncExpense()
+        {
+
+            MySqlConnection connection = new MySqlConnection(DBConnect.conn);
+            MySqlCommand command = connection.CreateCommand();
+            MySqlDataReader Reader;
+            command.CommandText = "SELECT * FROM expenses WHERE sync ='f' ;";
+            connection.Open();
+            Reader = command.ExecuteReader();
+            int totalRow = 0;
+
+            while (Reader.Read())
+            {
+                totalRow++;
+                string Query2 = "DELETE from expenses WHERE expensesID ='" + Reader.GetString(0) + "'";
+                Helper.Execute(Query2, DBConnect.remoteConn);
+
+                string Query = "INSERT INTO  `expenses`(`expenseID`, `orgID`, `clientID`, `fileID`, `details`, `lawyer`, `method`, `amount`, `no`, `balance`, `paid`, `date`, `approved`, `signed`, `reason`, `outcome`, `deadline`,sync) VALUES ('" + Reader.GetString(0) + "','" + (Reader.IsDBNull(1) ? "none" : Reader.GetString(1)) + "','" + (Reader.IsDBNull(2) ? "none" : Reader.GetString(2)) + "','" + (Reader.IsDBNull(3) ? "none" : Reader.GetString(3)) + "','" + (Reader.IsDBNull(4) ? "none" : Reader.GetString(4)) + "','" + (Reader.IsDBNull(5) ? "none" : Reader.GetString(5)) + "','" + (Reader.IsDBNull(6) ? "none" : Reader.GetString(6)) + "','" + (Reader.IsDBNull(7) ? "none" : Reader.GetString(7)) + "','" + (Reader.IsDBNull(8) ? "none" : Reader.GetString(8)) + "','" + (Reader.IsDBNull(9) ? "none" : Reader.GetString(9)) + "','" + (Reader.IsDBNull(10) ? "none" : Reader.GetString(10)) + "','" + (Reader.IsDBNull(11) ? "none" : Reader.GetString(11)) + "','" + (Reader.IsDBNull(12) ? "none" : Reader.GetString(12)) + "','" + (Reader.IsDBNull(13) ? "none" : Reader.GetString(13)) + "','" + (Reader.IsDBNull(14) ? "none" : Reader.GetString(14)) +"','" + (Reader.IsDBNull(15) ? "none" : Reader.GetString(15)) + "','" + (Reader.IsDBNull(16) ? "none" : Reader.GetString(16)) + "','t';";
+                Helper.Execute(Query, DBConnect.remoteConn);
+
+                string Query3 = "UPDATE `expenses` SET `sync`='t' WHERE expenseID ='" + Reader.GetString(0) + "'";
+                Helper.Execute(Query3, DBConnect.conn);
+
+            }
+            connection.Close();
+        }
+        
+        private void SyncFees()
+        {
+
+            MySqlConnection connection = new MySqlConnection(DBConnect.conn);
+            MySqlCommand command = connection.CreateCommand();
+            MySqlDataReader Reader;
+            command.CommandText = "SELECT * FROM fees WHERE sync ='f' ;";
+            connection.Open();
+            Reader = command.ExecuteReader();
+            int totalRow = 0;
+
+            while (Reader.Read())
+            {
+                totalRow++;
+                string Query2 = "DELETE from fees WHERE feeID ='" + Reader.GetString(0) + "'";
+                Helper.Execute(Query2, DBConnect.remoteConn);
+
+                string Query = "INSERT INTO  `fees`(`feeID`, `orgID`, `clientID`, `fileID`, `details`, `lawyer`, `paid`, `invoice`, `vat`, `method`, `amount`, `received`, `balance`, `approved`, `signed`, `date`,sync) VALUES ('" + Reader.GetString(0) + "','" + (Reader.IsDBNull(1) ? "none" : Reader.GetString(1)) + "','" + (Reader.IsDBNull(2) ? "none" : Reader.GetString(2)) + "','" + (Reader.IsDBNull(3) ? "none" : Reader.GetString(3)) + "','" + (Reader.IsDBNull(4) ? "none" : Reader.GetString(4)) + "','" + (Reader.IsDBNull(5) ? "none" : Reader.GetString(5)) + "','" + (Reader.IsDBNull(6) ? "none" : Reader.GetString(6)) + "','" + (Reader.IsDBNull(7) ? "none" : Reader.GetString(7)) + "','" + (Reader.IsDBNull(8) ? "none" : Reader.GetString(8)) + "','" + (Reader.IsDBNull(9) ? "none" : Reader.GetString(9)) + "','" + (Reader.IsDBNull(10) ? "none" : Reader.GetString(10)) + "','" + (Reader.IsDBNull(11) ? "none" : Reader.GetString(11)) + "','" + (Reader.IsDBNull(12) ? "none" : Reader.GetString(12)) + "','" + (Reader.IsDBNull(13) ? "none" : Reader.GetString(13)) + "','" + (Reader.IsDBNull(14) ? "none" : Reader.GetString(14)) + "','" + (Reader.IsDBNull(15) ? "none" : Reader.GetString(15)) + "','" + (Reader.IsDBNull(16) ? "none" : Reader.GetString(16)) + "','t';";
+                Helper.Execute(Query, DBConnect.remoteConn);
+
+                string Query3 = "UPDATE `fees` SET `sync`='t' WHERE feeID ='" + Reader.GetString(0) + "'";
+                Helper.Execute(Query3, DBConnect.conn);
+
+            }
+            connection.Close();
+        }
+        
+        private void SyncDisbbursements()
+        {
+
+            MySqlConnection connection = new MySqlConnection(DBConnect.conn);
+            MySqlCommand command = connection.CreateCommand();
+            MySqlDataReader Reader;
+            command.CommandText = "SELECT * FROM disbursements WHERE sync ='f' ;";
+            connection.Open();
+            Reader = command.ExecuteReader();
+            int totalRow = 0;
+
+            while (Reader.Read())
+            {
+                totalRow++;
+                string Query2 = "DELETE from disbursements WHERE disbursementD ='" + Reader.GetString(0) + "'";
+                Helper.Execute(Query2, DBConnect.remoteConn);
+
+                string Query = "INSERT INTO  `disbursements`(`disbursementID`, `orgID`, `clientID`, `fileID`, `details`, `lawyer`, `paid`, `invoice`, `method`, `amount`, `received`, `balance`, `approved`, `signed`, `date`,sync) VALUES ('" + Reader.GetString(0) + "','" + (Reader.IsDBNull(1) ? "none" : Reader.GetString(1)) + "','" + (Reader.IsDBNull(2) ? "none" : Reader.GetString(2)) + "','" + (Reader.IsDBNull(3) ? "none" : Reader.GetString(3)) + "','" + (Reader.IsDBNull(4) ? "none" : Reader.GetString(4)) + "','" + (Reader.IsDBNull(5) ? "none" : Reader.GetString(5)) + "','" + (Reader.IsDBNull(6) ? "none" : Reader.GetString(6)) + "','" + (Reader.IsDBNull(7) ? "none" : Reader.GetString(7)) + "','" + (Reader.IsDBNull(8) ? "none" : Reader.GetString(8)) + "','" + (Reader.IsDBNull(9) ? "none" : Reader.GetString(9)) + "','" + (Reader.IsDBNull(10) ? "none" : Reader.GetString(10)) + "','" + (Reader.IsDBNull(11) ? "none" : Reader.GetString(11)) + "','" + (Reader.IsDBNull(12) ? "none" : Reader.GetString(12)) + "','" + (Reader.IsDBNull(13) ? "none" : Reader.GetString(13)) + "','" + (Reader.IsDBNull(14) ? "none" : Reader.GetString(14)) + "','t';";
+                Helper.Execute(Query, DBConnect.remoteConn);
+
+                string Query3 = "UPDATE `disbursements` SET `sync`='t' WHERE disbursementID ='" + Reader.GetString(0) + "'";
+                Helper.Execute(Query3, DBConnect.conn);
+
+            }
+            connection.Close();
+        }
+
+
     }
 }

@@ -32,6 +32,12 @@
             this.Submit = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.outcomeTxt = new System.Windows.Forms.TextBox();
+            this.reasonTxt = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.Reason = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.deadlineDate = new System.Windows.Forms.DateTimePicker();
             this.detailsTxt = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -60,12 +66,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.logoBx = new System.Windows.Forms.PictureBox();
-            this.deadlineDate = new System.Windows.Forms.DateTimePicker();
-            this.label11 = new System.Windows.Forms.Label();
-            this.Reason = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.reasonTxt = new System.Windows.Forms.TextBox();
-            this.outcomeTxt = new System.Windows.Forms.TextBox();
+            this.approveCbx = new System.Windows.Forms.ComboBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoBx)).BeginInit();
             this.SuspendLayout();
@@ -105,6 +108,8 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.approveCbx);
+            this.panel1.Controls.Add(this.label15);
             this.panel1.Controls.Add(this.outcomeTxt);
             this.panel1.Controls.Add(this.reasonTxt);
             this.panel1.Controls.Add(this.label16);
@@ -144,6 +149,56 @@
             this.panel1.Size = new System.Drawing.Size(509, 556);
             this.panel1.TabIndex = 19;
             // 
+            // outcomeTxt
+            // 
+            this.outcomeTxt.Location = new System.Drawing.Point(114, 323);
+            this.outcomeTxt.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.outcomeTxt.Name = "outcomeTxt";
+            this.outcomeTxt.Size = new System.Drawing.Size(303, 20);
+            this.outcomeTxt.TabIndex = 223;
+            // 
+            // reasonTxt
+            // 
+            this.reasonTxt.Location = new System.Drawing.Point(114, 297);
+            this.reasonTxt.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.reasonTxt.Name = "reasonTxt";
+            this.reasonTxt.Size = new System.Drawing.Size(303, 20);
+            this.reasonTxt.TabIndex = 222;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(53, 323);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(50, 13);
+            this.label16.TabIndex = 221;
+            this.label16.Text = "Outcome";
+            // 
+            // Reason
+            // 
+            this.Reason.AutoSize = true;
+            this.Reason.Location = new System.Drawing.Point(59, 301);
+            this.Reason.Name = "Reason";
+            this.Reason.Size = new System.Drawing.Size(44, 13);
+            this.Reason.TabIndex = 220;
+            this.Reason.Text = "Reason";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(54, 437);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(49, 13);
+            this.label11.TabIndex = 219;
+            this.label11.Text = "Deadline";
+            // 
+            // deadlineDate
+            // 
+            this.deadlineDate.Location = new System.Drawing.Point(114, 431);
+            this.deadlineDate.Name = "deadlineDate";
+            this.deadlineDate.Size = new System.Drawing.Size(150, 20);
+            this.deadlineDate.TabIndex = 218;
+            // 
             // detailsTxt
             // 
             this.detailsTxt.Location = new System.Drawing.Point(114, 403);
@@ -155,7 +210,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(48, 405);
+            this.label13.Location = new System.Drawing.Point(61, 405);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(42, 13);
             this.label13.TabIndex = 216;
@@ -193,7 +248,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(49, 347);
+            this.label5.Location = new System.Drawing.Point(57, 347);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(46, 13);
             this.label5.TabIndex = 212;
@@ -210,7 +265,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(67, 376);
+            this.label1.Location = new System.Drawing.Point(76, 376);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(27, 13);
             this.label1.TabIndex = 210;
@@ -254,7 +309,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(63, 170);
+            this.label14.Location = new System.Drawing.Point(80, 170);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(23, 13);
             this.label14.TabIndex = 205;
@@ -263,7 +318,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(72, 474);
+            this.label12.Location = new System.Drawing.Point(69, 474);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(34, 13);
             this.label12.TabIndex = 199;
@@ -280,7 +335,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(44, 235);
+            this.label10.Location = new System.Drawing.Point(57, 235);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(46, 13);
             this.label10.TabIndex = 195;
@@ -289,7 +344,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(19, 203);
+            this.label9.Location = new System.Drawing.Point(37, 203);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(66, 13);
             this.label9.TabIndex = 194;
@@ -327,7 +382,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(52, 142);
+            this.label7.Location = new System.Drawing.Point(70, 142);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(33, 13);
             this.label7.TabIndex = 160;
@@ -345,7 +400,7 @@
             // noLbl
             // 
             this.noLbl.AutoSize = true;
-            this.noLbl.Location = new System.Drawing.Point(111, 93);
+            this.noLbl.Location = new System.Drawing.Point(111, 97);
             this.noLbl.Name = "noLbl";
             this.noLbl.Size = new System.Drawing.Size(19, 13);
             this.noLbl.TabIndex = 158;
@@ -400,68 +455,50 @@
             this.logoBx.TabIndex = 0;
             this.logoBx.TabStop = false;
             // 
-            // deadlineDate
+            // approveCbx
             // 
-            this.deadlineDate.Location = new System.Drawing.Point(114, 431);
-            this.deadlineDate.Name = "deadlineDate";
-            this.deadlineDate.Size = new System.Drawing.Size(150, 20);
-            this.deadlineDate.TabIndex = 218;
+            this.approveCbx.FormattingEnabled = true;
+            this.approveCbx.Items.AddRange(new object[] {
+            "true",
+            "false"});
+            this.approveCbx.Location = new System.Drawing.Point(114, 531);
+            this.approveCbx.Name = "approveCbx";
+            this.approveCbx.Size = new System.Drawing.Size(182, 21);
+            this.approveCbx.TabIndex = 225;
             // 
-            // label11
+            // label15
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(53, 437);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(49, 13);
-            this.label11.TabIndex = 219;
-            this.label11.Text = "Deadline";
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(50, 534);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(53, 13);
+            this.label15.TabIndex = 224;
+            this.label15.Text = "Approved";
             // 
-            // Reason
+            // button3
             // 
-            this.Reason.AutoSize = true;
-            this.Reason.Location = new System.Drawing.Point(41, 301);
-            this.Reason.Name = "Reason";
-            this.Reason.Size = new System.Drawing.Size(44, 13);
-            this.Reason.TabIndex = 220;
-            this.Reason.Text = "Reason";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(41, 323);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(50, 13);
-            this.label16.TabIndex = 221;
-            this.label16.Text = "Outcome";
-            // 
-            // reasonTxt
-            // 
-            this.reasonTxt.Location = new System.Drawing.Point(114, 297);
-            this.reasonTxt.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.reasonTxt.Name = "reasonTxt";
-            this.reasonTxt.Size = new System.Drawing.Size(303, 20);
-            this.reasonTxt.TabIndex = 222;
-            // 
-            // outcomeTxt
-            // 
-            this.outcomeTxt.Location = new System.Drawing.Point(114, 323);
-            this.outcomeTxt.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.outcomeTxt.Name = "outcomeTxt";
-            this.outcomeTxt.Size = new System.Drawing.Size(303, 20);
-            this.outcomeTxt.TabIndex = 223;
+            this.button3.Location = new System.Drawing.Point(276, 597);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 25);
+            this.button3.TabIndex = 20;
+            this.button3.Text = "Update";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // NewExpense
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(570, 625);
+            this.ClientSize = new System.Drawing.Size(563, 625);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.print);
             this.Controls.Add(this.Submit);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "NewExpense";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "NewExpense";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -510,5 +547,8 @@
         private System.Windows.Forms.Label Reason;
         private System.Windows.Forms.TextBox reasonTxt;
         private System.Windows.Forms.TextBox outcomeTxt;
+        private System.Windows.Forms.ComboBox approveCbx;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Button button3;
     }
 }

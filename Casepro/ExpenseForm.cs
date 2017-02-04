@@ -48,22 +48,23 @@ namespace Casepro
             t.Columns.Add("id", typeof(string));
             t.Columns.Add(new DataColumn("Select", typeof(bool)));
             t.Columns.Add("Date", typeof(string));//11
-            t.Columns.Add("Invoice No.", typeof(string));//36
-            t.Columns.Add("Client");//19
-            t.Columns.Add("File");//37
+            t.Columns.Add("Client");//20
+            t.Columns.Add("File");//38
             t.Columns.Add("Amount", typeof(string));//7
             t.Columns.Add("Balance", typeof(string));//8
             t.Columns.Add("Method", typeof(string));//6
-            t.Columns.Add("C/O", typeof(string));//5
-            t.Columns.Add("Details", typeof(string));//4
+            t.Columns.Add("C/O", typeof(string));//36
+            t.Columns.Add("Details", typeof(string));//15
             t.Columns.Add("Paid", typeof(string));//10
             t.Columns.Add("Approved", typeof(string));//12
             t.Columns.Add("Signed", typeof(string));//13
             t.Columns.Add("Reason", typeof(string));//14
             t.Columns.Add("Outcome", typeof(string));//15
-            t.Columns.Add("Deadline", typeof(string));//16
+            t.Columns.Add("Deadline", typeof(string));//44
+            t.Columns.Add("View");  //0 
+            t.Columns.Add("Delete");  //0 
 
-          
+
             searchCbx.Items.Add("Date");
             searchCbx.Items.Add("Client");
             searchCbx.Items.Add("File");
@@ -80,7 +81,7 @@ namespace Casepro
                     }
                     catch { }
                     }
-                t.Rows.Add(new object[] { Reader.GetString(0), false, (Reader.IsDBNull(11) ? "none" : Reader.GetString(11)), (Reader.IsDBNull(36) ? "none" : Reader.GetString(36)), (Reader.IsDBNull(19) ? "none" : Reader.GetString(19)), (Reader.IsDBNull(37) ? "none" : Reader.GetString(37)), (Reader.IsDBNull(7) ? "none" : Reader.GetString(7)), (Reader.IsDBNull(8) ? "none" : Reader.GetString(8)), (Reader.IsDBNull(6) ? "none" : Reader.GetString(6)), (Reader.IsDBNull(5) ? "none" : Reader.GetString(5)), (Reader.IsDBNull(4) ? "none" : Reader.GetString(4)), (Reader.IsDBNull(10) ? "none" : Reader.GetString(10)), (Reader.IsDBNull(12) ? "none" : Reader.GetString(12)), (Reader.IsDBNull(13) ? "none" : Reader.GetString(13)), (Reader.IsDBNull(14) ? "none" : Reader.GetString(14)), (Reader.IsDBNull(15) ? "none" : Reader.GetString(15)), (Reader.IsDBNull(16) ? "none" : Reader.GetString(16)) });
+                t.Rows.Add(new object[] { Reader.GetString(0), false, (Reader.IsDBNull(11) ? "none" : Reader.GetString(11)), (Reader.IsDBNull(20) ? "none" : Reader.GetString(20)), (Reader.IsDBNull(38) ? "none" : Reader.GetString(38)), (Reader.IsDBNull(7) ? "none" : Reader.GetString(7)), (Reader.IsDBNull(8) ? "none" : Reader.GetString(8)), (Reader.IsDBNull(6) ? "none" : Reader.GetString(6)), (Reader.IsDBNull(36) ? "none" : Reader.GetString(36)), (Reader.IsDBNull(15) ? "none" : Reader.GetString(15)), (Reader.IsDBNull(10) ? "none" : Reader.GetString(10)), (Reader.IsDBNull(12) ? "none" : Reader.GetString(12)), (Reader.IsDBNull(13) ? "none" : Reader.GetString(13)), (Reader.IsDBNull(14) ? "none" : Reader.GetString(14)), (Reader.IsDBNull(15) ? "none" : Reader.GetString(15)), (Reader.IsDBNull(44) ? "none" : Reader.GetString(44)), "Edit", "Delete" });
 
                 //t.Rows.Add(new object[] {Reader.GetString(0),Reader.GetString(1),Reader.GetString(2),Reader.GetString(3),Reader.GetString(4)});
 
@@ -282,10 +283,67 @@ namespace Casepro
 
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
-            NewFee frm = new NewFee();
+            NewExpense frm = new NewExpense(null);
             frm.MdiParent = MainForm.ActiveForm;
             frm.Show();
             this.Close();
+        }
+
+        List<string> fileIDs = new List<string>();
+        private void dtGrid_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            var senderGrid = (DataGridView)sender;
+
+            if (e.ColumnIndex == dtGrid.Columns[1].Index && e.RowIndex >= 0)
+            {
+                if (fileIDs.Contains(dtGrid.Rows[e.RowIndex].Cells[0].Value.ToString()))
+                {
+                    fileIDs.Remove(dtGrid.Rows[e.RowIndex].Cells[0].Value.ToString());
+                    Console.WriteLine("REMOVED this id " + dtGrid.Rows[e.RowIndex].Cells[0].Value.ToString());
+                }
+                else
+                {
+                    fileIDs.Add(dtGrid.Rows[e.RowIndex].Cells[0].Value.ToString());
+                    Console.WriteLine("ADDED ITEM " + dtGrid.Rows[e.RowIndex].Cells[0].Value.ToString());
+                }
+            }
+            if (e.ColumnIndex == dtGrid.Columns[16].Index && e.RowIndex >= 0)
+            {
+                NewExpense frm = new NewExpense(dtGrid.Rows[e.RowIndex].Cells[0].Value.ToString());
+                frm.MdiParent = MainForm.ActiveForm;
+                frm.Show();
+                this.Close();
+            }
+            try
+            {
+
+                if (e.ColumnIndex == dtGrid.Columns[17].Index && e.RowIndex >= 0)
+                {
+                    if (MessageBox.Show("YES or NO?", "Are you sure you want to delete this expense? ", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                    {
+                        string Query = "DELETE from expenses WHERE expenseID ='" + dtGrid.Rows[e.RowIndex].Cells[0].Value.ToString() + "'";
+                        Helper.Execute(Query, DBConnect.conn);
+                        MessageBox.Show("Information deleted");
+                    }
+                    Console.WriteLine("DELETE on row {0} clicked", e.RowIndex + dtGrid.Rows[e.RowIndex].Cells[0].Value.ToString() + dtGrid.Rows[e.RowIndex].Cells[2].Value.ToString());
+                }
+            }
+            catch { }
+
+        }
+
+        private void toolStripButton4_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("YES or NO?", "Are you sure you want to delete these expenses? ", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+            {
+                foreach (var item in fileIDs)
+                {
+                    string Query = "DELETE from expenses WHERE expenseID ='" + item + "'";
+                    Helper.Execute(Query, DBConnect.conn);
+                    
+                }
+            }
         }
     }
 }

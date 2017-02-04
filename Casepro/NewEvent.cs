@@ -245,7 +245,7 @@ namespace Casepro
                 notify = "true";
             }
 
-            string fileID = Guid.NewGuid().ToString();
+           // string fileID = Guid.NewGuid().ToString();
             string Query = "UPDATE `events` SET `name`='" + this.detailsTxt.Text + "',`start`='" + start + "',`end`='" + end + "',`user`='" + lawyerCbx.Text + "',`file`='" + fileCbx.Text + "',`action`='update',`status`='true',`date`='"+ Convert.ToDateTime(this.openedDate.Text).ToString("yyyy-MM-dd") + "',`hours`='"+daysTxt.Text+ "',`court`='" + court + "',`priority`='" + priorityCbx.Text + "',`sync`='f',`notify`='" + notify + "',`progress`='" + progressTxt.Text + "',`client`='" + clientCbx.Text + "' WHERE id ='" + id + "'";
             Helper.Execute(Query, DBConnect.conn);
            

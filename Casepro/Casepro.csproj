@@ -205,6 +205,12 @@
     <Compile Include="SettingForm.Designer.cs">
       <DependentUpon>SettingForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="StartUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StartUser.Designer.cs">
+      <DependentUpon>StartUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -280,6 +286,9 @@
     <EmbeddedResource Include="SettingForm.resx">
       <DependentUpon>SettingForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="StartUser.resx">
+      <DependentUpon>StartUser.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserForm.resx">
       <DependentUpon>UserForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -327,6 +336,7 @@
     <None Include="Resources\Date-24.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Bill-48.png" />
     <None Include="Resources\IMG_172747 %281%29.jpg" />
     <None Include="Resources\wallpaper_12617.jpg" />
     <None Include="Resources\Tab-History-48.png" />

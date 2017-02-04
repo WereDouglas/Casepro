@@ -16,13 +16,66 @@ namespace Casepro
     {
         Dictionary<string, string> ClientDictionary = new Dictionary<string, string>();
         Dictionary<string, string> FileDictionary = new Dictionary<string, string>();
-
-        public NewFee()
+        private string FeeID;
+        public NewFee(string feeID)
         {
+            FeeID = feeID;
             InitializeComponent();
             profile();
             loadData();
             loadUser();
+            if (FeeID!="") {
+
+                thisFee(FeeID);
+
+            }
+        }
+        public void thisFee(string id)
+        {
+            MySqlConnection connection = new MySqlConnection(DBConnect.conn);
+            MySqlCommand command = connection.CreateCommand();
+            MySqlDataReader Reader;
+            command.CommandText = "SELECT *,file.name As file,client.name As client FROM fees LEFT JOIN client ON client.clientID = fees.clientID LEFT JOIN file ON file.fileID = fees.fileID WHERE feeID = '"+id+"';";
+            connection.Open();
+            Reader = command.ExecuteReader();
+            while (Reader.Read())
+            {
+                try { noLbl.Text = Reader.IsDBNull(7) ? "" : Reader.GetString(7); }
+                catch (InvalidCastException) { }
+
+                try { clientCbx.Text = Reader.IsDBNull(54) ? "" : Reader.GetString(54); }
+                catch (InvalidCastException) { }
+
+               fileCbx.Text = Reader.IsDBNull(53) ? "" : Reader.GetString(53);
+                try
+                {
+                    amountTxt.Text = Reader.IsDBNull(10) ? "" : Reader.GetString(10);
+                }
+                catch { }
+
+                methodCbx.Text = Reader.IsDBNull(9) ? "" : Reader.GetString(9);
+                try
+                {
+                    balanceTxt.Text = Reader.IsDBNull(12) ? "" : Reader.GetString(12);
+                }
+                catch { }
+               lawyerCbx.Text = Reader.IsDBNull(5) ? "" : Reader.GetString(5);
+               detailsTxt.Text = Reader.IsDBNull(36) ? "" : Reader.GetString(36);
+                //vatTxt.Text = Reader.IsDBNull(5) ? "" : Reader.GetString(5);
+                paidCbx.Text = Reader.IsDBNull(14) ? "" : Reader.GetString(14);
+                try
+                {
+                    wordsLbl.Text = Helper.NumberToWords(Convert.ToInt32(amountTxt.Text));
+                }
+                catch
+                {
+
+
+                }
+
+
+            }
+            connection.Close();
         }
         void profile()
         {
@@ -146,7 +199,7 @@ namespace Casepro
            
             try
             {
-                string Query = "INSERT INTO  `fees`(`feeID`, `orgID`, `clientID`, `fileID`, `details`, `lawyer`, `paid`, `invoice`, `vat`, `method`, `amount`, `received`, `balance`, `approved`, `signed`, `date`) VALUES ('" + feeID + "','"+Helper.orgID+"','" + clientID + "','" + fileID + "','" + detailsTxt.Text + "','" + lawyerCbx.Text + "','"+paidCbx.Text+"','"+noLbl.Text+"','"+vatTxt.Text+ "','" + methodCbx.Text + "','" + amountTxt.Text + "','" + Helper.username + "','" + balanceTxt.Text + "','false','false','" + Convert.ToDateTime(paymentDate.Text).ToString("yyyy-MM-dd") + "');";
+                string Query = "INSERT INTO  `fees`(`feeID`, `orgID`, `clientID`, `fileID`, `details`, `lawyer`, `paid`, `invoice`, `vat`, `method`, `amount`, `received`, `balance`, `approved`, `signed`, `date`) VALUES ('" + feeID + "','"+Helper.orgID+"','" + clientID + "','" + fileID + "','" + detailsTxt.Text + "','" + lawyerCbx.Text + "','"+paidCbx.Text+"','"+noLbl.Text+"','"+vatTxt.Text+ "','" + methodCbx.Text + "','" + amountTxt.Text + "','" + Helper.username + "','" + balanceTxt.Text + "','false','false','" + Convert.ToDateTime(paymentDate.Text).ToString("yyyy-MM-dd") + "',`sync`='f');";
                 Helper.Execute(Query, DBConnect.conn);              
                 MessageBox.Show("Information saved");
                 this.Close();
@@ -157,6 +210,14 @@ namespace Casepro
                 MessageBox.Show(ex.Message);
             }
 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+           
+            string Query = "UPDATE `fees` SET `details`='"+detailsTxt.Text+ "',`sync`='f',`paid`='" + paidCbx.Text + "',`vat`='" + vatTxt.Text + "',`method`='" + methodCbx.Text + "',`amount`='" + methodCbx.Text + "',`received`='" + Helper.username + "',`balance`= '" + balanceTxt.Text + "',`approved`='" + approveCbx.Text +"',`signed`='" + Helper.username + "' WHERE feeID ='" + FeeID + "'";
+            Helper.Execute(Query, DBConnect.conn);
+            this.Close();
         }
     }
 }

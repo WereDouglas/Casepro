@@ -16,35 +16,82 @@ namespace Casepro
     {
         Dictionary<string, string> ClientDictionary = new Dictionary<string, string>();
         Dictionary<string, string> FileDictionary = new Dictionary<string, string>();
-        public NewDis()
+        private string DisID;
+        public NewDis(string disID)
         {
+            DisID = disID;
             InitializeComponent();
             profile();
             loadData();
             loadUser();
+            if (DisID != "")
+            {
+                thisDis(DisID);
+            }
         }
         void profile()
         {
             try
             {
-
                 var request = WebRequest.Create(Helper.imageUrl + Helper.logo);
-
                 using (var response = request.GetResponse())
                 using (var stream = response.GetResponseStream())
                 {
                     logoBx.Image = Bitmap.FromStream(stream);
-                    //logoBx.Image.
-
                 }
             }
             catch { }
             addressLbl.Text = Helper.address;
             nameLbl.Text = Helper.orgName;
-            // addressLbl.Text = Helper.username;
-            // contactLbl.Text = Helper.contact;
-            noLbl.Text = Helper.code + "/" + DateTime.Now.ToString("dd") + DateTime.Now.ToString("mm") + DateTime.Now.ToString("hh") + DateTime.Now.ToString("ss") + DateTime.Now.ToString("yyyy");
+             noLbl.Text = Helper.code + "/" + DateTime.Now.ToString("dd") + DateTime.Now.ToString("mm") + DateTime.Now.ToString("hh") + DateTime.Now.ToString("ss") + DateTime.Now.ToString("yyyy");
 
+        }
+        public void thisDis(string id)
+        {
+            MySqlConnection connection = new MySqlConnection(DBConnect.conn);
+            MySqlCommand command = connection.CreateCommand();
+            MySqlDataReader Reader;
+            command.CommandText = "SELECT *,file.name As file,client.name As client FROM disbursements LEFT JOIN client ON client.clientID = disbursements.clientID LEFT JOIN file ON file.fileID = disbursements.fileID WHERE disbursements.disbursementID = '" + id + "';";
+            connection.Open();
+            Reader = command.ExecuteReader();
+            while (Reader.Read())
+            {
+                try { noLbl.Text = Reader.IsDBNull(7) ? "" : Reader.GetString(7); }
+                catch (InvalidCastException) { }
+
+                try { clientCbx.Text = Reader.IsDBNull(52) ? "" : Reader.GetString(52); }
+                catch (InvalidCastException) { }
+
+                fileCbx.Text = Reader.IsDBNull(40) ? "" : Reader.GetString(40);
+                try
+                {
+                    amountTxt.Text = Reader.IsDBNull(9) ? "" : Reader.GetString(9);
+                }
+                catch { }
+
+                methodCbx.Text = Reader.IsDBNull(8) ? "" : Reader.GetString(8);
+                try
+                {
+                    balanceTxt.Text = Reader.IsDBNull(11) ? "" : Reader.GetString(11);
+                }
+                catch { }
+                lawyerCbx.Text = Reader.IsDBNull(10) ? "" : Reader.GetString(10);
+                detailsTxt.Text = Reader.IsDBNull(35) ? "" : Reader.GetString(35);
+                //vatTxt.Text = Reader.IsDBNull(5) ? "" : Reader.GetString(5);
+                paidCbx.Text = Reader.IsDBNull(13) ? "" : Reader.GetString(13);
+                try
+                {
+                    wordsLbl.Text = Helper.NumberToWords(Convert.ToInt32(amountTxt.Text));
+                }
+                catch
+                {
+
+
+                }
+
+
+            }
+            connection.Close();
         }
         public void loadData()
         {
@@ -148,7 +195,7 @@ namespace Casepro
 
             try
             {
-                string Query = "INSERT INTO  `disbursements`(`disbursementID`, `orgID`, `clientID`, `fileID`, `details`, `lawyer`, `paid`, `invoice`, `method`, `amount`, `received`, `balance`, `approved`, `signed`, `date`) VALUES ('" + feeID + "','" + Helper.orgID + "','" + clientID + "','" + fileID + "','" + detailsTxt.Text + "','" + lawyerCbx.Text + "','" + paidCbx.Text + "','" + noLbl.Text + "','" + methodCbx.Text + "','" + amountTxt.Text + "','" + Helper.username + "','" + balanceTxt.Text + "','false','false','" + Convert.ToDateTime(paymentDate.Text).ToString("yyyy-MM-dd") + "');";
+                string Query = "INSERT INTO  `disbursements`(`disbursementID`, `orgID`, `clientID`, `fileID`, `details`, `lawyer`, `paid`, `invoice`, `method`, `amount`, `received`, `balance`, `approved`, `signed`, `date`) VALUES ('" + feeID + "','" + Helper.orgID + "','" + clientID + "','" + fileID + "','" + detailsTxt.Text + "','" + lawyerCbx.Text + "','" + paidCbx.Text + "','" + noLbl.Text + "','" + methodCbx.Text + "','" + amountTxt.Text + "','" + Helper.username + "','" + balanceTxt.Text + "','false','false','" + Convert.ToDateTime(paymentDate.Text).ToString("yyyy-MM-dd") + "',`sync`='f');";
                 Helper.Execute(Query, DBConnect.conn);
                 MessageBox.Show("Information saved");
                 this.Close();
@@ -159,6 +206,13 @@ namespace Casepro
                 MessageBox.Show(ex.Message);
             }
 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            string Query = "UPDATE `disbursements` SET `details`='" + detailsTxt.Text + "',`sync`='f',`paid`='" + paidCbx.Text + "',`vat`='" + vatTxt.Text + "',`method`='" + methodCbx.Text + "',`amount`='" + methodCbx.Text + "',`received`='" + Helper.username + "',`balance`= '" + balanceTxt.Text + "',`approved`='" + approveCbx.Text + "',`signed`='" + Helper.username + "' WHERE disbursements.disbursementID ='" + DisID + "'";
+            Helper.Execute(Query, DBConnect.conn);
+            this.Close();
         }
     }
 }
