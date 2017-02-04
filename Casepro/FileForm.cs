@@ -63,8 +63,6 @@ namespace Casepro
             t.Columns.Add("Delete");  //0 
 
 
-
-
             searchCbx.Items.Add("Name");
             searchCbx.Items.Add("Lawyer");
             searchCbx.Items.Add("Description");
@@ -74,7 +72,7 @@ namespace Casepro
             while (Reader.Read())
             {
 
-                t.Rows.Add(new object[] { Reader.GetString(0), false, (Reader.IsDBNull(5) ? "none" : Reader.GetString(5)), (Reader.IsDBNull(11) ? "none" : Reader.GetString(11)), (Reader.IsDBNull(2) ? "none" : Reader.GetString(2)), (Reader.IsDBNull(4) ? "none" : Reader.GetString(4)), (Reader.IsDBNull(3) ? "none" : Reader.GetString(3)), (Reader.IsDBNull(6) ? "none" : Reader.GetString(6)), (Reader.IsDBNull(7) ? "none" : Reader.GetString(7)), (Reader.IsDBNull(8) ? "none" : Reader.GetString(8)), (Reader.IsDBNull(9) ? "none" : Reader.GetString(9)), (Reader.IsDBNull(10) ? "none" : Reader.GetString(10)), (Reader.IsDBNull(12) ? "none" : Reader.GetString(12)), (Reader.IsDBNull(13) ? "none" : Reader.GetString(13)), (Reader.IsDBNull(15) ? "none" : Reader.GetString(15)), (Reader.IsDBNull(16) ? "none" : Reader.GetString(16)), (Reader.IsDBNull(17) ? "none" : Reader.GetString(17)), (Reader.IsDBNull(18) ? "none" : Reader.GetString(18)), (Reader.IsDBNull(19) ? "none" : Reader.GetString(19)), (Reader.IsDBNull(20) ? "none" : Reader.GetString(20)), "Edit", "Delete" });
+                t.Rows.Add(new object[] { Reader.GetString(0), false, (Reader.IsDBNull(5) ? "none" : Reader.GetString(5)), (Reader.IsDBNull(11) ? "none" : Reader.GetString(11)), (Reader.IsDBNull(2) ? "none" : Reader.GetString(2)), (Reader.IsDBNull(4) ? "none" : Reader.GetString(4)), (Reader.IsDBNull(3) ? "none" : Reader.GetString(3)), (Reader.IsDBNull(6) ? "none" : Reader.GetString(6)), (Reader.IsDBNull(7) ? "none" : Reader.GetString(7)), (Reader.IsDBNull(8) ? "none" : Reader.GetString(8)), (Reader.IsDBNull(9) ? "none" : Reader.GetString(9)), (Reader.IsDBNull(10) ? "none" : Reader.GetString(10)), (Reader.IsDBNull(12) ? "none" : Reader.GetString(12)), (Reader.IsDBNull(13) ? "none" : Reader.GetString(13)), (Reader.IsDBNull(15) ? "none" : Reader.GetString(15)), (Reader.IsDBNull(16) ? "none" : Reader.GetString(16)), (Reader.IsDBNull(17) ? "none" : Reader.GetString(17)), (Reader.IsDBNull(18) ? "none" : Reader.GetString(18)), (Reader.IsDBNull(19) ? "none" : Reader.GetString(19)), (Reader.IsDBNull(20) ? "none" : Reader.GetString(20)), "Edit", "Delete"});
 
             }
 
@@ -198,6 +196,7 @@ namespace Casepro
                 frm.Show();
                 this.Close();
             }
+            
             try
             {
 
@@ -228,8 +227,7 @@ namespace Casepro
         private void toolStripButton3_Click_1(object sender, EventArgs e)
         {
             if (MessageBox.Show("YES or No?", "Are you sure you want to delete these file? ", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
-            {
-               
+            {               
                 foreach (var item in fileIDs)
                 {
                     string Query = "DELETE from file WHERE fileID ='" + item + "'";

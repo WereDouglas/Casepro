@@ -35,3 +35,4 @@ C:\Users\DOUGLAS\Documents\Visual Studio 2015\Projects\Casepro\Casepro\obj\Debug
 C:\Users\DOUGLAS\Documents\Visual Studio 2015\Projects\Casepro\Casepro\obj\Debug\Casepro.DisForm.resources
 C:\Users\DOUGLAS\Documents\Visual Studio 2015\Projects\Casepro\Casepro\obj\Debug\Casepro.ExpenseForm.resources
 C:\Users\DOUGLAS\Documents\Visual Studio 2015\Projects\Casepro\Casepro\obj\Debug\Casepro.StartUser.resources
+C:\Users\DOUGLAS\Documents\Visual Studio 2015\Projects\Casepro\Casepro\obj\Debug\Casepro.FileSummary.resources

@@ -345,5 +345,23 @@ namespace Casepro
                 }
             }
         }
+
+        private void toolStripButton1_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void toolStripButton2_Click_1(object sender, EventArgs e)
+        {
+            NewExpense frm = new NewExpense(null);
+            frm.MdiParent = MainForm.ActiveForm;
+            frm.Show();
+            this.Close();
+        }
+
+        private void toolStripButton3_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

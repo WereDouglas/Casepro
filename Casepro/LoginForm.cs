@@ -195,10 +195,14 @@ namespace Casepro
 
         private void button3_Click(object sender, EventArgs e)
         {
-         //   string query = @"CREATE TABLE first (" + a.Columns[0] + " int(20) NOT NULL auto_increment, " + a.Columns[1].ToString() + " varchar(100) NOT NULL default, PRIMARY KEY (" + a.Columns[0] + ")";
-         ////   string Query = "INSERT INTO users(userID, orgID, name, email, password, designation, status, contact, image, address, category, created, sync, charge, supervisor) VALUES ('" + userID + "','" + Helper.orgID + "','" + this.nameTxtBx.Text + "','" + this.emailTxtBx.Text + "','" + Helper.MD5Hash(this.passwordTxtBx.Text) + "','" + this.designationCbx.Text + "','" + this.statusCbx.Text + "','" + this.contactTxtBx.Text + "','" + userID.Trim() + ".jpg" + "','" + this.addressTxtBx.Text + "','staff','" + DateTime.Now.Date.ToString("yyyy-MM-dd") + "','f','" + this.chargeTxtBx.Text + "','" + supervisorCbx.Text + "');";
-         //   Helper.Execute(query, DBConnect.conn);
-         //   MessageBox.Show("Information saved");
+            //   string query = @"CREATE TABLE first (" + a.Columns[0] + " int(20) NOT NULL auto_increment, " + a.Columns[1].ToString() + " varchar(100) NOT NULL default, PRIMARY KEY (" + a.Columns[0] + ")";
+            ////   string Query = "INSERT INTO users(userID, orgID, name, email, password, designation, status, contact, image, address, category, created, sync, charge, supervisor) VALUES ('" + userID + "','" + Helper.orgID + "','" + this.nameTxtBx.Text + "','" + this.emailTxtBx.Text + "','" + Helper.MD5Hash(this.passwordTxtBx.Text) + "','" + this.designationCbx.Text + "','" + this.statusCbx.Text + "','" + this.contactTxtBx.Text + "','" + userID.Trim() + ".jpg" + "','" + this.addressTxtBx.Text + "','staff','" + DateTime.Now.Date.ToString("yyyy-MM-dd") + "','f','" + this.chargeTxtBx.Text + "','" + supervisorCbx.Text + "');";
+            //   Helper.Execute(query, DBConnect.conn);
+            //   MessageBox.Show("Information saved");
+
+            ServerForm frm = new ServerForm();
+            frm.Show();
+            this.Hide();
         }
     }
 }

@@ -93,6 +93,12 @@
     <Compile Include="FileForm.Designer.cs">
       <DependentUpon>FileForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="FileSummary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FileSummary.Designer.cs">
+      <DependentUpon>FileSummary.cs</DependentUpon>
+    </Compile>
     <Compile Include="Helper.cs" />
     <Compile Include="HomeForm.cs">
       <SubType>Form</SubType>
@@ -238,6 +244,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FileForm.resx">
       <DependentUpon>FileForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FileSummary.resx">
+      <DependentUpon>FileSummary.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HomeForm.resx">
       <DependentUpon>HomeForm.cs</DependentUpon>
