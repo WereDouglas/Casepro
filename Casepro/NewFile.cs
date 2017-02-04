@@ -158,7 +158,8 @@ namespace Casepro
             t.Columns.Add("BAL.", typeof(string));
             t.Columns.Add("METHOD", typeof(string));
             t.Columns.Add("DETAILS", typeof(string));
-            t.Rows.Add(new object[] { "FILE SUMMARY", " ", "", "", "", "" });            
+            t.Rows.Add(new object[] { "", " ", "", "FILE SUMMARY", "", "" });
+           
             t.Rows.Add(new object[] { " ", " ", "", "", "", "" });
             t.Rows.Add(new object[] { "DISBURSEMENTS", " ", "", "", "", "" });
             t.Rows.Add(new object[] { "Date", "Invoice No.", "Amount", "Balance", "Method", "Details" });          
@@ -178,10 +179,31 @@ namespace Casepro
             t.Rows.Add(new object[] { "Date", "Invoice No.", "Amount", "Balance", "Method", "Details" });
             while (Reader2.Read())
             {
-                t.Rows.Add(new object[] { (Reader2.IsDBNull(11) ? "none" : Reader2.GetString(11)), " ", (Reader2.IsDBNull(7) ? "none" : Reader2.GetString(7)), (Reader2.IsDBNull(8) ? "none" : Reader2.GetString(8)), (Reader2.IsDBNull(36) ? "none" : Reader2.GetString(36)) });
+                t.Rows.Add(new object[] { (Reader2.IsDBNull(11) ? "none" : Reader2.GetString(11)), " ", (Reader2.IsDBNull(7) ? "none" : Reader2.GetString(7)), (Reader2.IsDBNull(8) ? "none" : Reader2.GetString(8)), (Reader2.IsDBNull(36) ? "none" : Reader2.GetString(36)), (Reader2.IsDBNull(6) ? "none" : Reader2.GetString(6)) });
             }
-            dtGrid.DataSource = t;
             connection2.Close();
+
+            MySqlConnection connection3 = new MySqlConnection(DBConnect.conn);
+            MySqlCommand command3 = connection3.CreateCommand();
+            MySqlDataReader Reader3;
+            command3.CommandText = "SELECT * FROM events WHERE file ='" + nameTxt.Text + "';";
+            connection3.Open();
+            Reader3 = command3.ExecuteReader();
+            t.Rows.Add(new object[] { "", " ", "", "", "", "" });
+            t.Rows.Add(new object[] { "EVENTS", "SCHEDULES ", "", "", "", "" });
+            t.Rows.Add(new object[] { "Date", "Event", "Start", "End", "Progress", "Status"});
+            while (Reader3.Read())
+            {
+                t.Rows.Add(new object[] { (Reader3.IsDBNull(10) ? "none" : Reader3.GetString(10)), (Reader3.IsDBNull(1) ? "none" : Reader3.GetString(1)), (Reader3.IsDBNull(2) ? "none" : Reader3.GetString(2)), (Reader3.IsDBNull(3) ? "none" : Reader3.GetString(3)), (Reader3.IsDBNull(16) ? "none" : Reader3.GetString(16)), (Reader3.IsDBNull(8) ? "none" : Reader3.GetString(8)) });
+            }
+            connection3.Close();
+
+
+
+
+            dtGrid.DataSource = t;
+            dtGrid.Rows[1].DefaultCellStyle.BackColor = Color.Beige;
+          
 
         }
         public void LoadUsers()
