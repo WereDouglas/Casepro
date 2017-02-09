@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace Casepro
 {
-    public partial class ExpenseForm : Form
+    public partial class PettyForm : Form
     {
         DataTable t = new DataTable();
         StringFormat strFormat; //Used to format the grid rows.
@@ -24,7 +24,7 @@ namespace Casepro
         bool bFirstPage = false; //Used to check whether we are printing first page
         bool bNewPage = false;// Used to check whether we are printing a new page
         int iHeaderHeight = 0; //Used for the header height
-        public ExpenseForm()
+        public PettyForm()
         {
             InitializeComponent();
             LoadData();
@@ -40,48 +40,41 @@ namespace Casepro
             MySqlConnection connection = new MySqlConnection(DBConnect.conn);
             MySqlCommand command = connection.CreateCommand();
             MySqlDataReader Reader;
-            command.CommandText = "SELECT *  FROM expenses LEFT JOIN client ON client.clientID = expenses.clientID LEFT JOIN file ON file.fileID = expenses.fileID;";
+            command.CommandText = "SELECT * FROM petty";
             connection.Open();
             Reader = command.ExecuteReader();
             // create and execute query  
             //t = new DataTable();
-            t.Columns.Add("id", typeof(string));
+            t.Columns.Add("id", typeof(string));//0
             t.Columns.Add(new DataColumn("Select", typeof(bool)));
-            t.Columns.Add("Date", typeof(string));//11
-            t.Columns.Add("Client");//20
-            t.Columns.Add("File");//38
-            t.Columns.Add("Amount", typeof(string));//7
-            t.Columns.Add("Balance", typeof(string));//8
-            t.Columns.Add("Method", typeof(string));//6
-            t.Columns.Add("C/O", typeof(string));//36
-            t.Columns.Add("Details", typeof(string));//15
-            t.Columns.Add("Paid", typeof(string));//10
-            t.Columns.Add("Approved", typeof(string));//12
-            t.Columns.Add("Signed", typeof(string));//13
-            t.Columns.Add("Reason", typeof(string));//14
-            t.Columns.Add("Outcome", typeof(string));//15
-            t.Columns.Add("Deadline", typeof(string));//44
-            t.Columns.Add("View");  //0 
-            t.Columns.Add("Delete");  //0 
+            t.Columns.Add("Date", typeof(string));//5
+            t.Columns.Add("Item");//1
+            t.Columns.Add("Cost");//2
+            t.Columns.Add("Quantity");//3
+            t.Columns.Add("Total", typeof(string));//4           
+            t.Columns.Add("Method", typeof(string));//10
+            t.Columns.Add("C/O", typeof(string));//8
+            t.Columns.Add("Details", typeof(string));//9
+            t.Columns.Add("Paid", typeof(string));//6
+            t.Columns.Add("Approved", typeof(string));//12          
+            t.Columns.Add("View");  //12
+            t.Columns.Add("Delete");  //13 
+            t.Columns.Add("Approve");  //14
+            t.Columns.Add("Pay");  //15
 
 
             searchCbx.Items.Add("Date");
-            searchCbx.Items.Add("Client");
-            searchCbx.Items.Add("File");
+            searchCbx.Items.Add("Item");
+            searchCbx.Items.Add("Details");
             searchCbx.Items.Add("Method");
+            searchCbx.Items.Add("Paid");
+            searchCbx.Items.Add("Approved");
 
             while (Reader.Read())
             {
-                
-                for (int h = 0; h <= 53; h++)
-                {
-                    try
-                    {
-                        System.Diagnostics.Debug.WriteLine(h + "-" + (Reader.IsDBNull(h) ? "" : Reader.GetString(h)));
-                    }
-                    catch { }
-                    }
-                t.Rows.Add(new object[] { Reader.GetString(0), false, (Reader.IsDBNull(11) ? "none" : Reader.GetString(11)), (Reader.IsDBNull(20) ? "none" : Reader.GetString(20)), (Reader.IsDBNull(38) ? "none" : Reader.GetString(38)), (Reader.IsDBNull(7) ? "none" : Reader.GetString(7)), (Reader.IsDBNull(8) ? "none" : Reader.GetString(8)), (Reader.IsDBNull(6) ? "none" : Reader.GetString(6)), (Reader.IsDBNull(36) ? "none" : Reader.GetString(36)), (Reader.IsDBNull(15) ? "none" : Reader.GetString(15)), (Reader.IsDBNull(10) ? "none" : Reader.GetString(10)), (Reader.IsDBNull(12) ? "none" : Reader.GetString(12)), (Reader.IsDBNull(13) ? "none" : Reader.GetString(13)), (Reader.IsDBNull(14) ? "none" : Reader.GetString(14)), (Reader.IsDBNull(15) ? "none" : Reader.GetString(15)), (Reader.IsDBNull(44) ? "none" : Reader.GetString(44)), "Edit", "Delete" });
+
+               
+                t.Rows.Add(new object[] { Reader.GetString(0), false, (Reader.IsDBNull(5) ? "none" : Reader.GetString(5)), (Reader.IsDBNull(1) ? "none" : Reader.GetString(1)), (Reader.IsDBNull(2) ? "none" : Reader.GetString(2)), (Reader.IsDBNull(3) ? "none" : Reader.GetString(3)), (Reader.IsDBNull(4) ? "none" : Reader.GetString(4)), (Reader.IsDBNull(10) ? "none" : Reader.GetString(10)), (Reader.IsDBNull(8) ? "none" : Reader.GetString(8)), (Reader.IsDBNull(9) ? "none" : Reader.GetString(9)), (Reader.IsDBNull(6) ? "none" : Reader.GetString(6)), (Reader.IsDBNull(11) ? "none" : Reader.GetString(11)), "Edit", "Delete","Approve","Pay" });
 
                 //t.Rows.Add(new object[] {Reader.GetString(0),Reader.GetString(1),Reader.GetString(2),Reader.GetString(3),Reader.GetString(4)});
 
@@ -90,8 +83,9 @@ namespace Casepro
 
 
             this.dtGrid.Columns[0].Visible = false;
-            this.dtGrid.Columns[3].DefaultCellStyle.BackColor = Color.Green;
-            this.dtGrid.Columns[4].DefaultCellStyle.BackColor = Color.Red;
+            this.dtGrid.Columns[12].DefaultCellStyle.BackColor = Color.Green;
+            this.dtGrid.Columns[13].DefaultCellStyle.BackColor = Color.Red;
+            this.dtGrid.Columns[14].DefaultCellStyle.BackColor = Color.Beige;
             // this.dtGrid.Columns[1].Visible = false;
 
 
@@ -283,7 +277,7 @@ namespace Casepro
 
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
-            NewExpense frm = new NewExpense(null);
+            NewPetty frm = new NewPetty(null);
             frm.MdiParent = MainForm.ActiveForm;
             frm.Show();
             this.Close();
@@ -308,9 +302,9 @@ namespace Casepro
                     Console.WriteLine("ADDED ITEM " + dtGrid.Rows[e.RowIndex].Cells[0].Value.ToString());
                 }
             }
-            if (e.ColumnIndex == dtGrid.Columns[16].Index && e.RowIndex >= 0)
+            if (e.ColumnIndex == dtGrid.Columns[12].Index && e.RowIndex >= 0)
             {
-                NewExpense frm = new NewExpense(dtGrid.Rows[e.RowIndex].Cells[0].Value.ToString());
+                NewPetty frm = new NewPetty(dtGrid.Rows[e.RowIndex].Cells[0].Value.ToString());
                 frm.MdiParent = MainForm.ActiveForm;
                 frm.Show();
                 this.Close();
@@ -318,11 +312,11 @@ namespace Casepro
             try
             {
 
-                if (e.ColumnIndex == dtGrid.Columns[17].Index && e.RowIndex >= 0)
+                if (e.ColumnIndex == dtGrid.Columns[13].Index && e.RowIndex >= 0)
                 {
                     if (MessageBox.Show("YES or NO?", "Are you sure you want to delete this expense? ", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                     {
-                        string Query = "DELETE from expenses WHERE expenseID ='" + dtGrid.Rows[e.RowIndex].Cells[0].Value.ToString() + "'";
+                        string Query = "DELETE from petty WHERE id ='" + dtGrid.Rows[e.RowIndex].Cells[0].Value.ToString() + "'";
                         Helper.Execute(Query, DBConnect.conn);
                         MessageBox.Show("Information deleted");
                     }
@@ -330,7 +324,25 @@ namespace Casepro
                 }
             }
             catch { }
+            if (e.ColumnIndex == dtGrid.Columns[14].Index && e.RowIndex >= 0)
+            {
 
+                if (MessageBox.Show("YES or NO?", "Are you sure you want to delete this approve this petty expense? ", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                {
+                    string Query = "UPDATE petty SET approve ='true' WHERE id ='" + dtGrid.Rows[e.RowIndex].Cells[0].Value.ToString() + "'";
+                    Helper.Execute(Query, DBConnect.conn);
+                    MessageBox.Show("Information deleted");
+                }
+            }
+            if (e.ColumnIndex == dtGrid.Columns[15].Index && e.RowIndex >= 0)
+            {
+                if (MessageBox.Show("YES or NO?", "Update information? ", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                {
+                    string Query = "UPDATE petty SET paid ='true' WHERE id ='" + dtGrid.Rows[e.RowIndex].Cells[0].Value.ToString() + "'";
+                    Helper.Execute(Query, DBConnect.conn);
+                    MessageBox.Show("Information deleted");
+                }
+            }
         }
 
         private void toolStripButton4_Click(object sender, EventArgs e)
@@ -339,9 +351,8 @@ namespace Casepro
             {
                 foreach (var item in fileIDs)
                 {
-                    string Query = "DELETE from expenses WHERE expenseID ='" + item + "'";
+                    string Query = "DELETE from petty WHERE id ='" + item + "'";
                     Helper.Execute(Query, DBConnect.conn);
-                    
                 }
             }
         }
@@ -367,6 +378,11 @@ namespace Casepro
         private void searchCbx_SelectedIndexChanged(object sender, EventArgs e)
         {
             filterField = searchCbx.Text;
+        }
+
+        private void PettyForm_Leave(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -36,3 +36,9 @@ C:\Users\DOUGLAS\Documents\Visual Studio 2015\Projects\Casepro\Casepro\obj\Debug
 C:\Users\DOUGLAS\Documents\Visual Studio 2015\Projects\Casepro\Casepro\obj\Debug\Casepro.ExpenseForm.resources
 C:\Users\DOUGLAS\Documents\Visual Studio 2015\Projects\Casepro\Casepro\obj\Debug\Casepro.StartUser.resources
 C:\Users\DOUGLAS\Documents\Visual Studio 2015\Projects\Casepro\Casepro\obj\Debug\Casepro.FileSummary.resources
+C:\Users\DOUGLAS\Documents\Visual Studio 2015\Projects\Casepro\Casepro\bin\Debug\GSMCommServer.dll
+C:\Users\DOUGLAS\Documents\Visual Studio 2015\Projects\Casepro\Casepro\bin\Debug\GSMCommShared.dll
+C:\Users\DOUGLAS\Documents\Visual Studio 2015\Projects\Casepro\Casepro\bin\Debug\GSMCommunication.dll
+C:\Users\DOUGLAS\Documents\Visual Studio 2015\Projects\Casepro\Casepro\bin\Debug\PDUConverter.dll
+C:\Users\DOUGLAS\Documents\Visual Studio 2015\Projects\Casepro\Casepro\obj\Debug\Casepro.NewPetty.resources
+C:\Users\DOUGLAS\Documents\Visual Studio 2015\Projects\Casepro\Casepro\obj\Debug\Casepro.PettyForm.resources

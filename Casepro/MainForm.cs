@@ -22,9 +22,6 @@ namespace Casepro
         }
         private void LoadSettings()
         {
-            
-
-
             // MessageBox.Show(Helper.serverIP);
             if (TestServerConnection())
             {
@@ -35,6 +32,17 @@ namespace Casepro
                 frms.Dock = DockStyle.Fill;
                 frms.Show();
 
+                if (TestOnlineServerConnection())
+                {
+                    onlineLbl.Text = ("connection successful to online server");
+                    onlineLbl.ForeColor = Color.Green;
+                }
+                else
+                {
+                    onlineLbl.Text = ("You are not able to connect to the online server contact the administrator for further assistance");
+                    onlineLbl.ForeColor = Color.Red;
+                }
+
             }
             else
             {
@@ -44,20 +52,7 @@ namespace Casepro
                 lblStatus.ForeColor = Color.Red;
 
             }
-            if (TestOnlineServerConnection())
-            {
-                onlineLbl.Text = ("connection successful to online server");
-                onlineLbl.ForeColor = Color.Green;
-            }
-            else
-            {
-                onlineLbl.Text = ("You are not able to connect to the online server contact the administrator for further assistance");
-                onlineLbl.ForeColor = Color.Red;
-            }
-
-
-
-
+            
         }
         private bool TestServerConnection()
         {
@@ -189,7 +184,7 @@ namespace Casepro
         {
             SettingForm frm = new SettingForm();
             frm.MdiParent = this;
-            frm.Dock = DockStyle.Fill;
+            frm.Dock = DockStyle.None;
             frm.Show();
         }
 
@@ -245,6 +240,14 @@ namespace Casepro
         private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
+        }
+
+        private void toolStripButton12_Click(object sender, EventArgs e)
+        {
+            PettyForm frm = new PettyForm();
+            frm.MdiParent = this;
+            frm.Dock = DockStyle.Fill;
+            frm.Show();
         }
     }
 }

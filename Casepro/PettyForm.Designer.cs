@@ -1,6 +1,6 @@
 ﻿namespace Casepro
 {
-    partial class ExpenseForm
+    partial class PettyForm
     {
         /// <summary>
         /// Required designer variable.
@@ -53,8 +53,8 @@
             this.dtGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtGrid.Location = new System.Drawing.Point(0, 25);
             this.dtGrid.Name = "dtGrid";
-            this.dtGrid.Size = new System.Drawing.Size(951, 516);
-            this.dtGrid.TabIndex = 8;
+            this.dtGrid.Size = new System.Drawing.Size(937, 359);
+            this.dtGrid.TabIndex = 10;
             this.dtGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtGrid_CellClick);
             // 
             // toolStrip1
@@ -76,8 +76,8 @@
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.toolStrip1.Size = new System.Drawing.Size(951, 25);
-            this.toolStrip1.TabIndex = 9;
+            this.toolStrip1.Size = new System.Drawing.Size(937, 25);
+            this.toolStrip1.TabIndex = 11;
             this.toolStrip1.Text = "toolStrip1";
             // 
             // toolStripSeparator4
@@ -99,6 +99,7 @@
             // 
             this.DateTxt.Name = "DateTxt";
             this.DateTxt.Size = new System.Drawing.Size(100, 25);
+            this.DateTxt.TextChanged += new System.EventHandler(this.toolStripTextBox1_TextChanged);
             // 
             // searchCbx
             // 
@@ -120,8 +121,13 @@
             // toolStripLabel2
             // 
             this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(74, 22);
-            this.toolStripLabel2.Text = "Expenses ";
+            this.toolStripLabel2.Size = new System.Drawing.Size(143, 22);
+            this.toolStripLabel2.Text = "Petty Cash Expenses";
+            // 
+            // printDocument1
+            // 
+            this.printDocument1.BeginPrint += new System.Drawing.Printing.PrintEventHandler(this.printDocument1_BeginPrint);
+            this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
             // 
             // toolStripButton1
             // 
@@ -141,7 +147,7 @@
             this.toolStripButton2.Name = "toolStripButton2";
             this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton2.Text = "Add";
-            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click_1);
+            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
             // toolStripButton4
             // 
@@ -163,18 +169,17 @@
             this.toolStripButton3.Text = "toolStripButton3";
             this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click_1);
             // 
-            // ExpenseForm
+            // PettyForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(951, 541);
+            this.ClientSize = new System.Drawing.Size(937, 384);
             this.Controls.Add(this.dtGrid);
             this.Controls.Add(this.toolStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "ExpenseForm";
-            this.Text = "ExpenseForm";
-            this.Leave += new System.EventHandler(this.ExpenseForm_Leave);
+            this.Name = "PettyForm";
+            this.Text = "PettyForm";
+            this.Leave += new System.EventHandler(this.PettyForm_Leave);
             ((System.ComponentModel.ISupportInitialize)(this.dtGrid)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
@@ -189,6 +194,8 @@
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripButton toolStripButton4;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripButton toolStripButton3;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
@@ -198,7 +205,5 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripLabel toolStripLabel2;
         private System.Drawing.Printing.PrintDocument printDocument1;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
-        private System.Windows.Forms.ToolStripButton toolStripButton4;
     }
 }

@@ -72,15 +72,15 @@
             this.monthView2 = new System.Windows.Forms.Calendar.MonthView();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.lblStatus = new System.Windows.Forms.Label();
             this.orgLbl = new System.Windows.Forms.Label();
             this.nameLbl = new System.Windows.Forms.Label();
             this.contactLbl = new System.Windows.Forms.Label();
             this.imgCapture = new System.Windows.Forms.PictureBox();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.uploadTxt = new System.Windows.Forms.TextBox();
             this.contextMenuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgCapture)).BeginInit();
@@ -333,6 +333,7 @@
             // 
             // calendar2
             // 
+            this.calendar2.BackColor = System.Drawing.Color.AliceBlue;
             this.calendar2.Font = new System.Drawing.Font("Segoe UI", 9F);
             calendarHighlightRange1.DayOfWeek = System.DayOfWeek.Monday;
             calendarHighlightRange1.EndTime = System.TimeSpan.Parse("17:00:00");
@@ -356,8 +357,9 @@
         calendarHighlightRange4,
         calendarHighlightRange5};
             this.calendar2.Location = new System.Drawing.Point(234, 28);
+            this.calendar2.Margin = new System.Windows.Forms.Padding(0);
             this.calendar2.Name = "calendar2";
-            this.calendar2.Size = new System.Drawing.Size(943, 609);
+            this.calendar2.Size = new System.Drawing.Size(943, 585);
             this.calendar2.TabIndex = 1;
             this.calendar2.Text = "calendar2";
             this.calendar2.TimeScale = System.Windows.Forms.Calendar.CalendarTimeScale.SixtyMinutes;
@@ -405,6 +407,16 @@
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton2.Image = global::Casepro.Properties.Resources.Add_New_24__1_;
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton2.Text = "Add";
+            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
+            // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
@@ -416,17 +428,10 @@
             this.toolStripLabel1.Size = new System.Drawing.Size(139, 22);
             this.toolStripLabel1.Text = "Events and activites";
             // 
-            // progressBar1
-            // 
-            this.progressBar1.Location = new System.Drawing.Point(234, 643);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(915, 10);
-            this.progressBar1.TabIndex = 5;
-            // 
             // lblStatus
             // 
             this.lblStatus.AutoSize = true;
-            this.lblStatus.Location = new System.Drawing.Point(9, 575);
+            this.lblStatus.Location = new System.Drawing.Point(12, 616);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(25, 13);
             this.lblStatus.TabIndex = 6;
@@ -435,17 +440,18 @@
             // orgLbl
             // 
             this.orgLbl.AutoSize = true;
-            this.orgLbl.Location = new System.Drawing.Point(9, 539);
+            this.orgLbl.Location = new System.Drawing.Point(9, 519);
             this.orgLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.orgLbl.Name = "orgLbl";
             this.orgLbl.Size = new System.Drawing.Size(38, 13);
             this.orgLbl.TabIndex = 20;
             this.orgLbl.Text = "Name:";
+            this.orgLbl.Visible = false;
             // 
             // nameLbl
             // 
             this.nameLbl.AutoSize = true;
-            this.nameLbl.Location = new System.Drawing.Point(9, 477);
+            this.nameLbl.Location = new System.Drawing.Point(9, 462);
             this.nameLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.nameLbl.Name = "nameLbl";
             this.nameLbl.Size = new System.Drawing.Size(38, 13);
@@ -455,7 +461,7 @@
             // contactLbl
             // 
             this.contactLbl.AutoSize = true;
-            this.contactLbl.Location = new System.Drawing.Point(9, 510);
+            this.contactLbl.Location = new System.Drawing.Point(9, 487);
             this.contactLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.contactLbl.Name = "contactLbl";
             this.contactLbl.Size = new System.Drawing.Size(38, 13);
@@ -466,40 +472,40 @@
             // 
             this.imgCapture.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.imgCapture.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.imgCapture.Location = new System.Drawing.Point(12, 348);
+            this.imgCapture.Location = new System.Drawing.Point(48, 348);
             this.imgCapture.Margin = new System.Windows.Forms.Padding(4);
             this.imgCapture.Name = "imgCapture";
             this.imgCapture.Size = new System.Drawing.Size(122, 110);
             this.imgCapture.TabIndex = 11;
             this.imgCapture.TabStop = false;
             // 
-            // toolStripButton2
+            // uploadTxt
             // 
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton2.Image = global::Casepro.Properties.Resources.Add_New_24__1_;
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton2.Text = "Add";
-            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
+            this.uploadTxt.Location = new System.Drawing.Point(234, 616);
+            this.uploadTxt.Multiline = true;
+            this.uploadTxt.Name = "uploadTxt";
+            this.uploadTxt.Size = new System.Drawing.Size(943, 33);
+            this.uploadTxt.TabIndex = 23;
             // 
             // HomeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
+            this.BackColor = System.Drawing.Color.Lavender;
             this.ClientSize = new System.Drawing.Size(1177, 661);
+            this.Controls.Add(this.uploadTxt);
+            this.Controls.Add(this.orgLbl);
+            this.Controls.Add(this.monthView2);
             this.Controls.Add(this.contactLbl);
             this.Controls.Add(this.nameLbl);
-            this.Controls.Add(this.orgLbl);
             this.Controls.Add(this.imgCapture);
             this.Controls.Add(this.lblStatus);
-            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.toolStrip1);
-            this.Controls.Add(this.monthView2);
             this.Controls.Add(this.calendar2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "HomeForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HomeForm";
             this.Load += new System.EventHandler(this.HomeForm_Load);
             this.Leave += new System.EventHandler(this.HomeForm_Leave);
@@ -557,11 +563,11 @@
         private System.Windows.Forms.ToolStripButton toolStripButton2;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
-        private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.PictureBox imgCapture;
         private System.Windows.Forms.Label orgLbl;
         private System.Windows.Forms.Label nameLbl;
         private System.Windows.Forms.Label contactLbl;
+        private System.Windows.Forms.TextBox uploadTxt;
     }
 }

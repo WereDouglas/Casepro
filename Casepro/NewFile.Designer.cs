@@ -74,13 +74,14 @@
             this.button4 = new System.Windows.Forms.Button();
             this.printdoc1 = new System.Drawing.Printing.PrintDocument();
             this.previewdlg = new System.Windows.Forms.PrintPreviewDialog();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // progressTxt
             // 
-            this.progressTxt.Location = new System.Drawing.Point(145, 508);
+            this.progressTxt.Location = new System.Drawing.Point(145, 549);
             this.progressTxt.Multiline = true;
             this.progressTxt.Name = "progressTxt";
             this.progressTxt.Size = new System.Drawing.Size(173, 24);
@@ -88,21 +89,21 @@
             // 
             // dueDate
             // 
-            this.dueDate.Location = new System.Drawing.Point(145, 572);
+            this.dueDate.Location = new System.Drawing.Point(145, 613);
             this.dueDate.Name = "dueDate";
             this.dueDate.Size = new System.Drawing.Size(173, 22);
             this.dueDate.TabIndex = 90;
             // 
             // openedDate
             // 
-            this.openedDate.Location = new System.Drawing.Point(145, 540);
+            this.openedDate.Location = new System.Drawing.Point(145, 581);
             this.openedDate.Name = "openedDate";
             this.openedDate.Size = new System.Drawing.Size(173, 22);
             this.openedDate.TabIndex = 89;
             // 
             // noteTxt
             // 
-            this.noteTxt.Location = new System.Drawing.Point(145, 462);
+            this.noteTxt.Location = new System.Drawing.Point(145, 503);
             this.noteTxt.Multiline = true;
             this.noteTxt.Name = "noteTxt";
             this.noteTxt.Size = new System.Drawing.Size(173, 40);
@@ -110,7 +111,7 @@
             // 
             // descriptionTxt
             // 
-            this.descriptionTxt.Location = new System.Drawing.Point(145, 373);
+            this.descriptionTxt.Location = new System.Drawing.Point(145, 414);
             this.descriptionTxt.Multiline = true;
             this.descriptionTxt.Name = "descriptionTxt";
             this.descriptionTxt.Size = new System.Drawing.Size(173, 49);
@@ -119,7 +120,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(81, 583);
+            this.label17.Location = new System.Drawing.Point(81, 619);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(60, 14);
             this.label17.TabIndex = 86;
@@ -128,7 +129,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(63, 548);
+            this.label16.Location = new System.Drawing.Point(63, 589);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(81, 14);
             this.label16.TabIndex = 85;
@@ -140,7 +141,7 @@
             this.stateCbx.Items.AddRange(new object[] {
             "true",
             "false"});
-            this.stateCbx.Location = new System.Drawing.Point(145, 430);
+            this.stateCbx.Location = new System.Drawing.Point(145, 471);
             this.stateCbx.Margin = new System.Windows.Forms.Padding(4);
             this.stateCbx.Name = "stateCbx";
             this.stateCbx.Size = new System.Drawing.Size(173, 22);
@@ -149,7 +150,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(87, 517);
+            this.label15.Location = new System.Drawing.Point(87, 558);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(53, 14);
             this.label15.TabIndex = 83;
@@ -158,7 +159,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(105, 465);
+            this.label14.Location = new System.Drawing.Point(105, 506);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(33, 14);
             this.label14.TabIndex = 82;
@@ -167,7 +168,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(61, 438);
+            this.label13.Location = new System.Drawing.Point(61, 479);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(80, 14);
             this.label13.TabIndex = 81;
@@ -176,7 +177,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(75, 376);
+            this.label12.Location = new System.Drawing.Point(75, 417);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(69, 14);
             this.label12.TabIndex = 80;
@@ -185,7 +186,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(25, 340);
+            this.label11.Location = new System.Drawing.Point(25, 381);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(122, 14);
             this.label11.TabIndex = 79;
@@ -193,42 +194,42 @@
             // 
             // citationTxt
             // 
-            this.citationTxt.Location = new System.Drawing.Point(145, 336);
+            this.citationTxt.Location = new System.Drawing.Point(145, 377);
             this.citationTxt.Name = "citationTxt";
             this.citationTxt.Size = new System.Drawing.Size(173, 22);
             this.citationTxt.TabIndex = 78;
             // 
             // subjectTxt
             // 
-            this.subjectTxt.Location = new System.Drawing.Point(145, 305);
+            this.subjectTxt.Location = new System.Drawing.Point(145, 346);
             this.subjectTxt.Name = "subjectTxt";
             this.subjectTxt.Size = new System.Drawing.Size(173, 22);
             this.subjectTxt.TabIndex = 75;
             // 
             // contactTxt
             // 
-            this.contactTxt.Location = new System.Drawing.Point(145, 274);
+            this.contactTxt.Location = new System.Drawing.Point(145, 315);
             this.contactTxt.Name = "contactTxt";
             this.contactTxt.Size = new System.Drawing.Size(173, 22);
             this.contactTxt.TabIndex = 74;
             // 
             // contactpersonTxt
             // 
-            this.contactpersonTxt.Location = new System.Drawing.Point(145, 239);
+            this.contactpersonTxt.Location = new System.Drawing.Point(145, 280);
             this.contactpersonTxt.Name = "contactpersonTxt";
             this.contactpersonTxt.Size = new System.Drawing.Size(173, 22);
             this.contactpersonTxt.TabIndex = 73;
             // 
             // nameTxt
             // 
-            this.nameTxt.Location = new System.Drawing.Point(145, 208);
+            this.nameTxt.Location = new System.Drawing.Point(145, 249);
             this.nameTxt.Name = "nameTxt";
             this.nameTxt.Size = new System.Drawing.Size(173, 22);
             this.nameTxt.TabIndex = 72;
             // 
             // caseTxt
             // 
-            this.caseTxt.Location = new System.Drawing.Point(145, 177);
+            this.caseTxt.Location = new System.Drawing.Point(145, 218);
             this.caseTxt.Name = "caseTxt";
             this.caseTxt.Size = new System.Drawing.Size(173, 22);
             this.caseTxt.TabIndex = 71;
@@ -236,7 +237,7 @@
             // lawyerCbx
             // 
             this.lawyerCbx.FormattingEnabled = true;
-            this.lawyerCbx.Location = new System.Drawing.Point(145, 140);
+            this.lawyerCbx.Location = new System.Drawing.Point(145, 181);
             this.lawyerCbx.Margin = new System.Windows.Forms.Padding(4);
             this.lawyerCbx.Name = "lawyerCbx";
             this.lawyerCbx.Size = new System.Drawing.Size(173, 22);
@@ -249,7 +250,7 @@
             "Civil",
             "Criminal",
             "Litigation"});
-            this.lawCbx.Location = new System.Drawing.Point(145, 107);
+            this.lawCbx.Location = new System.Drawing.Point(145, 148);
             this.lawCbx.Margin = new System.Windows.Forms.Padding(4);
             this.lawCbx.Name = "lawCbx";
             this.lawCbx.Size = new System.Drawing.Size(173, 22);
@@ -263,7 +264,7 @@
             "Litigation",
             "Conclusive",
             "Non-conclusive"});
-            this.typeCbx.Location = new System.Drawing.Point(145, 73);
+            this.typeCbx.Location = new System.Drawing.Point(145, 114);
             this.typeCbx.Margin = new System.Windows.Forms.Padding(4);
             this.typeCbx.Name = "typeCbx";
             this.typeCbx.Size = new System.Drawing.Size(173, 22);
@@ -272,7 +273,7 @@
             // clientCbx
             // 
             this.clientCbx.FormattingEnabled = true;
-            this.clientCbx.Location = new System.Drawing.Point(145, 40);
+            this.clientCbx.Location = new System.Drawing.Point(145, 81);
             this.clientCbx.Margin = new System.Windows.Forms.Padding(4);
             this.clientCbx.Name = "clientCbx";
             this.clientCbx.Size = new System.Drawing.Size(173, 22);
@@ -281,7 +282,7 @@
             // noLbl
             // 
             this.noLbl.AutoSize = true;
-            this.noLbl.Location = new System.Drawing.Point(145, 10);
+            this.noLbl.Location = new System.Drawing.Point(145, 51);
             this.noLbl.Name = "noLbl";
             this.noLbl.Size = new System.Drawing.Size(22, 14);
             this.noLbl.TabIndex = 65;
@@ -290,7 +291,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(92, 313);
+            this.label10.Location = new System.Drawing.Point(92, 354);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(46, 14);
             this.label10.TabIndex = 64;
@@ -299,7 +300,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(53, 282);
+            this.label9.Location = new System.Drawing.Point(53, 323);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(92, 14);
             this.label9.TabIndex = 63;
@@ -308,7 +309,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(53, 248);
+            this.label8.Location = new System.Drawing.Point(53, 289);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(91, 14);
             this.label8.TabIndex = 62;
@@ -317,7 +318,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(100, 216);
+            this.label7.Location = new System.Drawing.Point(100, 257);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(39, 14);
             this.label7.TabIndex = 61;
@@ -326,7 +327,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(86, 185);
+            this.label6.Location = new System.Drawing.Point(86, 226);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(53, 14);
             this.label6.TabIndex = 60;
@@ -335,7 +336,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(91, 149);
+            this.label5.Location = new System.Drawing.Point(91, 190);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(47, 14);
             this.label5.TabIndex = 59;
@@ -344,7 +345,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(102, 43);
+            this.label4.Location = new System.Drawing.Point(102, 84);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(39, 14);
             this.label4.TabIndex = 58;
@@ -353,7 +354,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(105, 115);
+            this.label3.Location = new System.Drawing.Point(105, 156);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(31, 14);
             this.label3.TabIndex = 57;
@@ -362,7 +363,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(104, 82);
+            this.label2.Location = new System.Drawing.Point(104, 123);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(31, 14);
             this.label2.TabIndex = 56;
@@ -371,7 +372,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(92, 10);
+            this.label1.Location = new System.Drawing.Point(92, 51);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(49, 14);
             this.label1.TabIndex = 55;
@@ -379,67 +380,72 @@
             // 
             // button2
             // 
+            this.button2.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.button2.FlatAppearance.BorderSize = 0;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Image = global::Casepro.Properties.Resources.Garbage_Open_24;
             this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(8, 611);
+            this.button2.Location = new System.Drawing.Point(526, 7);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 40);
+            this.button2.Size = new System.Drawing.Size(75, 27);
             this.button2.TabIndex = 92;
             this.button2.Text = "Delete";
             this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button2.UseVisualStyleBackColor = true;
+            this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
             // updateBtn
             // 
+            this.updateBtn.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.updateBtn.FlatAppearance.BorderSize = 0;
             this.updateBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.updateBtn.Image = global::Casepro.Properties.Resources.Report_Editor_24;
             this.updateBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.updateBtn.Location = new System.Drawing.Point(176, 611);
+            this.updateBtn.Location = new System.Drawing.Point(694, 7);
             this.updateBtn.Name = "updateBtn";
-            this.updateBtn.Size = new System.Drawing.Size(75, 40);
+            this.updateBtn.Size = new System.Drawing.Size(75, 27);
             this.updateBtn.TabIndex = 77;
             this.updateBtn.Text = "Update";
             this.updateBtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.updateBtn.UseVisualStyleBackColor = true;
+            this.updateBtn.UseVisualStyleBackColor = false;
             this.updateBtn.Click += new System.EventHandler(this.updateBtn_Click);
             // 
             // saveBtn
             // 
+            this.saveBtn.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.saveBtn.FlatAppearance.BorderSize = 0;
             this.saveBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.saveBtn.Image = global::Casepro.Properties.Resources.Save_24__1_;
             this.saveBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.saveBtn.Location = new System.Drawing.Point(257, 611);
+            this.saveBtn.Location = new System.Drawing.Point(775, 7);
             this.saveBtn.Name = "saveBtn";
-            this.saveBtn.Size = new System.Drawing.Size(75, 40);
+            this.saveBtn.Size = new System.Drawing.Size(75, 27);
             this.saveBtn.TabIndex = 76;
             this.saveBtn.Text = "Save";
             this.saveBtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.saveBtn.UseVisualStyleBackColor = true;
+            this.saveBtn.UseVisualStyleBackColor = false;
             this.saveBtn.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
+            this.button1.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Image = global::Casepro.Properties.Resources.Cancel_24;
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(95, 611);
+            this.button1.Location = new System.Drawing.Point(613, 7);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 40);
+            this.button1.Size = new System.Drawing.Size(75, 27);
             this.button1.TabIndex = 66;
             this.button1.Text = "Cancel";
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // panel1
             // 
+            this.panel1.AutoScroll = true;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.dtGrid);
             this.panel1.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -467,17 +473,18 @@
             // 
             // button3
             // 
+            this.button3.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.button3.FlatAppearance.BorderSize = 0;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Image = global::Casepro.Properties.Resources.Print_24;
             this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.Location = new System.Drawing.Point(974, 10);
+            this.button3.Location = new System.Drawing.Point(944, 7);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(77, 27);
+            this.button3.Size = new System.Drawing.Size(107, 27);
             this.button3.TabIndex = 102;
-            this.button3.Text = "PRINT";
+            this.button3.Text = "PRINT TABLE";
             this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button3.UseVisualStyleBackColor = true;
+            this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // printDocument1
@@ -487,17 +494,18 @@
             // 
             // button4
             // 
+            this.button4.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.button4.FlatAppearance.BorderSize = 0;
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.Image = global::Casepro.Properties.Resources.Print_24;
             this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button4.Location = new System.Drawing.Point(891, 10);
+            this.button4.Location = new System.Drawing.Point(861, 7);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(77, 27);
             this.button4.TabIndex = 103;
             this.button4.Text = "PRINT";
             this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button4.UseVisualStyleBackColor = true;
+            this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // previewdlg
@@ -509,6 +517,14 @@
             this.previewdlg.Icon = ((System.Drawing.Icon)(resources.GetObject("previewdlg.Icon")));
             this.previewdlg.Name = "previewdlg";
             this.previewdlg.Visible = false;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1077, 40);
+            this.panel2.TabIndex = 104;
             // 
             // NewFile
             // 
@@ -559,6 +575,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panel2);
             this.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "NewFile";
@@ -619,5 +636,6 @@
         private System.Windows.Forms.Button button4;
         private System.Drawing.Printing.PrintDocument printdoc1;
         private System.Windows.Forms.PrintPreviewDialog previewdlg;
+        private System.Windows.Forms.Panel panel2;
     }
 }

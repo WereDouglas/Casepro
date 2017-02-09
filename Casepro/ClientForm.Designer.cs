@@ -136,7 +136,8 @@
             // 
             // dtGrid
             // 
-            this.dtGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dtGrid.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
+            this.dtGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.dtGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtGrid.Location = new System.Drawing.Point(3, 28);
             this.dtGrid.Name = "dtGrid";

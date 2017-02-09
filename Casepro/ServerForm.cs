@@ -25,11 +25,14 @@ namespace Casepro
             new XElement("Server",
             new XElement("Name", localNameTxt.Text),
             new XElement("Ip", localIpTxt.Text),
-            new XElement("Port", localPortTxt.Text)
+            new XElement("Port", localPortTxt.Text),
+            new XElement("db", dbTxt.Text),
+            new XElement("username", usernameTxt.Text),
+            new XElement("password", passwordTxt.Text)
             )
             );
 
-            xml.Save("LocalXMLFile.xml");            
+            xml.Save("LocalXMLFile.xml");
             LoginForm frm = new LoginForm();
             frm.Show();
             this.Close();
@@ -47,6 +50,9 @@ namespace Casepro
                                   Name = person.Element("Name").Value,
                                   Ip = person.Element("Ip").Value,
                                   Port = person.Element("Port").Value,
+                                  db = person.Element("db").Value,
+                                  dbusername = person.Element("username").Value,
+                                  dbpwd = person.Element("password").Value,
                               };
 
 
@@ -55,14 +61,27 @@ namespace Casepro
                     localNameTxt.Text = server.Name;
                     localIpTxt.Text = server.Ip;
                     localPortTxt.Text = server.Port;
+                    dbTxt.Text = server.db;
+                    usernameTxt.Text = server.dbusername;
+                    passwordTxt.Text = server.dbpwd;
+
                     Helper.serverName = server.Name;
                     Helper.serverIP = server.Ip;
                     Helper.port = server.Port;
+
+                    Helper.db = server.db;
+                    Helper.dbusername = server.dbusername;
+                    Helper.dbpwd = server.dbpwd;
                 }
             }
             catch { }
 
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

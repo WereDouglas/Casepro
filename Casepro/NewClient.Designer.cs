@@ -423,10 +423,8 @@
             this.fileUrlTxtBx.Location = new System.Drawing.Point(82, 238);
             this.fileUrlTxtBx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.fileUrlTxtBx.Name = "fileUrlTxtBx";
-            this.fileUrlTxtBx.PasswordChar = '*';
             this.fileUrlTxtBx.Size = new System.Drawing.Size(190, 22);
             this.fileUrlTxtBx.TabIndex = 129;
-            this.fileUrlTxtBx.UseSystemPasswordChar = true;
             // 
             // button4
             // 

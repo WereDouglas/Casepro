@@ -89,10 +89,9 @@ namespace Casepro
             }
 
             dtGrid.DataSource = t;
-            dtGrid.RowTemplate.Height = 50;
-            dtGrid.Columns[0].Visible = false;
+            dtGrid.RowTemplate.Height = 50;          
             dtGrid.Columns[1].Visible = false;
-            dtGrid.Columns[0].Visible = false;
+          
             this.dtGrid.Columns[11].DefaultCellStyle.BackColor = Color.Green;
             this.dtGrid.Columns[12].DefaultCellStyle.BackColor = Color.Red;
 
@@ -128,9 +127,7 @@ namespace Casepro
             });
 
          
-            dtGrid.AllowUserToAddRows = false;
-            dtGrid.Columns[0].Visible = false;
-
+            dtGrid.AllowUserToAddRows = false;          
             connection.Close();
             dtGrid.Columns[0].Visible = false;
 

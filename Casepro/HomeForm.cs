@@ -19,7 +19,10 @@ namespace Casepro
     {
         List<CalendarItem> _items = new List<CalendarItem>();
         CalendarItem contextItem = null;
-        BackgroundWorker m_oWorker;
+        private BackgroundWorker bw = new BackgroundWorker();
+        private BackgroundWorker bwDownload = new BackgroundWorker();
+        private BackgroundWorker bwMessage = new BackgroundWorker();
+       
         public HomeForm()
         {
             InitializeComponent();
@@ -28,34 +31,158 @@ namespace Casepro
             monthView2.ArrowsColor = CalendarColorTable.FromHex("#77A1D3");
             monthView2.DaySelectedBackgroundColor = CalendarColorTable.FromHex("#F4CC52");
             monthView2.DaySelectedTextColor = monthView2.ForeColor;
-            // calendar2.DaysMode = CalendarDaysMode.Short;            
+            // calendar2.DaysMode = CalendarDaysMode.Short; 
 
-            m_oWorker = new BackgroundWorker();
-
-            // Create a background worker thread that ReportsProgress &
-            // SupportsCancellation
-            // Hook up the appropriate events.
-            m_oWorker.DoWork += new DoWorkEventHandler(m_oWorker_DoWork);
-            m_oWorker.ProgressChanged += new ProgressChangedEventHandler
-                    (m_oWorker_ProgressChanged);
-            m_oWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler
-                    (m_oWorker_RunWorkerCompleted);
-            m_oWorker.WorkerReportsProgress = true;
-            m_oWorker.WorkerSupportsCancellation = true;
-            background();
             userprofile();
-        }
-        void userprofile() {
+
+            MySqlConnection connection = new MySqlConnection(DBConnect.remoteConn);
+            MySqlCommand command = connection.CreateCommand();
+            MySqlDataReader Reader;
             try
             {
+                connection.Open();
+                Helper.serverOnline = true;
+            }
+            catch (Exception c)
+            {
+                Helper.serverOnline = false;
+                //  MessageBox.Show(c.Message);
+                uploadTxt.Text = "Server offline /n ";
+            }
+            if (Helper.serverOnline)
+            {
+                uploadTxt.Text = "Server online /n ";
+                if (!bwDownload.IsBusy)
+                {
 
+                    bwDownload.RunWorkerAsync();
+                    bwDownload.WorkerReportsProgress = true;
+                    //  bw.WorkerSupportsCancellation = true;
+                    bwDownload.DoWork += new DoWorkEventHandler(bw_Download);
+                }
+                if (!bw.IsBusy)
+                {
+                    bw.RunWorkerAsync();
+                    bw.WorkerReportsProgress = true;
+                    bw.DoWork += new DoWorkEventHandler(bw_DoWork);
+                }
+            }
+            if (!bwMessage.IsBusy)
+            {
+                bwMessage.RunWorkerAsync();
+                bwMessage.WorkerReportsProgress = true;
+                bwMessage.DoWork += new DoWorkEventHandler(bw_Message);
+            }
+        }
+
+
+        private void Downloading()
+        {
+            DownloadFiles();
+            DownloadEvents();
+            DownloadExpense();
+            DownloadFees();
+            DownloadDisbbursements();
+
+
+        }
+        private void Uploading()
+        {
+
+
+            SyncOrg();
+            SyncEvents();
+            SyncUsers();
+            SyncClients();
+            SyncFiles();
+            SyncExpense();
+            SyncFees();
+            SyncDisbbursements();
+
+
+        }
+        private void Messaging()
+        {
+
+            if (!Messenger.state)
+            {
+                Messenger.connect();
+
+            }
+            MySqlConnection connection = new MySqlConnection(DBConnect.conn);
+            MySqlCommand command = connection.CreateCommand();
+            connection.Open();
+            MySqlDataReader Reader;
+            command.CommandText = "SELECT * FROM events WHERE notify ='true' and date = '" + DateTime.Now.ToString("yyyy-MM-dd") + "'";
+
+            Reader = command.ExecuteReader();
+            while (Reader.Read())
+            {
+                string user = (Reader.IsDBNull(4) ? "none" : Reader.GetString(4));
+                string eventID = (Reader.IsDBNull(0) ? "none" : Reader.GetString(0));
+                string message = "SCHEDULE " + (Reader.IsDBNull(1) ? "none" : Reader.GetString(1)) + " FILE" + (Reader.IsDBNull(5) ? "none" : Reader.GetString(5)) + " CLIENT: " + (Reader.IsDBNull(17) ? "none" : Reader.GetString(17));
+
+                MySqlConnection connection2 = new MySqlConnection(DBConnect.conn);
+
+                MySqlCommand command2 = connection2.CreateCommand();
+                MySqlDataReader Reader2;
+                connection2.Open();
+                command2.CommandText = "SELECT contact FROM users WHERE name = '" + user + "'";
+                Reader2 = command2.ExecuteReader();
+                while (Reader2.Read())
+                {
+                    string contact = (Reader2.IsDBNull(0) ? "none" : Reader2.GetString(0));
+                    if (contact != "")
+                    {
+                        System.Diagnostics.Debug.WriteLine(user + "  " + contact);
+                        string info = Messenger.SendUpdate(message, contact.Trim());
+                        if (info == "sent")
+                        {
+                            System.Diagnostics.Debug.WriteLine("Message sent");
+                            string Query3 = "UPDATE `events` SET `notify`='false' WHERE id ='" + eventID + "'";
+                            Helper.Execute(Query3, DBConnect.conn);
+                        }
+                    }
+                }
+                connection2.Close();
+            }
+            connection.Close();
+        }
+        private void bw_Message(object sender, DoWorkEventArgs e)
+        {
+            Messaging();
+            System.Threading.Thread.Sleep(5000);
+
+        }
+
+        private void bw_DoWork(object sender, DoWorkEventArgs e)
+        {
+            Uploading();
+            System.Threading.Thread.Sleep(1000);
+
+        }
+        private void bw_Download(object sender, DoWorkEventArgs e)
+        {
+            try
+            {
+                var request = (HttpWebRequest)WebRequest.Create(Helper.msgUrl);
+                request.GetResponse();
+            }
+            catch { }
+
+            Downloading();
+            System.Threading.Thread.Sleep(500);
+
+        }
+        void userprofile()
+        {
+            try
+            {
                 var request = WebRequest.Create(Helper.imageUrl + Helper.image);
-
                 using (var response = request.GetResponse())
                 using (var stream = response.GetResponseStream())
                 {
                     imgCapture.Image = Bitmap.FromStream(stream);
-
                 }
             }
             catch { }
@@ -63,14 +190,8 @@ namespace Casepro
             nameLbl.Text = Helper.username;
             contactLbl.Text = Helper.contact;
 
-
         }
-        private void background()
-        {
 
-            m_oWorker.RunWorkerAsync();
-
-        }
 
         private void HomeForm_Leave(object sender, EventArgs e)
         {
@@ -94,7 +215,8 @@ namespace Casepro
             {
                 connection.Open();
             }
-            catch {
+            catch
+            {
                 MessageBox.Show("Server is offline");
 
             }
@@ -212,10 +334,6 @@ namespace Casepro
         {
             calendar2.ActivateEditMode();
         }
-
-
-
-
         private void otherColorTagToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
@@ -323,102 +441,14 @@ namespace Casepro
 
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
+            this.Close();
             NewEvent frm = new NewEvent(null);
-            // frm.MdiParent = MainForm.ActiveForm;
+            frm.MdiParent = MainForm.ActiveForm;
             frm.Show();
-            //this.Close();
-        }
-        void m_oWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            // The background process is complete. We need to inspect
-            // our response to see if an error occurred, a cancel was
-            // requested or if we completed successfully.  
-            if (e.Cancelled)
-            {
-                lblStatus.Text = "Task Cancelled.";
-            }
-
-            // Check to see if an error occurred in the background process.
-
-            else if (e.Error != null)
-            {
-                lblStatus.Text = "Error while performing background operation.";
-            }
-            else
-            {
-                // Everything completed normally.
-                lblStatus.Text = "Task Completed...";
-            }
-
-            //Change the status of the buttons on the UI accordingly
 
         }
-       
-        void m_oWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-
-            // This function fires on the UI thread so it's safe to edit
-
-            // the UI control directly, no funny business with Control.Invoke :)
-
-            // Update the progressBar with the integer supplied to us from the
-
-            // ReportProgress() function.  
-
-            progressBar1.Value = e.ProgressPercentage;
-            lblStatus.Text = "Synchronising data......" + progressBar1.Value.ToString() + "%";
-        }
-
-        /// <summary>
-        /// Time consuming operations go here </br>
-        /// i.e. Database operations,Reporting
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        void m_oWorker_DoWork(object sender, DoWorkEventArgs e)
-        {
-            // var request = (HttpWebRequest)WebRequest.Create(Helper.msgUrl);
-            //request.GetResponse();
-            // The sender is the BackgroundWorker object we need it to
-            // report progress and check for cancellation.
-            //NOTE : Never play with the UI thread here...
-            Thread.Sleep(100);
-            try
-            {
-                SyncOrg();
-                SyncEvents();
-                SyncUsers();
-                SyncClients();
-                SyncFiles();              
-                SyncExpense();
-                SyncFees();
-                SyncDisbbursements();
-            }
-            catch
-            {
-              
-                return;
-            }
-            m_oWorker.ReportProgress(1);
-            // Periodically check if a cancellation request is pending.
-            // If the user clicks cancel the line
-            // m_AsyncWorker.CancelAsync(); if ran above.  This
-            // sets the CancellationPending to true.
-            // You must check this flag in here and react to it.
-            // We react to it by setting e.Cancel to true and leaving
-            if (m_oWorker.CancellationPending)
-            {
-                // Set the e.Cancel flag so that the WorkerCompleted event
-                // knows that the process was cancelled.
-                e.Cancel = true;
-                m_oWorker.ReportProgress(0);
-                return;
-            }
 
 
-            //Report 100% completion on operation completed
-            m_oWorker.ReportProgress(100);
-        }
         int count;
         private void SyncEvents()
         {
@@ -434,14 +464,36 @@ namespace Casepro
             {
                 totalRow++;
                 string Query2 = "DELETE from events WHERE id ='" + Reader.GetString(0) + "'";
-                Helper.Execute(Query2, DBConnect.remoteConn);                              
-                string Query = "INSERT INTO `events`(`id`, `name`, `start`, `end`, `user`, `file`, `created`, `action`, `status`, `orgID`, `date`, `hours`, `court`, `notify`,`priority`, `sync`,`progress`,`client`) VALUES ('" + Reader.GetString(0) + "','" + (Reader.IsDBNull(1) ? "none" : Reader.GetString(1)) + "','" + (Reader.IsDBNull(2) ? "none" : Reader.GetString(2)) + "','" + (Reader.IsDBNull(3) ? "none" : Reader.GetString(3)) + "','" + (Reader.IsDBNull(4) ? "none" : Reader.GetString(4)) + "','" + (Reader.IsDBNull(5) ? "none" : Reader.GetString(5)) + "','" + (Reader.IsDBNull(6) ? "none" : Reader.GetString(6)) + "','" + (Reader.IsDBNull(7) ? "none" : Reader.GetString(7)) + "','" + (Reader.IsDBNull(8) ? "none" : Reader.GetString(8)) + "','" + (Reader.IsDBNull(9) ? "none" : Reader.GetString(9)) + "','" + (Reader.IsDBNull(10) ? "none" : Reader.GetString(10)) + "','" + (Reader.IsDBNull(11) ? "none" : Reader.GetString(11)) + "','" + (Reader.IsDBNull(12) ? "none" : Reader.GetString(12)) + "','" + (Reader.IsDBNull(13) ? "none" : Reader.GetString(13)) + "','t','" + (Reader.IsDBNull(15) ? "none" : Reader.GetString(15)) + "','" + (Reader.IsDBNull(16) ? "none" : Reader.GetString(16)) + "','" + (Reader.IsDBNull(17) ? "none" : Reader.GetString(17)) + "');";
+                Helper.Execute(Query2, DBConnect.remoteConn);
+                string Query = "INSERT INTO `events`(`id`, `name`, `start`, `end`, `user`, `file`, `created`, `action`, `status`, `orgID`, `date`, `hours`, `court`, `notify`,`priority`, `sync`,`progress`,`client`) VALUES ('" + Reader.GetString(0) + "','" + (Reader.IsDBNull(1) ? "none" : Reader.GetString(1)) + "','" + (Reader.IsDBNull(2) ? "none" : Reader.GetString(2)) + "','" + (Reader.IsDBNull(3) ? "none" : Reader.GetString(3)) + "','" + (Reader.IsDBNull(4) ? "none" : Reader.GetString(4)) + "','" + (Reader.IsDBNull(5) ? "none" : Reader.GetString(5)) + "','" + (Reader.IsDBNull(6) ? "none" : Reader.GetString(6)) + "','" + (Reader.IsDBNull(7) ? "none" : Reader.GetString(7)) + "','" + (Reader.IsDBNull(8) ? "none" : Reader.GetString(8)) + "','" + (Reader.IsDBNull(9) ? "none" : Reader.GetString(9)) + "','" + (Reader.IsDBNull(10) ? "none" : Reader.GetString(10)) + "','" + (Reader.IsDBNull(11) ? "none" : Reader.GetString(11)) + "','" + (Reader.IsDBNull(12) ? "none" : Reader.GetString(12)) + "','" + (Reader.IsDBNull(13) ? "none" : Reader.GetString(13)) + "','" + (Reader.IsDBNull(14) ? "none" : Reader.GetString(14)) + "','" + (Reader.IsDBNull(15) ? "none" : Reader.GetString(15)) + "','" + (Reader.IsDBNull(16) ? "none" : Reader.GetString(16)) + "','" + (Reader.IsDBNull(17) ? "none" : Reader.GetString(17)) + "');";
                 Helper.Execute(Query, DBConnect.remoteConn);
                 string Query3 = "UPDATE `events` SET `sync`='t' WHERE id ='" + Reader.GetString(0) + "'";
                 Helper.Execute(Query3, DBConnect.conn);
-               
+            }
+            Reader.Close();
+            connection.Close();
+        }
+
+        private void DownloadEvents()
+        {
+            System.Diagnostics.Debug.WriteLine("Downloading from :"+Helper.orgID);
+            MySqlConnection connection = new MySqlConnection(DBConnect.remoteConn);
+            MySqlCommand command = connection.CreateCommand();
+            MySqlDataReader Reader;
+            command.CommandText = "SELECT * FROM events WHERE sync ='f' AND orgID = '" + Helper.orgID + "' ;";
+            connection.Open();
+            Reader = command.ExecuteReader();
+            while (Reader.Read())
+            {
+                string Query2 = "DELETE from events WHERE id ='" + Reader.GetString(0) + "'";
+                Helper.Execute(Query2, DBConnect.conn);
+                string Query = "INSERT INTO `events`(`id`, `name`, `start`, `end`, `user`, `file`, `created`, `action`, `status`, `orgID`, `date`, `hours`, `court`, `notify`,`priority`, `sync`,`progress`,`client`) VALUES ('" + Reader.GetString(0) + "','" + (Reader.IsDBNull(1) ? "none" : Reader.GetString(1)) + "','" + (Reader.IsDBNull(2) ? "none" : Reader.GetString(2)) + "','" + (Reader.IsDBNull(3) ? "none" : Reader.GetString(3)) + "','" + (Reader.IsDBNull(4) ? "none" : Reader.GetString(4)) + "','" + (Reader.IsDBNull(5) ? "none" : Reader.GetString(5)) + "','" + (Reader.IsDBNull(6) ? "none" : Reader.GetString(6)) + "','" + (Reader.IsDBNull(7) ? "none" : Reader.GetString(7)) + "','" + (Reader.IsDBNull(8) ? "none" : Reader.GetString(8)) + "','" + (Reader.IsDBNull(9) ? "none" : Reader.GetString(9)) + "','" + (Reader.IsDBNull(10) ? "none" : Reader.GetString(10)) + "','" + (Reader.IsDBNull(11) ? "none" : Reader.GetString(11)) + "','" + (Reader.IsDBNull(12) ? "none" : Reader.GetString(12)) + "','" + (Reader.IsDBNull(13) ? "none" : Reader.GetString(13)) + "','t','" + (Reader.IsDBNull(15) ? "none" : Reader.GetString(15)) + "','" + (Reader.IsDBNull(16) ? "none" : Reader.GetString(16)) + "','" + (Reader.IsDBNull(17) ? "none" : Reader.GetString(17)) + "');";
+                Helper.Execute(Query, DBConnect.conn);
+                string Query3 = "UPDATE `events` SET `sync`='t' WHERE id ='" + Reader.GetString(0) + "'";
+                Helper.Execute(Query3, DBConnect.remoteConn);
 
             }
+            Reader.Close();
             connection.Close();
 
         }
@@ -473,6 +525,36 @@ namespace Casepro
 
 
         }
+        private void DownloadFiles()
+        {
+            MySqlConnection connection = new MySqlConnection(DBConnect.remoteConn);
+            MySqlCommand command = connection.CreateCommand();
+            MySqlDataReader Reader;
+            command.CommandText = "SELECT * FROM file WHERE sync ='f' ;";
+            try
+            {
+                connection.Open();
+            }
+            catch { }
+            Reader = command.ExecuteReader();
+            int totalRow = 0;
+
+            while (Reader.Read())
+            {
+                totalRow++;
+                string Query2 = "DELETE from file WHERE fileID ='" + Reader.GetString(0) + "'";
+                Helper.Execute(Query2, DBConnect.conn);
+
+                string Query = "INSERT INTO `file`(`fileID`, `orgID`, `client`, `contact`, `lawyer`, `no`, `details`, `type`, `subject`, `citation`, `law`, `name`, `created`, `status`, `sync`, `case`, `note`, `progress`, `opened`, `due`, `contact_person`, `contact_number`,`action`) VALUES ('" + Reader.GetString(0) + "','" + (Reader.IsDBNull(1) ? "none" : Reader.GetString(1)) + "','" + (Reader.IsDBNull(2) ? "none" : Reader.GetString(2)) + "','" + (Reader.IsDBNull(3) ? "none" : Reader.GetString(3)) + "','" + (Reader.IsDBNull(4) ? "none" : Reader.GetString(4)) + "','" + (Reader.IsDBNull(5) ? "none" : Reader.GetString(5)) + "','" + (Reader.IsDBNull(6) ? "none" : Reader.GetString(6)) + "','" + (Reader.IsDBNull(7) ? "none" : Reader.GetString(7)) + "','" + (Reader.IsDBNull(8) ? "none" : Reader.GetString(8)) + "','" + (Reader.IsDBNull(9) ? "none" : Reader.GetString(9)) + "','" + (Reader.IsDBNull(10) ? "none" : Reader.GetString(10)) + "','" + (Reader.IsDBNull(11) ? "none" : Reader.GetString(11)) + "','" + (Reader.IsDBNull(12) ? "none" : Reader.GetString(12)) + "','" + (Reader.IsDBNull(13) ? "none" : Reader.GetString(13)) + "','t','" + (Reader.IsDBNull(15) ? "none" : Reader.GetString(15)) + "','" + (Reader.IsDBNull(16) ? "none" : Reader.GetString(16)) + "','" + (Reader.IsDBNull(17) ? "none" : Reader.GetString(17)) + "','" + (Reader.IsDBNull(18) ? "none" : Reader.GetString(18)) + "','" + (Reader.IsDBNull(19) ? "none" : Reader.GetString(19)) + "','" + (Reader.IsDBNull(20) ? "none" : Reader.GetString(20)) + "','" + (Reader.IsDBNull(21) ? "none" : Reader.GetString(21)) + "','none');";
+                Helper.Execute(Query, DBConnect.conn);
+
+                string Query3 = "UPDATE `file` SET `sync`='t' WHERE fileID ='" + Reader.GetString(0) + "'";
+                Helper.Execute(Query3, DBConnect.remoteConn);
+
+            }
+            connection.Close();
+        }
+
 
         private void SyncUsers()
         {
@@ -549,12 +631,7 @@ namespace Casepro
 
             }
             connection.Close();
-
-
         }
-
-
-
         private void SyncClients()
         {
 
@@ -627,14 +704,9 @@ namespace Casepro
 
                 string Query3 = "UPDATE `client` SET `sync`='t' WHERE clientID ='" + Reader.GetString(0) + "'";
                 Helper.Execute(Query3, DBConnect.conn);
-
             }
             connection.Close();
-
-
         }
-
-
         private void SyncOrg()
         {
 
@@ -667,8 +739,6 @@ namespace Casepro
                     theClient.DownloadFile(filepath, image);
                     //Console.WriteLine("\nResponse Received.The contents of the file uploaded are:\n{0}", System.Text.Encoding.ASCII.GetString(responseArray));
                     theClient.Dispose();
-
-
                     string images = @"c:\Case\\images\" + (Reader.IsDBNull(9) ? "none" : Reader.GetString(9));
                     if (System.IO.File.Exists(images))
                     {
@@ -702,7 +772,7 @@ namespace Casepro
                 string Query2 = "DELETE from org WHERE orgID ='" + Reader.GetString(0) + "'";
                 Helper.Execute(Query2, DBConnect.remoteConn);
 
-                string Query = "INSERT INTO `org`(`orgID`, `name`, `license`, `starts`, `ends`, `code`, `address`, `email`, `status`, `image`, `currency`, `country`, `region`, `city`, `action`, `tin`, `vat`, `top`, `sync`) VALUES ('" + Reader.GetString(0) + "','" + (Reader.IsDBNull(1) ? "none" : Reader.GetString(1)) + "','" + (Reader.IsDBNull(2) ? "none" : Reader.GetString(2)) + "','" + (Reader.IsDBNull(3) ? "none" : Reader.GetString(3)) + "','" + (Reader.IsDBNull(4) ? "none" : Reader.GetString(4)) + "','" + (Reader.IsDBNull(5) ? "none" : Reader.GetString(5)) + "','" + (Reader.IsDBNull(6) ? "none" : Reader.GetString(6)) + "','" + (Reader.IsDBNull(7) ? "none" : Reader.GetString(7)) + "','" + (Reader.IsDBNull(8) ? "none" : Reader.GetString(8)) + "','" + (Reader.IsDBNull(9) ? "none" : Reader.GetString(9)) + "','" + (Reader.IsDBNull(10) ? "none" : Reader.GetString(10)) + "','" + (Reader.IsDBNull(11) ? "none" : Reader.GetString(11)) + "','" + (Reader.IsDBNull(12) ? "none" : Reader.GetString(12)) + "','" + (Reader.IsDBNull(13) ? "none" : Reader.GetString(13)) + "','" + (Reader.IsDBNull(14) ? "none" : Reader.GetString(14)) + "','" + (Reader.IsDBNull(15) ? "none" : Reader.GetString(15)) + "','" + (Reader.IsDBNull(16) ? "none" : Reader.GetString(16)) + "','" + (Reader.IsDBNull(17) ? "none" : Reader.GetString(17)) + "','" + (Reader.IsDBNull(18) ? "none" : Reader.GetString(18)) + "','t');";
+                string Query = "INSERT INTO `org`(`orgID`, `name`, `license`, `starts`, `ends`, `code`, `address`, `email`, `status`, `image`, `currency`, `country`, `region`, `city`, `action`, `tin`, `vat`, `top`, `sync`) VALUES ('" + Reader.GetString(0) + "','" + (Reader.IsDBNull(1) ? "none" : Reader.GetString(1)) + "','" + (Reader.IsDBNull(2) ? "none" : Reader.GetString(2)) + "','" + (Reader.IsDBNull(3) ? "none" : Reader.GetString(3)) + "','" + (Reader.IsDBNull(4) ? "none" : Reader.GetString(4)) + "','" + (Reader.IsDBNull(5) ? "none" : Reader.GetString(5)) + "','" + (Reader.IsDBNull(6) ? "none" : Reader.GetString(6)) + "','" + (Reader.IsDBNull(7) ? "none" : Reader.GetString(7)) + "','" + (Reader.IsDBNull(8) ? "none" : Reader.GetString(8)) + "','" + (Reader.IsDBNull(9) ? "none" : Reader.GetString(9)) + "','" + (Reader.IsDBNull(10) ? "none" : Reader.GetString(10)) + "','" + (Reader.IsDBNull(11) ? "none" : Reader.GetString(11)) + "','" + (Reader.IsDBNull(12) ? "none" : Reader.GetString(12)) + "','" + (Reader.IsDBNull(13) ? "none" : Reader.GetString(13)) + "','" + (Reader.IsDBNull(14) ? "none" : Reader.GetString(14)) + "','" + (Reader.IsDBNull(15) ? "none" : Reader.GetString(15)) + "','" + (Reader.IsDBNull(16) ? "none" : Reader.GetString(16)) + "','" + (Reader.IsDBNull(17) ? "none" : Reader.GetString(17)) + "','t');";
                 Helper.Execute(Query, DBConnect.remoteConn);
 
                 string Query3 = "UPDATE `org` SET `sync`='t' WHERE orgID ='" + Reader.GetString(0) + "'";
@@ -725,19 +795,39 @@ namespace Casepro
             while (Reader.Read())
             {
                 totalRow++;
-                string Query2 = "DELETE from expenses WHERE expensesID ='" + Reader.GetString(0) + "'";
+                string Query2 = "DELETE from expenses WHERE expenseID ='" + Reader.GetString(0) + "'";
                 Helper.Execute(Query2, DBConnect.remoteConn);
 
-                string Query = "INSERT INTO  `expenses`(`expenseID`, `orgID`, `clientID`, `fileID`, `details`, `lawyer`, `method`, `amount`, `no`, `balance`, `paid`, `date`, `approved`, `signed`, `reason`, `outcome`, `deadline`,sync) VALUES ('" + Reader.GetString(0) + "','" + (Reader.IsDBNull(1) ? "none" : Reader.GetString(1)) + "','" + (Reader.IsDBNull(2) ? "none" : Reader.GetString(2)) + "','" + (Reader.IsDBNull(3) ? "none" : Reader.GetString(3)) + "','" + (Reader.IsDBNull(4) ? "none" : Reader.GetString(4)) + "','" + (Reader.IsDBNull(5) ? "none" : Reader.GetString(5)) + "','" + (Reader.IsDBNull(6) ? "none" : Reader.GetString(6)) + "','" + (Reader.IsDBNull(7) ? "none" : Reader.GetString(7)) + "','" + (Reader.IsDBNull(8) ? "none" : Reader.GetString(8)) + "','" + (Reader.IsDBNull(9) ? "none" : Reader.GetString(9)) + "','" + (Reader.IsDBNull(10) ? "none" : Reader.GetString(10)) + "','" + (Reader.IsDBNull(11) ? "none" : Reader.GetString(11)) + "','" + (Reader.IsDBNull(12) ? "none" : Reader.GetString(12)) + "','" + (Reader.IsDBNull(13) ? "none" : Reader.GetString(13)) + "','" + (Reader.IsDBNull(14) ? "none" : Reader.GetString(14)) +"','" + (Reader.IsDBNull(15) ? "none" : Reader.GetString(15)) + "','" + (Reader.IsDBNull(16) ? "none" : Reader.GetString(16)) + "','t';";
+                string Query = "INSERT INTO  `expenses` (`expenseID`, `orgID`, `clientID`, `fileID`, `details`, `lawyer`, `method`, `amount`, `no`, `balance`, `paid`, `date`, `approved`, `signed`, `reason`, `outcome`, `deadline`,`sync`) VALUES ('" + Reader.GetString(0) + "','" + (Reader.IsDBNull(1) ? "none" : Reader.GetString(1)) + "','" + (Reader.IsDBNull(2) ? "none" : Reader.GetString(2)) + "','" + (Reader.IsDBNull(3) ? "none" : Reader.GetString(3)) + "','" + (Reader.IsDBNull(4) ? "none" : Reader.GetString(4)) + "','" + (Reader.IsDBNull(5) ? "none" : Reader.GetString(5)) + "','" + (Reader.IsDBNull(6) ? "none" : Reader.GetString(6)) + "','" + (Reader.IsDBNull(7) ? "none" : Reader.GetString(7)) + "','" + (Reader.IsDBNull(8) ? "none" : Reader.GetString(8)) + "','" + (Reader.IsDBNull(9) ? "none" : Reader.GetString(9)) + "','" + (Reader.IsDBNull(10) ? "none" : Reader.GetString(10)) + "','" + (Reader.IsDBNull(11) ? "none" : Reader.GetString(11)) + "','" + (Reader.IsDBNull(12) ? "none" : Reader.GetString(12)) + "','" + (Reader.IsDBNull(13) ? "none" : Reader.GetString(13)) + "','" + (Reader.IsDBNull(14) ? "none" : Reader.GetString(14)) + "','" + (Reader.IsDBNull(15) ? "none" : Reader.GetString(15)) + "','" + (Reader.IsDBNull(16) ? "none" : Reader.GetString(16)) + "','t');";
                 Helper.Execute(Query, DBConnect.remoteConn);
 
                 string Query3 = "UPDATE `expenses` SET `sync`='t' WHERE expenseID ='" + Reader.GetString(0) + "'";
                 Helper.Execute(Query3, DBConnect.conn);
+            }
+            connection.Close();
+        }
+        private void DownloadExpense()
+        {
+            MySqlConnection connection = new MySqlConnection(DBConnect.remoteConn);
+            MySqlCommand command = connection.CreateCommand();
+            MySqlDataReader Reader;
+            command.CommandText = "SELECT * FROM expenses WHERE sync ='f' ;";
+            connection.Open();
+            Reader = command.ExecuteReader();
+            int totalRow = 0;
+            while (Reader.Read())
+            {
+                totalRow++;
+                string Query2 = "DELETE from expenses WHERE expensesID ='" + Reader.GetString(0) + "'";
+                Helper.Execute(Query2, DBConnect.conn);
+                string Query = "INSERT INTO  `expenses`(`expenseID`, `orgID`, `clientID`, `fileID`, `details`, `lawyer`, `method`, `amount`, `no`, `balance`, `paid`, `date`, `approved`, `signed`, `reason`, `outcome`, `deadline`,sync) VALUES ('" + Reader.GetString(0) + "','" + (Reader.IsDBNull(1) ? "none" : Reader.GetString(1)) + "','" + (Reader.IsDBNull(2) ? "none" : Reader.GetString(2)) + "','" + (Reader.IsDBNull(3) ? "none" : Reader.GetString(3)) + "','" + (Reader.IsDBNull(4) ? "none" : Reader.GetString(4)) + "','" + (Reader.IsDBNull(5) ? "none" : Reader.GetString(5)) + "','" + (Reader.IsDBNull(6) ? "none" : Reader.GetString(6)) + "','" + (Reader.IsDBNull(7) ? "none" : Reader.GetString(7)) + "','" + (Reader.IsDBNull(8) ? "none" : Reader.GetString(8)) + "','" + (Reader.IsDBNull(9) ? "none" : Reader.GetString(9)) + "','" + (Reader.IsDBNull(10) ? "none" : Reader.GetString(10)) + "','" + (Reader.IsDBNull(11) ? "none" : Reader.GetString(11)) + "','" + (Reader.IsDBNull(12) ? "none" : Reader.GetString(12)) + "','" + (Reader.IsDBNull(13) ? "none" : Reader.GetString(13)) + "','" + (Reader.IsDBNull(14) ? "none" : Reader.GetString(14)) + "','" + (Reader.IsDBNull(15) ? "none" : Reader.GetString(15)) + "','" + (Reader.IsDBNull(16) ? "none" : Reader.GetString(16)) + "','t';";
+                Helper.Execute(Query, DBConnect.conn);
+                string Query3 = "UPDATE `expenses` SET `sync`='t' WHERE expenseID ='" + Reader.GetString(0) + "'";
+                Helper.Execute(Query3, DBConnect.remoteConn);
 
             }
             connection.Close();
         }
-        
         private void SyncFees()
         {
 
@@ -764,7 +854,31 @@ namespace Casepro
             }
             connection.Close();
         }
-        
+        private void DownloadFees()
+        {
+            MySqlConnection connection = new MySqlConnection(DBConnect.remoteConn);
+            MySqlCommand command = connection.CreateCommand();
+            MySqlDataReader Reader;
+            command.CommandText = "SELECT * FROM fees WHERE sync ='f' ;";
+            connection.Open();
+            Reader = command.ExecuteReader();
+            int totalRow = 0;
+
+            while (Reader.Read())
+            {
+                totalRow++;
+                string Query2 = "DELETE from fees WHERE feeID ='" + Reader.GetString(0) + "'";
+                Helper.Execute(Query2, DBConnect.conn);
+
+                string Query = "INSERT INTO  `fees`(`feeID`, `orgID`, `clientID`, `fileID`, `details`, `lawyer`, `paid`, `invoice`, `vat`, `method`, `amount`, `received`, `balance`, `approved`, `signed`, `date`,sync) VALUES ('" + Reader.GetString(0) + "','" + (Reader.IsDBNull(1) ? "none" : Reader.GetString(1)) + "','" + (Reader.IsDBNull(2) ? "none" : Reader.GetString(2)) + "','" + (Reader.IsDBNull(3) ? "none" : Reader.GetString(3)) + "','" + (Reader.IsDBNull(4) ? "none" : Reader.GetString(4)) + "','" + (Reader.IsDBNull(5) ? "none" : Reader.GetString(5)) + "','" + (Reader.IsDBNull(6) ? "none" : Reader.GetString(6)) + "','" + (Reader.IsDBNull(7) ? "none" : Reader.GetString(7)) + "','" + (Reader.IsDBNull(8) ? "none" : Reader.GetString(8)) + "','" + (Reader.IsDBNull(9) ? "none" : Reader.GetString(9)) + "','" + (Reader.IsDBNull(10) ? "none" : Reader.GetString(10)) + "','" + (Reader.IsDBNull(11) ? "none" : Reader.GetString(11)) + "','" + (Reader.IsDBNull(12) ? "none" : Reader.GetString(12)) + "','" + (Reader.IsDBNull(13) ? "none" : Reader.GetString(13)) + "','" + (Reader.IsDBNull(14) ? "none" : Reader.GetString(14)) + "','" + (Reader.IsDBNull(15) ? "none" : Reader.GetString(15)) + "','" + (Reader.IsDBNull(16) ? "none" : Reader.GetString(16)) + "','t';";
+                Helper.Execute(Query, DBConnect.conn);
+
+                string Query3 = "UPDATE `fees` SET `sync`='t' WHERE feeID ='" + Reader.GetString(0) + "'";
+                Helper.Execute(Query3, DBConnect.remoteConn);
+
+            }
+            connection.Close();
+        }
         private void SyncDisbbursements()
         {
 
@@ -787,6 +901,32 @@ namespace Casepro
 
                 string Query3 = "UPDATE `disbursements` SET `sync`='t' WHERE disbursementID ='" + Reader.GetString(0) + "'";
                 Helper.Execute(Query3, DBConnect.conn);
+
+            }
+            connection.Close();
+        }
+        private void DownloadDisbbursements()
+        {
+
+            MySqlConnection connection = new MySqlConnection(DBConnect.remoteConn);
+            MySqlCommand command = connection.CreateCommand();
+            MySqlDataReader Reader;
+            command.CommandText = "SELECT * FROM disbursements WHERE sync ='f' ;";
+            connection.Open();
+            Reader = command.ExecuteReader();
+            int totalRow = 0;
+
+            while (Reader.Read())
+            {
+                totalRow++;
+                string Query2 = "DELETE from disbursements WHERE disbursementD ='" + Reader.GetString(0) + "'";
+                Helper.Execute(Query2, DBConnect.conn);
+
+                string Query = "INSERT INTO  `disbursements`(`disbursementID`, `orgID`, `clientID`, `fileID`, `details`, `lawyer`, `paid`, `invoice`, `method`, `amount`, `received`, `balance`, `approved`, `signed`, `date`,sync) VALUES ('" + Reader.GetString(0) + "','" + (Reader.IsDBNull(1) ? "none" : Reader.GetString(1)) + "','" + (Reader.IsDBNull(2) ? "none" : Reader.GetString(2)) + "','" + (Reader.IsDBNull(3) ? "none" : Reader.GetString(3)) + "','" + (Reader.IsDBNull(4) ? "none" : Reader.GetString(4)) + "','" + (Reader.IsDBNull(5) ? "none" : Reader.GetString(5)) + "','" + (Reader.IsDBNull(6) ? "none" : Reader.GetString(6)) + "','" + (Reader.IsDBNull(7) ? "none" : Reader.GetString(7)) + "','" + (Reader.IsDBNull(8) ? "none" : Reader.GetString(8)) + "','" + (Reader.IsDBNull(9) ? "none" : Reader.GetString(9)) + "','" + (Reader.IsDBNull(10) ? "none" : Reader.GetString(10)) + "','" + (Reader.IsDBNull(11) ? "none" : Reader.GetString(11)) + "','" + (Reader.IsDBNull(12) ? "none" : Reader.GetString(12)) + "','" + (Reader.IsDBNull(13) ? "none" : Reader.GetString(13)) + "','" + (Reader.IsDBNull(14) ? "none" : Reader.GetString(14)) + "','t';";
+                Helper.Execute(Query, DBConnect.conn);
+
+                string Query3 = "UPDATE `disbursements` SET `sync`='t' WHERE disbursementID ='" + Reader.GetString(0) + "'";
+                Helper.Execute(Query3, DBConnect.remoteConn);
 
             }
             connection.Close();

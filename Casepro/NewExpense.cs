@@ -142,7 +142,6 @@ namespace Casepro
             {
                 users.Add(Reader.GetString(0));
 
-
             }
             lawyerCbx.DataSource = users;
             connection.Close();

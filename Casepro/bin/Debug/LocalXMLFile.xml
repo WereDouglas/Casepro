@@ -1,8 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Servers>
   <Server>
-    <Name>daga</Name>
+    <Name>DAGA</Name>
     <Ip>192.168.1.196</Ip>
     <Port>3306</Port>
+    <db>cases</db>
+    <username>daga</username>
+    <password>cases</password>
   </Server>
 </Servers>

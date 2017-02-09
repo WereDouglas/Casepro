@@ -163,7 +163,6 @@ namespace Casepro
             connection.Open();
             Reader = command.ExecuteReader();
 
-
             while (Reader.Read())
             {
                 File _file = new File();
@@ -171,9 +170,6 @@ namespace Casepro
                 catch (InvalidCastException) { }
                 try { _file.Name = Reader.GetString(11); }
                 catch (InvalidCastException) { }
-
-
-
 
                 _fileList.Add(_file);
             }
@@ -203,10 +199,14 @@ namespace Casepro
             string Query = "INSERT INTO `events`(`id`, `name`, `start`, `end`, `user`, `file`, `created`, `action`, `status`, `orgID`, `date`, `hours`, `court`, `notify`,`priority`, `sync`,`progress`,`client`) VALUES ('" + ID + "','" + this.detailsTxt.Text + "','" + start + "','" + end + "','" + lawyerCbx.Text + "','" + fileCbx.Text + "','" + DateTime.Now.Date.ToString("yyyy-MM-dd") + "','create','" + progressTxt.Text + "','" + Helper.orgID + "','" + Convert.ToDateTime(this.openedDate.Text).ToString("yyyy-MM-dd") + "','1','" + court + "','" + notify + "','" + priorityCbx.Text + "','f','" + progressTxt.Text + "','" + clientCbx.Text + "');";
             Helper.Execute(Query, DBConnect.conn);
             MessageBox.Show("Information saved");
-         
-           // var request = (HttpWebRequest)WebRequest.Create(Helper.msgUrl);
-            //request.GetResponse();           
-            this.Close();
+            // var request = (HttpWebRequest)WebRequest.Create(Helper.msgUrl);
+            //request.GetResponse();    
+
+           HomeForm frm = new HomeForm();
+            frm.MdiParent = MainForm.ActiveForm;
+            frm.Dock = DockStyle.Fill;
+            frm.Show();
+            this.Close();            
         }
 
         private void button1_Click(object sender, EventArgs e)

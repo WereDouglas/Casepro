@@ -33,6 +33,7 @@
             this.bntContinue = new System.Windows.Forms.Button();
             this.bntStop = new System.Windows.Forms.Button();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -66,7 +67,6 @@
             this.bntStart = new System.Windows.Forms.Button();
             this.imgCapture = new System.Windows.Forms.PictureBox();
             this.imgVideo = new System.Windows.Forms.PictureBox();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgCapture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgVideo)).BeginInit();
@@ -143,6 +143,16 @@
             this.toolStrip1.Size = new System.Drawing.Size(600, 25);
             this.toolStrip1.TabIndex = 18;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = global::Casepro.Properties.Resources.Close_48;
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton1.Text = "toolStripButton1";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // toolStripSeparator2
             // 
@@ -375,10 +385,8 @@
             // 
             this.fileUrlTxtBx.Location = new System.Drawing.Point(10, 193);
             this.fileUrlTxtBx.Name = "fileUrlTxtBx";
-            this.fileUrlTxtBx.PasswordChar = '*';
             this.fileUrlTxtBx.Size = new System.Drawing.Size(144, 22);
             this.fileUrlTxtBx.TabIndex = 97;
-            this.fileUrlTxtBx.UseSystemPasswordChar = true;
             this.fileUrlTxtBx.TextChanged += new System.EventHandler(this.fileUrlTxtBx_TextChanged);
             // 
             // button2
@@ -481,16 +489,6 @@
             this.imgVideo.Size = new System.Drawing.Size(142, 122);
             this.imgVideo.TabIndex = 9;
             this.imgVideo.TabStop = false;
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = global::Casepro.Properties.Resources.Close_48;
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton1.Text = "toolStripButton1";
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // NewUser
             // 

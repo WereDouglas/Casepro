@@ -86,21 +86,28 @@ namespace Casepro
                 Console.WriteLine("The directory was created successfully at {0}.",
                 Directory.GetCreationTime(paths));
             }
+
+            register();
+            
+        }
+        private void register() {
+
+
+
             MySqlConnection connection = new MySqlConnection(DBConnect.conn);
             MySqlCommand command = connection.CreateCommand();
             MySqlDataReader Reader;
-            command.CommandText = "SELECT * FROM org ;";
+            command.CommandText = "SELECT * FROM org LIMIT 1;";
             connection.Open();
             Reader = command.ExecuteReader();
-         
+
             while (Reader.Read())
             {
-                orgID = Reader.IsDBNull(0) ? "" : Reader.GetString(0);
-                if (orgID!="") { register(); } else { thisOrg(); }
+              string  ID = Reader.IsDBNull(0) ? "" : Reader.GetString(0);
+                if (ID != "")  { thisOrg(); return; }
             }
-            connection.Close();            
-        }
-        private void register() {
+            connection.Close();
+
 
             string orgID = Guid.NewGuid().ToString();
             string paths = @"c:\Case\images";
@@ -135,7 +142,7 @@ namespace Casepro
             }
 
             string Query = "INSERT INTO `org`(`orgID`, `name`, `code`, `address`, `email`, `status`, `image`, `currency`, `country`, `region`, `city`,`tin`, `vat`, `sync`) VALUES ('" + orgID + "','" +nameTxtBx.Text + "','" + codeTxt.Text + "','" + addressTxtBx.Text + "','" + emailTxtBx.Text + "','active','" + orgID.Trim() + ".jpg" + "','" + currencyTxt.Text + "','" + countryTxt.Text + "','" + regionTxt.Text + "','" + cityTxt.Text + "','" +tinTxt.Text + "','" + vatTxt.Text + "','f');";
-            Helper.Execute(Query, DBConnect.remoteConn);
+            Helper.Execute(Query, DBConnect.conn);
             MessageBox.Show("Registration successful");
 
             Helper.orgID = orgID;
@@ -198,6 +205,21 @@ namespace Casepro
             //LoginForm frm = new LoginForm();
             //frm.Show();            
             this.Close();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            // open file dialog 
+            OpenFileDialog open = new OpenFileDialog();
+            // image filters
+            open.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp;*.png)|*.jpg; *.jpeg; *.gif; *.bmp ; *.png;*.*" ;
+            if (open.ShowDialog() == DialogResult.OK)
+            {
+                // display image in picture box
+                imgCapture.Image = new Bitmap(open.FileName);
+                // image file path
+                fileUrlTxtBx.Text = open.FileName;
+            }
         }
     }
 }

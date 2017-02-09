@@ -73,9 +73,6 @@ namespace Casepro
 
         private void DocumentForm_Load(object sender, EventArgs e)
         {
-
-
-
             MySqlConnection connection = new MySqlConnection(DBConnect.conn);
             MySqlCommand command = connection.CreateCommand();
             MySqlDataReader Reader;
@@ -83,13 +80,13 @@ namespace Casepro
             connection.Open();
             Reader = command.ExecuteReader();
             TreeNode treeNode = new TreeNode("Clients");
-            myTreeView.Nodes.Add(treeNode);
+          //  myTreeView.Nodes.Add(treeNode);
             // create and execute query  
             while (Reader.Read())
             {
                
                treeNode = new TreeNode(Reader.GetString(2));
-                myTreeView.Nodes.Add(treeNode);
+            //    myTreeView.Nodes.Add(treeNode);
 
             }
            
@@ -108,12 +105,12 @@ namespace Casepro
         {
             //
             // Get the selected node.
-            //
-            TreeNode node = myTreeView.SelectedNode;
+          //  //
+          //  TreeNode node = myTreeView.SelectedNode;
             //
             // Render message box.
             //
-            MessageBox.Show(string.Format("You selected: {0}", node.Text));
+            ///MessageBox.Show(string.Format("You selected: {0}", node.Text));
         }
     }
 }

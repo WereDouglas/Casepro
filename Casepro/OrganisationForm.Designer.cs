@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OrganisationForm));
             this.fileUrlTxtBx = new System.Windows.Forms.TextBox();
             this.button4 = new System.Windows.Forms.Button();
             this.addressTxtBx = new System.Windows.Forms.TextBox();
@@ -63,10 +64,8 @@
             this.fileUrlTxtBx.Location = new System.Drawing.Point(81, 66);
             this.fileUrlTxtBx.Margin = new System.Windows.Forms.Padding(4);
             this.fileUrlTxtBx.Name = "fileUrlTxtBx";
-            this.fileUrlTxtBx.PasswordChar = '*';
             this.fileUrlTxtBx.Size = new System.Drawing.Size(226, 15);
             this.fileUrlTxtBx.TabIndex = 99;
-            this.fileUrlTxtBx.UseSystemPasswordChar = true;
             // 
             // button4
             // 
@@ -79,6 +78,7 @@
             this.button4.TabIndex = 98;
             this.button4.Text = "Browse";
             this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // addressTxtBx
             // 
@@ -312,10 +312,10 @@
             // 
             this.imgCapture.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.imgCapture.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.imgCapture.Location = new System.Drawing.Point(131, 89);
+            this.imgCapture.Location = new System.Drawing.Point(81, 89);
             this.imgCapture.Margin = new System.Windows.Forms.Padding(4);
             this.imgCapture.Name = "imgCapture";
-            this.imgCapture.Size = new System.Drawing.Size(130, 116);
+            this.imgCapture.Size = new System.Drawing.Size(226, 116);
             this.imgCapture.TabIndex = 11;
             this.imgCapture.TabStop = false;
             // 
@@ -353,6 +353,7 @@
             this.Controls.Add(this.imgCapture);
             this.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "OrganisationForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Registration";

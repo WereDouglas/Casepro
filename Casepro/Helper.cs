@@ -33,6 +33,11 @@ namespace Casepro
         public static string designation;
         public static string code;
 
+        public static string dbusername;
+        public static string db;
+        public static string dbpwd;
+        public static bool serverOnline;
+
         public static void SaveImageCapture(System.Drawing.Image image)
         {
 
