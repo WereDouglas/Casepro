@@ -116,8 +116,6 @@ namespace Casepro
                 frm.Show();
                 this.Hide();
             }
-
-
         }
         private void autocomplete()
         {

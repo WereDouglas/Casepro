@@ -31,7 +31,7 @@ namespace Casepro
             monthView2.ArrowsColor = CalendarColorTable.FromHex("#77A1D3");
             monthView2.DaySelectedBackgroundColor = CalendarColorTable.FromHex("#F4CC52");
             monthView2.DaySelectedTextColor = monthView2.ForeColor;
-            // calendar2.DaysMode = CalendarDaysMode.Short; 
+            //calendar2.DaysMode = CalendarDaysMode.Short; 
 
             userprofile();
 
