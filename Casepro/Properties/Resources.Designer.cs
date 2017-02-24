@@ -253,9 +253,29 @@ namespace Casepro.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Date_48 {
+            get {
+                object obj = ResourceManager.GetObject("Date-48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Debit_Card_48 {
             get {
                 object obj = ResourceManager.GetObject("Debit-Card-48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Document_01_48 {
+            get {
+                object obj = ResourceManager.GetObject("Document-01-48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -333,6 +353,16 @@ namespace Casepro.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Folder_48__1_ {
+            get {
+                object obj = ResourceManager.GetObject("Folder-48 (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Folder_Copy_48 {
             get {
                 object obj = ResourceManager.GetObject("Folder-Copy-48", resourceCulture);
@@ -396,6 +426,26 @@ namespace Casepro.Properties {
         internal static System.Drawing.Bitmap Media_Play_256 {
             get {
                 object obj = ResourceManager.GetObject("Media-Play-256", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Phone_48 {
+            get {
+                object obj = ResourceManager.GetObject("Phone-48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Principal_01_48 {
+            get {
+                object obj = ResourceManager.GetObject("Principal-01-48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -29,9 +29,11 @@ namespace Casepro
         bool bFirstPage = false; //Used to check whether we are printing first page
         bool bNewPage = false;// Used to check whether we are printing a new page
         int iHeaderHeight = 0; //Used for the header height
+        string month;
         public EventForm()
         {
             InitializeComponent();
+            month = DateTime.Now.ToString("yyyy-MM");
             LoadFiles();
         }
         private void LoadFiles()
@@ -40,15 +42,16 @@ namespace Casepro
             MySqlConnection connection = new MySqlConnection(DBConnect.conn);
             MySqlCommand command = connection.CreateCommand();
             MySqlDataReader Reader;
-            command.CommandText = "SELECT * FROM events;";
+            command.CommandText = "SELECT * FROM events WHERE date LIKE '%" + month + "%';";
             connection.Open();
             Reader = command.ExecuteReader();
             // create and execute query  
-            //t = new DataTable();
+            t = new DataTable();
             t.Columns.Add("id", typeof(string));
             t.Columns.Add(new DataColumn("Select", typeof(bool)));
             t.Columns.Add("Date", typeof(string));
             t.Columns.Add("Name", typeof(string));
+            t.Columns.Add("cost", typeof(string));
             t.Columns.Add("Start", typeof(string));
             t.Columns.Add("End", typeof(string));
             t.Columns.Add("User", typeof(string));
@@ -67,7 +70,7 @@ namespace Casepro
 
             while (Reader.Read())
             {
-                t.Rows.Add(new object[] { Reader.GetString(0),false,(Reader.IsDBNull(10) ? "none" : Reader.GetString(10)), (Reader.IsDBNull(1) ? "none" : Reader.GetString(1)), (Reader.IsDBNull(2) ? "none" : Convert.ToDateTime( Reader.GetString(2)).ToString("HH:MM")), (Reader.IsDBNull(3) ? "none" : Convert.ToDateTime(Reader.GetString(3)).ToString("HH:MM")), (Reader.IsDBNull(4) ? "none" : Reader.GetString(4)), (Reader.IsDBNull(17) ? "none" : Reader.GetString(17)), (Reader.IsDBNull(5) ? "none" : Reader.GetString(5)), (Reader.IsDBNull(16) ? "none" : Reader.GetString(16)), "Edit", "Delete" });
+                t.Rows.Add(new object[] { Reader.GetString(0),false,(Reader.IsDBNull(10) ? "none" : Reader.GetString(10)), (Reader.IsDBNull(18) ? "none" : Reader.GetString(18)), (Reader.IsDBNull(1) ? "none" : Reader.GetString(1)), (Reader.IsDBNull(2) ? "none" : Convert.ToDateTime( Reader.GetString(2)).ToString("HH:MM")), (Reader.IsDBNull(3) ? "none" : Convert.ToDateTime(Reader.GetString(3)).ToString("HH:MM")), (Reader.IsDBNull(4) ? "none" : Reader.GetString(4)), (Reader.IsDBNull(17) ? "none" : Reader.GetString(17)), (Reader.IsDBNull(5) ? "none" : Reader.GetString(5)), (Reader.IsDBNull(16) ? "none" : Reader.GetString(16)), "Edit", "Delete" });
 
                 //t.Rows.Add(new object[] {Reader.GetString(0),Reader.GetString(1),Reader.GetString(2),Reader.GetString(3),Reader.GetString(4)});
 
@@ -97,6 +100,7 @@ namespace Casepro
         {
             NewEvent frm = new NewEvent(null);
             frm.MdiParent = MainForm.ActiveForm;
+            
             frm.Show();
             this.Close();
         }
@@ -119,7 +123,7 @@ namespace Casepro
                     Console.WriteLine("ADDED ITEM " + dtGrid.Rows[e.RowIndex].Cells[0].Value.ToString());
                 }
             }
-            if (e.ColumnIndex == dtGrid.Columns[10].Index && e.RowIndex >= 0)
+            if (e.ColumnIndex == dtGrid.Columns[11].Index && e.RowIndex >= 0)
             {
                 NewEvent frm = new NewEvent(dtGrid.Rows[e.RowIndex].Cells[0].Value.ToString());
                 frm.MdiParent = MainForm.ActiveForm;
@@ -129,7 +133,7 @@ namespace Casepro
             try
             {
 
-                if (e.ColumnIndex == dtGrid.Columns[11].Index && e.RowIndex >= 0)
+                if (e.ColumnIndex == dtGrid.Columns[12].Index && e.RowIndex >= 0)
                 {
                     if (MessageBox.Show("YES or No?", "Are you sure you want to delete this event? ", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                     {
@@ -375,6 +379,12 @@ namespace Casepro
                 }
 
             }
+        }
+
+        private void monthPicker_CloseUp(object sender, EventArgs e)
+        {
+            month = Convert.ToDateTime(monthPicker.Text).ToString("yyyy-MM");
+            LoadFiles();
         }
     }
 }

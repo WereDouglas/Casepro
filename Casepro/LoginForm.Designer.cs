@@ -49,35 +49,35 @@
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.panel2.BackColor = System.Drawing.Color.LightSeaGreen;
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(676, 81);
+            this.panel2.Size = new System.Drawing.Size(532, 81);
             this.panel2.TabIndex = 10;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label3.BackColor = System.Drawing.Color.LightSeaGreen;
             this.label3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label3.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.label3.Location = new System.Drawing.Point(281, 51);
+            this.label3.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label3.Location = new System.Drawing.Point(162, 51);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(183, 29);
+            this.label3.Size = new System.Drawing.Size(216, 29);
             this.label3.TabIndex = 19;
-            this.label3.Text = "Case Professional";
+            this.label3.Text = "CASE PROFESSIONAL";
             // 
             // pictureBox1
             // 
-            this.pictureBox1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.pictureBox1.BackColor = System.Drawing.Color.LightSeaGreen;
             this.pictureBox1.BackgroundImage = global::Casepro.Properties.Resources.cp_logo;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(361, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(237, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(34, 36);
+            this.pictureBox1.Size = new System.Drawing.Size(48, 48);
             this.pictureBox1.TabIndex = 20;
             this.pictureBox1.TabStop = false;
             // 
@@ -87,9 +87,9 @@
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(403, 275);
+            this.button1.Location = new System.Drawing.Point(164, 302);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(128, 44);
+            this.button1.Size = new System.Drawing.Size(229, 29);
             this.button1.TabIndex = 11;
             this.button1.Text = "Cancel";
             this.button1.UseVisualStyleBackColor = false;
@@ -99,9 +99,10 @@
             // 
             this.lblStatus.AutoSize = true;
             this.lblStatus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblStatus.Location = new System.Drawing.Point(12, 17);
+            this.lblStatus.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStatus.Location = new System.Drawing.Point(12, 8);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(29, 15);
+            this.lblStatus.Size = new System.Drawing.Size(25, 13);
             this.lblStatus.TabIndex = 17;
             this.lblStatus.Text = "info";
             // 
@@ -110,10 +111,10 @@
             this.button2.BackColor = System.Drawing.SystemColors.Info;
             this.button2.FlatAppearance.BorderSize = 0;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(236, 364);
+            this.button2.Font = new System.Drawing.Font("Calibri", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(167, 350);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(298, 24);
+            this.button2.Size = new System.Drawing.Size(229, 26);
             this.button2.TabIndex = 18;
             this.button2.Text = "Register";
             this.button2.UseVisualStyleBackColor = false;
@@ -123,11 +124,11 @@
             // 
             this.label1.AutoSize = true;
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.label1.Location = new System.Drawing.Point(244, 114);
+            this.label1.Location = new System.Drawing.Point(162, 100);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(59, 19);
+            this.label1.Size = new System.Drawing.Size(78, 26);
             this.label1.TabIndex = 13;
             this.label1.Text = "Contact";
             // 
@@ -135,11 +136,11 @@
             // 
             this.label2.AutoSize = true;
             this.label2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label2.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.label2.Location = new System.Drawing.Point(232, 187);
+            this.label2.Location = new System.Drawing.Point(162, 173);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(71, 19);
+            this.label2.Size = new System.Drawing.Size(94, 26);
             this.label2.TabIndex = 14;
             this.label2.Text = "Password";
             // 
@@ -150,9 +151,9 @@
             this.loginBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.loginBtn.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.loginBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.loginBtn.Location = new System.Drawing.Point(233, 275);
+            this.loginBtn.Location = new System.Drawing.Point(164, 242);
             this.loginBtn.Name = "loginBtn";
-            this.loginBtn.Size = new System.Drawing.Size(112, 44);
+            this.loginBtn.Size = new System.Drawing.Size(229, 32);
             this.loginBtn.TabIndex = 12;
             this.loginBtn.Text = "Login";
             this.loginBtn.UseVisualStyleBackColor = false;
@@ -161,10 +162,10 @@
             // passwordTxt
             // 
             this.passwordTxt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.passwordTxt.Location = new System.Drawing.Point(233, 209);
+            this.passwordTxt.Location = new System.Drawing.Point(164, 202);
             this.passwordTxt.Name = "passwordTxt";
             this.passwordTxt.PasswordChar = '*';
-            this.passwordTxt.Size = new System.Drawing.Size(298, 23);
+            this.passwordTxt.Size = new System.Drawing.Size(229, 23);
             this.passwordTxt.TabIndex = 16;
             this.passwordTxt.UseSystemPasswordChar = true;
             this.passwordTxt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
@@ -172,29 +173,31 @@
             // contactTxt
             // 
             this.contactTxt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.contactTxt.Location = new System.Drawing.Point(233, 136);
+            this.contactTxt.Location = new System.Drawing.Point(164, 129);
             this.contactTxt.Name = "contactTxt";
-            this.contactTxt.Size = new System.Drawing.Size(298, 23);
+            this.contactTxt.Size = new System.Drawing.Size(229, 23);
             this.contactTxt.TabIndex = 15;
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.Color.LightSeaGreen;
             this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.lblStatus);
-            this.panel1.Location = new System.Drawing.Point(0, 417);
+            this.panel1.Location = new System.Drawing.Point(0, 382);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(676, 62);
+            this.panel1.Size = new System.Drawing.Size(532, 62);
             this.panel1.TabIndex = 19;
             // 
             // button3
             // 
+            this.button3.BackgroundImage = global::Casepro.Properties.Resources.Settings_01_48;
+            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button3.FlatAppearance.BorderSize = 0;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Image = global::Casepro.Properties.Resources.Settings_01_32;
             this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button3.Location = new System.Drawing.Point(606, 3);
+            this.button3.Location = new System.Drawing.Point(501, 33);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(43, 29);
+            this.button3.Size = new System.Drawing.Size(22, 26);
             this.button3.TabIndex = 0;
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
@@ -203,15 +206,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.BackgroundImage = global::Casepro.Properties.Resources.bg;
-            this.ClientSize = new System.Drawing.Size(676, 479);
+            this.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.ClientSize = new System.Drawing.Size(535, 447);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.loginBtn);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.passwordTxt);
             this.Controls.Add(this.contactTxt);
             this.Controls.Add(this.panel2);
@@ -222,6 +224,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
             this.Activated += new System.EventHandler(this.LoginForm_Activated);
+            this.Load += new System.EventHandler(this.LoginForm_Load);
             this.MouseLeave += new System.EventHandler(this.LoginForm_MouseLeave);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();

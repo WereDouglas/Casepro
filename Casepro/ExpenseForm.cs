@@ -24,10 +24,20 @@ namespace Casepro
         bool bFirstPage = false; //Used to check whether we are printing first page
         bool bNewPage = false;// Used to check whether we are printing a new page
         int iHeaderHeight = 0; //Used for the header height
+        string month;
+        double totalExpense = 0;
+        Dictionary<string, string> ExpenseDictionary = new Dictionary<string, string>();
         public ExpenseForm()
         {
             InitializeComponent();
+            month = DateTime.Now.ToString("yyyy-MM");
             LoadData();
+            searchCbx.Items.Add("Date");
+            searchCbx.Items.Add("Client");
+            searchCbx.Items.Add("File");
+            searchCbx.Items.Add("Method");
+            printDocument1.DefaultPageSettings.Landscape = true;
+
         }
 
         private void ExpenseForm_Leave(object sender, EventArgs e)
@@ -40,18 +50,18 @@ namespace Casepro
             MySqlConnection connection = new MySqlConnection(DBConnect.conn);
             MySqlCommand command = connection.CreateCommand();
             MySqlDataReader Reader;
-            command.CommandText = "SELECT *  FROM expenses LEFT JOIN client ON client.clientID = expenses.clientID LEFT JOIN file ON file.fileID = expenses.fileID;";
+            command.CommandText = "SELECT *  FROM expenses LEFT JOIN client ON client.clientID = expenses.clientID LEFT JOIN file ON file.fileID = expenses.fileID WHERE expenses.date LIKE '%" + month + "%';";
             connection.Open();
             Reader = command.ExecuteReader();
             // create and execute query  
-            //t = new DataTable();
+            t = new DataTable();
             t.Columns.Add("id", typeof(string));
             t.Columns.Add(new DataColumn("Select", typeof(bool)));
             t.Columns.Add("Date", typeof(string));//11
             t.Columns.Add("Client");//20
             t.Columns.Add("File");//38
             t.Columns.Add("Amount", typeof(string));//7
-            t.Columns.Add("Balance", typeof(string));//8
+            t.Columns.Add("Invoice no.", typeof(string));//8
             t.Columns.Add("Method", typeof(string));//6
             t.Columns.Add("C/O", typeof(string));//36
             t.Columns.Add("Details", typeof(string));//15
@@ -64,34 +74,38 @@ namespace Casepro
             t.Columns.Add("View");  //0 
             t.Columns.Add("Delete");  //0 
 
-
-            searchCbx.Items.Add("Date");
-            searchCbx.Items.Add("Client");
-            searchCbx.Items.Add("File");
-            searchCbx.Items.Add("Method");
+            ExpenseDictionary.Clear();
 
             while (Reader.Read())
             {
-                
-                for (int h = 0; h <= 53; h++)
-                {
-                    try
-                    {
-                        System.Diagnostics.Debug.WriteLine(h + "-" + (Reader.IsDBNull(h) ? "" : Reader.GetString(h)));
-                    }
-                    catch { }
-                    }
-                t.Rows.Add(new object[] { Reader.GetString(0), false, (Reader.IsDBNull(11) ? "none" : Reader.GetString(11)), (Reader.IsDBNull(20) ? "none" : Reader.GetString(20)), (Reader.IsDBNull(38) ? "none" : Reader.GetString(38)), (Reader.IsDBNull(7) ? "none" : Reader.GetString(7)), (Reader.IsDBNull(8) ? "none" : Reader.GetString(8)), (Reader.IsDBNull(6) ? "none" : Reader.GetString(6)), (Reader.IsDBNull(36) ? "none" : Reader.GetString(36)), (Reader.IsDBNull(15) ? "none" : Reader.GetString(15)), (Reader.IsDBNull(10) ? "none" : Reader.GetString(10)), (Reader.IsDBNull(12) ? "none" : Reader.GetString(12)), (Reader.IsDBNull(13) ? "none" : Reader.GetString(13)), (Reader.IsDBNull(14) ? "none" : Reader.GetString(14)), (Reader.IsDBNull(15) ? "none" : Reader.GetString(15)), (Reader.IsDBNull(44) ? "none" : Reader.GetString(44)), "Edit", "Delete" });
 
-                //t.Rows.Add(new object[] {Reader.GetString(0),Reader.GetString(1),Reader.GetString(2),Reader.GetString(3),Reader.GetString(4)});
+                //for (int h = 0; h <= 53; h++)
+                //{
+                //    try
+                //    {
+                //        System.Diagnostics.Debug.WriteLine(h + "-" + (Reader.IsDBNull(h) ? "" : Reader.GetString(h)));
+                //    }
+                //    catch { }
+                //}
+                t.Rows.Add(new object[] { Reader.GetString(0), false, (Reader.IsDBNull(11) ? "none" : Reader.GetString(11)), (Reader.IsDBNull(20) ? "none" : Reader.GetString(20)), (Reader.IsDBNull(38) ? "none" : Reader.GetString(38)), Convert.ToDouble((Reader.IsDBNull(7) ? "0" : Reader.GetString(7))).ToString("n0"), (Reader.IsDBNull(8) ? "0" : Reader.GetString(8)), (Reader.IsDBNull(6) ? "none" : Reader.GetString(6)), (Reader.IsDBNull(36) ? "none" : Reader.GetString(36)), (Reader.IsDBNull(15) ? "none" : Reader.GetString(15)), (Reader.IsDBNull(10) ? "none" : Reader.GetString(10)), (Reader.IsDBNull(12) ? "none" : Reader.GetString(12)), (Reader.IsDBNull(13) ? "none" : Reader.GetString(13)), (Reader.IsDBNull(14) ? "none" : Reader.GetString(14)), (Reader.IsDBNull(15) ? "none" : Reader.GetString(15)), (Reader.IsDBNull(44) ? "none" : Reader.GetString(44)), "Edit", "Delete" });
 
+                ExpenseDictionary.Add((Reader.IsDBNull(0) ? "none" : Reader.GetString(0)), (Reader.IsDBNull(7) ? "none" : Reader.GetString(7)));
+
+            }
+            try
+            {
+                totalExpense = ExpenseDictionary.Sum(m => Convert.ToDouble(m.Value));
+                t.Rows.Add(new object[] { " ", false, "", "", "", "", " ", "", "", "", "", "", "", "", "", "", "", "" });
+                t.Rows.Add(new object[] { " ", false, "", "TOTAL EXPENSES:", "", (totalExpense).ToString("n0"), " ", "", "", "", "", "", "", "", "", "", "", "" });
+            }
+            catch
+            {
             }
             dtGrid.DataSource = t;
 
-
             this.dtGrid.Columns[0].Visible = false;
-            this.dtGrid.Columns[3].DefaultCellStyle.BackColor = Color.Green;
-            this.dtGrid.Columns[4].DefaultCellStyle.BackColor = Color.Red;
+            this.dtGrid.Columns[16].DefaultCellStyle.BackColor = Color.Green;
+            this.dtGrid.Columns[17].DefaultCellStyle.BackColor = Color.Red;
             // this.dtGrid.Columns[1].Visible = false;
 
 
@@ -341,7 +355,7 @@ namespace Casepro
                 {
                     string Query = "DELETE from expenses WHERE expenseID ='" + item + "'";
                     Helper.Execute(Query, DBConnect.conn);
-                    
+
                 }
             }
         }
@@ -367,6 +381,12 @@ namespace Casepro
         private void searchCbx_SelectedIndexChanged(object sender, EventArgs e)
         {
             filterField = searchCbx.Text;
+        }
+
+        private void monthPicker_CloseUp(object sender, EventArgs e)
+        {
+            month = Convert.ToDateTime(monthPicker.Text).ToString("yyyy-MM");
+            LoadData();
         }
     }
 }

@@ -3,8 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Management;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -23,13 +26,13 @@ namespace Casepro
             LoadSettings();
             SendMail();
             autocomplete();
-
            
+
         }
         string IP;
         private void SendMail()
         {
-            
+
             if (Helper.IsInternetAvailable())
             {
                 try
@@ -44,7 +47,8 @@ namespace Casepro
 
                 }
             }
-            else {
+            else
+            {
 
                 lblStatus.Text = lblStatus.Text + " No internet connection \n";
             }
@@ -219,7 +223,14 @@ namespace Casepro
                 return;
             }
             command.CommandText = "SELECT * FROM users WHERE contact = '" + contactTxt.Text + "' AND password = '" + Helper.MD5Hash(passwordTxt.Text) + "'";
-            connection.Open();
+            try
+            {
+                connection.Open();
+            }
+            catch {
+
+                MessageBox.Show("Error connecting to server !");
+            }
             Reader = command.ExecuteReader();
 
             while (Reader.Read())
@@ -312,5 +323,21 @@ namespace Casepro
             frm.Show();
             this.Hide();
         }
+
+        private void LoginForm_Load(object sender, EventArgs e)
+        {
+            // string path = "\\\\"+Helper.serverIP+"\\ShareName\\targetnewfolder";
+            // System.IO.Directory.CreateDirectory(path);
+            //System.IO.Directory.GetDirectories(path);
+
+
+
+        }
+        private void jobsDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
+        }
+   
+
     }
 }

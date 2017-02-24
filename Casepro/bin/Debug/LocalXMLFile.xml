@@ -5,7 +5,7 @@
     <Ip>192.168.1.196</Ip>
     <Port>3306</Port>
     <db>cases</db>
-    <username>daga</username>
+    <username>cases</username>
     <password>cases</password>
   </Server>
 </Servers>

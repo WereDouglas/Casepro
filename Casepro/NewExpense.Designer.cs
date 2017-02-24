@@ -32,6 +32,8 @@
             this.Submit = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.approveCbx = new System.Windows.Forms.ComboBox();
+            this.label15 = new System.Windows.Forms.Label();
             this.outcomeTxt = new System.Windows.Forms.TextBox();
             this.reasonTxt = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
@@ -66,8 +68,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.logoBx = new System.Windows.Forms.PictureBox();
-            this.approveCbx = new System.Windows.Forms.ComboBox();
-            this.label15 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoBx)).BeginInit();
@@ -108,8 +108,6 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.approveCbx);
-            this.panel1.Controls.Add(this.label15);
             this.panel1.Controls.Add(this.outcomeTxt);
             this.panel1.Controls.Add(this.reasonTxt);
             this.panel1.Controls.Add(this.label16);
@@ -118,8 +116,6 @@
             this.panel1.Controls.Add(this.deadlineDate);
             this.panel1.Controls.Add(this.detailsTxt);
             this.panel1.Controls.Add(this.label13);
-            this.panel1.Controls.Add(this.label8);
-            this.panel1.Controls.Add(this.paidCbx);
             this.panel1.Controls.Add(this.fileCbx);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.balanceTxt);
@@ -146,23 +142,48 @@
             this.panel1.Controls.Add(this.logoBx);
             this.panel1.Location = new System.Drawing.Point(31, 35);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(509, 556);
+            this.panel1.Size = new System.Drawing.Size(509, 505);
             this.panel1.TabIndex = 19;
+            // 
+            // approveCbx
+            // 
+            this.approveCbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.approveCbx.FormattingEnabled = true;
+            this.approveCbx.Items.AddRange(new object[] {
+            "true",
+            "false"});
+            this.approveCbx.Location = new System.Drawing.Point(146, 546);
+            this.approveCbx.Name = "approveCbx";
+            this.approveCbx.Size = new System.Drawing.Size(99, 21);
+            this.approveCbx.TabIndex = 225;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(82, 554);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(53, 13);
+            this.label15.TabIndex = 224;
+            this.label15.Text = "Approved";
             // 
             // outcomeTxt
             // 
+            this.outcomeTxt.BackColor = System.Drawing.Color.Cornsilk;
+            this.outcomeTxt.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.outcomeTxt.Location = new System.Drawing.Point(114, 323);
             this.outcomeTxt.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.outcomeTxt.Name = "outcomeTxt";
-            this.outcomeTxt.Size = new System.Drawing.Size(303, 20);
+            this.outcomeTxt.Size = new System.Drawing.Size(303, 13);
             this.outcomeTxt.TabIndex = 223;
             // 
             // reasonTxt
             // 
+            this.reasonTxt.BackColor = System.Drawing.Color.Cornsilk;
+            this.reasonTxt.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.reasonTxt.Location = new System.Drawing.Point(114, 297);
             this.reasonTxt.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.reasonTxt.Name = "reasonTxt";
-            this.reasonTxt.Size = new System.Drawing.Size(303, 20);
+            this.reasonTxt.Size = new System.Drawing.Size(303, 13);
             this.reasonTxt.TabIndex = 222;
             // 
             // label16
@@ -201,10 +222,12 @@
             // 
             // detailsTxt
             // 
+            this.detailsTxt.BackColor = System.Drawing.Color.Cornsilk;
+            this.detailsTxt.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.detailsTxt.Location = new System.Drawing.Point(114, 403);
             this.detailsTxt.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.detailsTxt.Name = "detailsTxt";
-            this.detailsTxt.Size = new System.Drawing.Size(303, 20);
+            this.detailsTxt.Size = new System.Drawing.Size(303, 13);
             this.detailsTxt.TabIndex = 217;
             // 
             // label13
@@ -219,7 +242,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(72, 504);
+            this.label8.Location = new System.Drawing.Point(104, 581);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(31, 13);
             this.label8.TabIndex = 215;
@@ -227,17 +250,20 @@
             // 
             // paidCbx
             // 
+            this.paidCbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.paidCbx.FormattingEnabled = true;
             this.paidCbx.Items.AddRange(new object[] {
             "true",
             "false"});
-            this.paidCbx.Location = new System.Drawing.Point(114, 504);
+            this.paidCbx.Location = new System.Drawing.Point(144, 573);
             this.paidCbx.Name = "paidCbx";
-            this.paidCbx.Size = new System.Drawing.Size(182, 21);
+            this.paidCbx.Size = new System.Drawing.Size(101, 21);
             this.paidCbx.TabIndex = 214;
             // 
             // fileCbx
             // 
+            this.fileCbx.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.fileCbx.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.fileCbx.FormattingEnabled = true;
             this.fileCbx.Location = new System.Drawing.Point(114, 167);
             this.fileCbx.Name = "fileCbx";
@@ -256,10 +282,12 @@
             // 
             // balanceTxt
             // 
+            this.balanceTxt.BackColor = System.Drawing.Color.Cornsilk;
+            this.balanceTxt.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.balanceTxt.Location = new System.Drawing.Point(114, 347);
             this.balanceTxt.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.balanceTxt.Name = "balanceTxt";
-            this.balanceTxt.Size = new System.Drawing.Size(303, 20);
+            this.balanceTxt.Size = new System.Drawing.Size(303, 13);
             this.balanceTxt.TabIndex = 211;
             // 
             // label1
@@ -273,6 +301,8 @@
             // 
             // lawyerCbx
             // 
+            this.lawyerCbx.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.lawyerCbx.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lawyerCbx.FormattingEnabled = true;
             this.lawyerCbx.Location = new System.Drawing.Point(114, 373);
             this.lawyerCbx.Name = "lawyerCbx";
@@ -291,6 +321,8 @@
             // 
             // clientCbx
             // 
+            this.clientCbx.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.clientCbx.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.clientCbx.FormattingEnabled = true;
             this.clientCbx.Location = new System.Drawing.Point(114, 139);
             this.clientCbx.Name = "clientCbx";
@@ -326,10 +358,12 @@
             // 
             // vatTxt
             // 
+            this.vatTxt.BackColor = System.Drawing.SystemColors.Control;
+            this.vatTxt.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.vatTxt.Location = new System.Drawing.Point(114, 471);
             this.vatTxt.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.vatTxt.Name = "vatTxt";
-            this.vatTxt.Size = new System.Drawing.Size(182, 20);
+            this.vatTxt.Size = new System.Drawing.Size(182, 13);
             this.vatTxt.TabIndex = 197;
             // 
             // label10
@@ -360,6 +394,8 @@
             // 
             // methodCbx
             // 
+            this.methodCbx.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.methodCbx.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.methodCbx.FormattingEnabled = true;
             this.methodCbx.Items.AddRange(new object[] {
             "Cash",
@@ -372,10 +408,12 @@
             // 
             // amountTxt
             // 
+            this.amountTxt.BackColor = System.Drawing.Color.Cornsilk;
+            this.amountTxt.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.amountTxt.Location = new System.Drawing.Point(114, 196);
             this.amountTxt.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.amountTxt.Name = "amountTxt";
-            this.amountTxt.Size = new System.Drawing.Size(306, 20);
+            this.amountTxt.Size = new System.Drawing.Size(306, 13);
             this.amountTxt.TabIndex = 162;
             this.amountTxt.TextChanged += new System.EventHandler(this.amountTxt_TextChanged);
             // 
@@ -455,26 +493,6 @@
             this.logoBx.TabIndex = 0;
             this.logoBx.TabStop = false;
             // 
-            // approveCbx
-            // 
-            this.approveCbx.FormattingEnabled = true;
-            this.approveCbx.Items.AddRange(new object[] {
-            "true",
-            "false"});
-            this.approveCbx.Location = new System.Drawing.Point(114, 531);
-            this.approveCbx.Name = "approveCbx";
-            this.approveCbx.Size = new System.Drawing.Size(182, 21);
-            this.approveCbx.TabIndex = 225;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(50, 534);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(53, 13);
-            this.label15.TabIndex = 224;
-            this.label15.Text = "Approved";
-            // 
             // button3
             // 
             this.button3.Location = new System.Drawing.Point(276, 597);
@@ -491,11 +509,15 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(563, 625);
+            this.Controls.Add(this.approveCbx);
             this.Controls.Add(this.button3);
+            this.Controls.Add(this.label15);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.print);
             this.Controls.Add(this.Submit);
+            this.Controls.Add(this.paidCbx);
+            this.Controls.Add(this.label8);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "NewExpense";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -504,6 +526,7 @@
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoBx)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 

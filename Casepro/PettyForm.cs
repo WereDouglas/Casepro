@@ -24,10 +24,21 @@ namespace Casepro
         bool bFirstPage = false; //Used to check whether we are printing first page
         bool bNewPage = false;// Used to check whether we are printing a new page
         int iHeaderHeight = 0; //Used for the header height
+        string month;
+        double totalExpense = 0;
+        Dictionary<string, string> ExpenseDictionary = new Dictionary<string, string>();
         public PettyForm()
         {
             InitializeComponent();
+            month = DateTime.Now.ToString("yyyy-MM");
             LoadData();
+
+            searchCbx.Items.Add("Date");
+            searchCbx.Items.Add("Item");
+            searchCbx.Items.Add("Details");
+            searchCbx.Items.Add("Method");
+            searchCbx.Items.Add("Paid");
+            searchCbx.Items.Add("Approved");
         }
 
         private void ExpenseForm_Leave(object sender, EventArgs e)
@@ -36,15 +47,16 @@ namespace Casepro
         }
         private void LoadData()
         {
+            ExpenseDictionary.Clear();
 
             MySqlConnection connection = new MySqlConnection(DBConnect.conn);
             MySqlCommand command = connection.CreateCommand();
             MySqlDataReader Reader;
-            command.CommandText = "SELECT * FROM petty";
+            command.CommandText = "SELECT * FROM petty WHERE date LIKE '%" + month + "%';";
             connection.Open();
             Reader = command.ExecuteReader();
             // create and execute query  
-            //t = new DataTable();
+            t = new DataTable();
             t.Columns.Add("id", typeof(string));//0
             t.Columns.Add(new DataColumn("Select", typeof(bool)));
             t.Columns.Add("Date", typeof(string));//5
@@ -60,35 +72,27 @@ namespace Casepro
             t.Columns.Add("View");  //12
             t.Columns.Add("Delete");  //13 
             t.Columns.Add("Approve");  //14
-            t.Columns.Add("Pay");  //15
-
-
-            searchCbx.Items.Add("Date");
-            searchCbx.Items.Add("Item");
-            searchCbx.Items.Add("Details");
-            searchCbx.Items.Add("Method");
-            searchCbx.Items.Add("Paid");
-            searchCbx.Items.Add("Approved");
+            t.Columns.Add("Pay");  //15            
 
             while (Reader.Read())
             {
-
-               
-                t.Rows.Add(new object[] { Reader.GetString(0), false, (Reader.IsDBNull(5) ? "none" : Reader.GetString(5)), (Reader.IsDBNull(1) ? "none" : Reader.GetString(1)), (Reader.IsDBNull(2) ? "none" : Reader.GetString(2)), (Reader.IsDBNull(3) ? "none" : Reader.GetString(3)), (Reader.IsDBNull(4) ? "none" : Reader.GetString(4)), (Reader.IsDBNull(10) ? "none" : Reader.GetString(10)), (Reader.IsDBNull(8) ? "none" : Reader.GetString(8)), (Reader.IsDBNull(9) ? "none" : Reader.GetString(9)), (Reader.IsDBNull(6) ? "none" : Reader.GetString(6)), (Reader.IsDBNull(11) ? "none" : Reader.GetString(11)), "Edit", "Delete","Approve","Pay" });
+                t.Rows.Add(new object[] { Reader.GetString(0), false, (Reader.IsDBNull(5) ? "none" : Reader.GetString(5)), (Reader.IsDBNull(1) ? "none" : Reader.GetString(1)), Convert.ToDouble((Reader.IsDBNull(2) ? "none" : Reader.GetString(2))).ToString("n0"), (Reader.IsDBNull(3) ? "none" : Reader.GetString(3)), Convert.ToDouble((Reader.IsDBNull(4) ? "none" : Reader.GetString(4))).ToString("n0"), (Reader.IsDBNull(10) ? "none" : Reader.GetString(10)), (Reader.IsDBNull(8) ? "none" : Reader.GetString(8)), (Reader.IsDBNull(9) ? "none" : Reader.GetString(9)), (Reader.IsDBNull(6) ? "none" : Reader.GetString(6)), (Reader.IsDBNull(11) ? "none" : Reader.GetString(11)), "Edit", "Delete", "Approve", "Pay" });
+                ExpenseDictionary.Add((Reader.IsDBNull(0) ? "none" : Reader.GetString(0)), (Reader.IsDBNull(4) ? "none" : Reader.GetString(4)));
 
                 //t.Rows.Add(new object[] {Reader.GetString(0),Reader.GetString(1),Reader.GetString(2),Reader.GetString(3),Reader.GetString(4)});
-
             }
+          
+                totalExpense = ExpenseDictionary.Sum(m => Convert.ToDouble(m.Value));
+                t.Rows.Add(new object[] { " ", false, "", "", "", "", " ", "", "", "", "", "", "", "", "", "" });
+                t.Rows.Add(new object[] { " ", false, month, "TOTAL ", "EXPENSES:", (totalExpense).ToString("n0"), "", "", "", "", "", "", "", "", "", ""});
+            
             dtGrid.DataSource = t;
 
-
-            this.dtGrid.Columns[0].Visible = false;
-            this.dtGrid.Columns[12].DefaultCellStyle.BackColor = Color.Green;
-            this.dtGrid.Columns[13].DefaultCellStyle.BackColor = Color.Red;
-            this.dtGrid.Columns[14].DefaultCellStyle.BackColor = Color.Beige;
+            dtGrid.Columns[0].Visible = false;
+            dtGrid.Columns[12].DefaultCellStyle.BackColor = Color.Green;
+            dtGrid.Columns[13].DefaultCellStyle.BackColor = Color.Red;
+            dtGrid.Columns[14].DefaultCellStyle.BackColor = Color.Beige;
             // this.dtGrid.Columns[1].Visible = false;
-
-
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
@@ -322,27 +326,28 @@ namespace Casepro
                     }
                     Console.WriteLine("DELETE on row {0} clicked", e.RowIndex + dtGrid.Rows[e.RowIndex].Cells[0].Value.ToString() + dtGrid.Rows[e.RowIndex].Cells[2].Value.ToString());
                 }
+                if (e.ColumnIndex == dtGrid.Columns[14].Index && e.RowIndex >= 0)
+                {
+
+                    if (MessageBox.Show("YES or NO?", "Are you sure you want to delete this approve this petty expense? ", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                    {
+                        string Query = "UPDATE petty SET approve ='true' WHERE id ='" + dtGrid.Rows[e.RowIndex].Cells[0].Value.ToString() + "'";
+                        Helper.Execute(Query, DBConnect.conn);
+                        MessageBox.Show("Information deleted");
+                    }
+                }
+                if (e.ColumnIndex == dtGrid.Columns[15].Index && e.RowIndex >= 0)
+                {
+                    if (MessageBox.Show("YES or NO?", "Update information? ", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                    {
+                        string Query = "UPDATE petty SET paid ='true' WHERE id ='" + dtGrid.Rows[e.RowIndex].Cells[0].Value.ToString() + "'";
+                        Helper.Execute(Query, DBConnect.conn);
+                        MessageBox.Show("Information deleted");
+                    }
+                }
             }
             catch { }
-            if (e.ColumnIndex == dtGrid.Columns[14].Index && e.RowIndex >= 0)
-            {
 
-                if (MessageBox.Show("YES or NO?", "Are you sure you want to delete this approve this petty expense? ", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
-                {
-                    string Query = "UPDATE petty SET approve ='true' WHERE id ='" + dtGrid.Rows[e.RowIndex].Cells[0].Value.ToString() + "'";
-                    Helper.Execute(Query, DBConnect.conn);
-                    MessageBox.Show("Information deleted");
-                }
-            }
-            if (e.ColumnIndex == dtGrid.Columns[15].Index && e.RowIndex >= 0)
-            {
-                if (MessageBox.Show("YES or NO?", "Update information? ", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
-                {
-                    string Query = "UPDATE petty SET paid ='true' WHERE id ='" + dtGrid.Rows[e.RowIndex].Cells[0].Value.ToString() + "'";
-                    Helper.Execute(Query, DBConnect.conn);
-                    MessageBox.Show("Information deleted");
-                }
-            }
         }
 
         private void toolStripButton4_Click(object sender, EventArgs e)
@@ -383,6 +388,12 @@ namespace Casepro
         private void PettyForm_Leave(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void monthPicker_CloseUp(object sender, EventArgs e)
+        {
+            month = Convert.ToDateTime(monthPicker.Text).ToString("yyyy-MM");
+            LoadData();
         }
     }
 }

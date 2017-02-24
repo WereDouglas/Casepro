@@ -35,6 +35,7 @@
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.dtGrid = new System.Windows.Forms.DataGridView();
+            this.myTreeView = new System.Windows.Forms.TreeView();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtGrid)).BeginInit();
             this.SuspendLayout();
@@ -97,16 +98,26 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dtGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtGrid.Location = new System.Drawing.Point(0, 25);
+            this.dtGrid.Location = new System.Drawing.Point(12, 428);
             this.dtGrid.Name = "dtGrid";
-            this.dtGrid.Size = new System.Drawing.Size(1041, 410);
+            this.dtGrid.Size = new System.Drawing.Size(1017, 56);
             this.dtGrid.TabIndex = 8;
+            // 
+            // myTreeView
+            // 
+            this.myTreeView.Location = new System.Drawing.Point(12, 28);
+            this.myTreeView.Name = "myTreeView";
+            this.myTreeView.Size = new System.Drawing.Size(1017, 397);
+            this.myTreeView.TabIndex = 9;
+            this.myTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.myTreeView_AfterSelect);
+            this.myTreeView.Click += new System.EventHandler(this.myTreeView_Click);
             // 
             // DocumentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1041, 451);
+            this.ClientSize = new System.Drawing.Size(1041, 496);
+            this.Controls.Add(this.myTreeView);
             this.Controls.Add(this.dtGrid);
             this.Controls.Add(this.toolStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -130,5 +141,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.DataGridView dtGrid;
+        private System.Windows.Forms.TreeView myTreeView;
     }
 }

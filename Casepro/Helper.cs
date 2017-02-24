@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text;
@@ -147,6 +148,20 @@ namespace Casepro
         {
             int description;
             return InternetGetConnectedState(out description, 0);
+            //try
+            //{
+            //    using (var client = new WebClient())
+            //    {
+            //        using (var stream = client.OpenRead("http://www.google.com"))
+            //        {
+            //            return true;
+            //        }
+            //    }
+            //}
+            //catch
+            //{
+            //    return false;
+            //}
         }
     }
 

@@ -23,6 +23,7 @@ namespace Casepro
         private File _file = new File();
         private List<File> _fileList = new List<File>();
         private string id;
+        Dictionary<string, string> eventDictionary = new Dictionary<string, string>();
         public NewEvent(string fileID)
         {
             id = fileID;
@@ -42,6 +43,47 @@ namespace Casepro
             }
             startMinTxt.Text = "00";
             endMinTxt.Text = "00";
+            autocomplete();
+        }
+        private void autocomplete()
+        {
+
+            AutoCompleteStringCollection AutoItem = new AutoCompleteStringCollection();
+
+            DataTable dt = new DataTable();
+
+            MySqlConnection connection = new MySqlConnection(DBConnect.conn);
+            MySqlCommand command = connection.CreateCommand();
+            MySqlDataReader Reader;
+            eventDictionary.Clear();
+           command.CommandText = "SELECT name,cost FROM events GROUP BY name order by cost ASC";
+            try
+            {
+                connection.Open();
+            }
+            catch (Exception c)
+            {
+                MessageBox.Show("Please start the server " + " Details :\n" + c.Message);
+                return;
+
+            }
+            Reader = command.ExecuteReader();
+
+            while (Reader.Read())
+            {
+
+                AutoItem.Add((Reader.IsDBNull(0) ? "" : Reader.GetString(0)));
+                try
+                {
+                    eventDictionary.Add((Reader.IsDBNull(0) ? "" : Reader.GetString(0)), (Reader.IsDBNull(1) ? "0" : Reader.GetString(1)));
+                }
+                catch { }
+            }
+            detailsTxt.AutoCompleteMode = AutoCompleteMode.Suggest;
+            detailsTxt.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            detailsTxt.AutoCompleteCustomSource = AutoItem;
+
+
         }
         public void LoadUsers()
         {
@@ -196,16 +238,16 @@ namespace Casepro
             {
                 notify = "true";
             }
-            string Query = "INSERT INTO `events`(`id`, `name`, `start`, `end`, `user`, `file`, `created`, `action`, `status`, `orgID`, `date`, `hours`, `court`, `notify`,`priority`, `sync`,`progress`,`client`) VALUES ('" + ID + "','" + this.detailsTxt.Text + "','" + start + "','" + end + "','" + lawyerCbx.Text + "','" + fileCbx.Text + "','" + DateTime.Now.Date.ToString("yyyy-MM-dd") + "','create','" + progressTxt.Text + "','" + Helper.orgID + "','" + Convert.ToDateTime(this.openedDate.Text).ToString("yyyy-MM-dd") + "','1','" + court + "','" + notify + "','" + priorityCbx.Text + "','f','" + progressTxt.Text + "','" + clientCbx.Text + "');";
+            string Query = "INSERT INTO `events`(`id`, `name`, `start`, `end`, `user`, `file`, `created`, `action`, `status`, `orgID`, `date`, `hours`, `court`, `notify`,`priority`, `sync`,`progress`,`client`,`cost`) VALUES ('" + ID + "','" + this.detailsTxt.Text + "','" + start + "','" + end + "','" + lawyerCbx.Text + "','" + fileCbx.Text + "','" + DateTime.Now.Date.ToString("yyyy-MM-dd") + "','create','" + progressTxt.Text + "','" + Helper.orgID + "','" + Convert.ToDateTime(this.openedDate.Text).ToString("yyyy-MM-dd") + "','1','" + court + "','" + notify + "','" + priorityCbx.Text + "','f','" + progressTxt.Text + "','" + clientCbx.Text + "','"+cost+"');";
             Helper.Execute(Query, DBConnect.conn);
             MessageBox.Show("Information saved");
             // var request = (HttpWebRequest)WebRequest.Create(Helper.msgUrl);
             //request.GetResponse();    
 
-           HomeForm frm = new HomeForm();
-            frm.MdiParent = MainForm.ActiveForm;
-            frm.Dock = DockStyle.Fill;
-            frm.Show();
+           //StartForm frm = new StartForm();
+           // frm.MdiParent = MainForm.ActiveForm;
+           // frm.Dock = DockStyle.Fill;
+           // frm.Show();
             this.Close();            
         }
 
@@ -250,6 +292,18 @@ namespace Casepro
             Helper.Execute(Query, DBConnect.conn);
            
             this.Close();
+        }
+        double cost=0;
+        private void detailsTxt_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                //costTxt.Text = eventDictionary[detailsTxt.Text];
+                cost = Convert.ToDouble(eventDictionary[detailsTxt.Text]);
+                costTxt.Text = cost.ToString("n0");
+
+            }
+            catch { }
         }
     }
 }

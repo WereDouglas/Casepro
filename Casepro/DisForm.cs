@@ -24,18 +24,27 @@ namespace Casepro
         bool bFirstPage = false; //Used to check whether we are printing first page
         bool bNewPage = false;// Used to check whether we are printing a new page
         int iHeaderHeight = 0; //Used for the header height
+        string month;
+        double totalExpense = 0;
+        Dictionary<string, string> ExpenseDictionary = new Dictionary<string, string>();
         public DisForm()
         {
             InitializeComponent();
+            month = DateTime.Now.ToString("yyyy-MM");
             LoadData();
+
+            searchCbx.Items.Add("Date");
+            searchCbx.Items.Add("Client");
+            searchCbx.Items.Add("File");
+            searchCbx.Items.Add("Method");
         }
         private void LoadData()
         {
-
+            ExpenseDictionary.Clear();
             MySqlConnection connection = new MySqlConnection(DBConnect.conn);
             MySqlCommand command = connection.CreateCommand();
             MySqlDataReader Reader;
-            command.CommandText = "SELECT *,file.name As file,client.name As client FROM disbursements LEFT JOIN client ON client.clientID = disbursements.clientID LEFT JOIN file ON file.fileID = disbursements.fileID;";
+            command.CommandText = "SELECT *,file.name As file,client.name As client FROM disbursements LEFT JOIN client ON client.clientID = disbursements.clientID LEFT JOIN file ON file.fileID = disbursements.fileID WHERE disbursements.date LIKE '%" + month + "%';";
             connection.Open();
             Reader = command.ExecuteReader();
             // create and execute query  
@@ -57,10 +66,6 @@ namespace Casepro
             t.Columns.Add("View");  //0 
             t.Columns.Add("Delete");  //0 
 
-            searchCbx.Items.Add("Date");
-            searchCbx.Items.Add("Client");
-            searchCbx.Items.Add("File");
-            searchCbx.Items.Add("Method");
 
 
             while (Reader.Read())
@@ -69,17 +74,25 @@ namespace Casepro
                 {
                  //   System.Diagnostics.Debug.WriteLine(h + "-" + (Reader.IsDBNull(h) ? "" : Reader.GetString(h)));
                 }
-                t.Rows.Add(new object[] { Reader.GetString(0), false, (Reader.IsDBNull(14) ? "none" : Reader.GetString(14)), (Reader.IsDBNull(7) ? "none" : Reader.GetString(7)), (Reader.IsDBNull(52) ? "none" : Reader.GetString(52)), (Reader.IsDBNull(40) ? "none" : Reader.GetString(40)), (Reader.IsDBNull(9) ? "none" : Reader.GetString(9)), (Reader.IsDBNull(11) ? "none" : Reader.GetString(11)), (Reader.IsDBNull(8) ? "none" : Reader.GetString(8)), (Reader.IsDBNull(10) ? "none" : Reader.GetString(10)), (Reader.IsDBNull(35) ? "none" : Reader.GetString(35)), (Reader.IsDBNull(12) ? "none" : Reader.GetString(12)), (Reader.IsDBNull(13) ? "none" : Reader.GetString(13)), (Reader.IsDBNull(25) ? "none" : Reader.GetString(25)), "View", "Delete" });
+                t.Rows.Add(new object[] { Reader.GetString(0), false, (Reader.IsDBNull(14) ? "none" : Reader.GetString(14)), (Reader.IsDBNull(7) ? "none" : Reader.GetString(7)), (Reader.IsDBNull(52) ? "none" : Reader.GetString(52)), (Reader.IsDBNull(40) ? "none" : Reader.GetString(40)),Convert.ToDouble (Reader.IsDBNull(9) ? "none" : Reader.GetString(9)).ToString("n0"),Convert.ToDouble (Reader.IsDBNull(11) ? "none" : Reader.GetString(11)).ToString("n0"), (Reader.IsDBNull(8) ? "none" : Reader.GetString(8)), (Reader.IsDBNull(10) ? "none" : Reader.GetString(10)), (Reader.IsDBNull(35) ? "none" : Reader.GetString(35)), (Reader.IsDBNull(12) ? "none" : Reader.GetString(12)), (Reader.IsDBNull(13) ? "none" : Reader.GetString(13)), (Reader.IsDBNull(25) ? "none" : Reader.GetString(25)), "View", "Delete" });
 
                 //t.Rows.Add(new object[] {Reader.GetString(0),Reader.GetString(1),Reader.GetString(2),Reader.GetString(3),Reader.GetString(4)});
+                ExpenseDictionary.Add((Reader.IsDBNull(0) ? "none" : Reader.GetString(0)), (Reader.IsDBNull(9) ? "none" : Reader.GetString(9)));
 
             }
+            try
+            {
+                totalExpense = ExpenseDictionary.Sum(m => Convert.ToDouble(m.Value));
+                t.Rows.Add(new object[] { " ", false, "", "", "", "", " ", "", "", "", "", "", "", "", "", "" });
+                t.Rows.Add(new object[] { " ", false, "", "TOTAL DISBURSEMENTS :", "", (totalExpense).ToString("n0"), "", "", "", "", "", "", "", "", "", "" });
+            }
+            catch
+            {
+            }
             dtGrid.DataSource = t;
-
-
-            this.dtGrid.Columns[0].Visible = false;
-            this.dtGrid.Columns[14].DefaultCellStyle.BackColor = Color.Green;
-            this.dtGrid.Columns[15].DefaultCellStyle.BackColor = Color.Red;
+            dtGrid.Columns[0].Visible = false;
+            dtGrid.Columns[14].DefaultCellStyle.BackColor = Color.Green;
+            dtGrid.Columns[15].DefaultCellStyle.BackColor = Color.Red;
             // this.dtGrid.Columns[1].Visible = false;
 
 
@@ -342,6 +355,12 @@ namespace Casepro
 
             }
 
+        }
+
+        private void monthPicker_CloseUp(object sender, EventArgs e)
+        {
+            month = Convert.ToDateTime(monthPicker.Text).ToString("yyyy-MM");
+            LoadData();
         }
     }
 }

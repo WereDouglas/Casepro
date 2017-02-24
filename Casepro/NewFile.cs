@@ -197,10 +197,6 @@ namespace Casepro
                 t.Rows.Add(new object[] { (Reader3.IsDBNull(10) ? "none" : Reader3.GetString(10)), (Reader3.IsDBNull(1) ? "none" : Reader3.GetString(1)), (Reader3.IsDBNull(2) ? "none" : Reader3.GetString(2)), (Reader3.IsDBNull(3) ? "none" : Reader3.GetString(3)), (Reader3.IsDBNull(16) ? "none" : Reader3.GetString(16)), (Reader3.IsDBNull(8) ? "none" : Reader3.GetString(8)) });
             }
             connection3.Close();
-
-
-
-
             dtGrid.DataSource = t;
             dtGrid.Rows[1].DefaultCellStyle.BackColor = Color.Beige;
           
@@ -218,8 +214,6 @@ namespace Casepro
             command.CommandText = "SELECT userID, orgID, name, email, password, designation, status, contact, image, address, category, created,sync, charge, supervisor FROM users";
             connection.Open();
             Reader = command.ExecuteReader();
-
-
             while (Reader.Read())
             {
                 User _user = new User();

@@ -25,35 +25,51 @@ namespace Casepro
             // MessageBox.Show(Helper.serverIP);
             if (TestServerConnection())
             {
-                lblStatus.Text = ("You are connected  to the server ");
+                lblStatus.Text = lblStatus.Text + (" You are connected to the local server ");
                 lblStatus.ForeColor = Color.Green;
-                HomeForm frms = new HomeForm();
+                StartForm frms = new StartForm();
                 frms.MdiParent = this;
                 frms.Dock = DockStyle.Fill;
                 frms.Show();
-
-                if (TestOnlineServerConnection())
-                {
-                    onlineLbl.Text = ("connection successful to online server");
-                    onlineLbl.ForeColor = Color.Green;
-                }
-                else
-                {
-                    onlineLbl.Text = ("You are not able to connect to the online server contact the administrator for further assistance");
-                    onlineLbl.ForeColor = Color.Red;
-                }
-
             }
             else
             {
                 ServerForm frm = new ServerForm();
                 frm.Show();
-                lblStatus.Text = ("You are not able to connect to the server contact the administrator for further assistance");
+                lblStatus.Text = lblStatus.Text + (" You are not able to connect to the local server");
                 lblStatus.ForeColor = Color.Red;
 
             }
-            
+            if (Helper.IsInternetAvailable())
+            {
+                //    if (TestOnlineServerConnection())
+                //    {
+                //        onlineLbl.Text = ("You are connected to the online server ");
+                //        onlineLbl.ForeColor = Color.Green;
+                //        StartForm frms = new StartForm();
+                //        frms.MdiParent = this;
+                //        frms.Dock = DockStyle.Fill;
+                //        frms.Show();
+                //    }
+                //    else
+                //    {
+                //        ServerForm frm = new ServerForm();
+                //        frm.Show();
+                //        onlineLbl.Text = onlineLbl.Text + (" You are not able to connect to the online server");
+                //        onlineLbl.ForeColor = Color.Red;
+                //    }
+                onlineLbl.Text = onlineLbl.Text + (" Internet connect active");
+                onlineLbl.ForeColor = Color.Green;
+
+            }
+            else
+            {
+                onlineLbl.Text = onlineLbl.Text + (" No internet connection");
+                onlineLbl.ForeColor = Color.Red;
+            }
+
         }
+      
         private bool TestServerConnection()
         {
             try
@@ -64,14 +80,14 @@ namespace Casepro
                 command.CommandText = "SELECT * FROM events WHERE sync ='f' ;";
                 connection.Open();
                 connection.Close();
-                lblStatus.Text = ("Local server connection successful");
-                lblStatus.ForeColor = Color.Green;
+                //lblStatus.Text = lblStatus.Text + (" Local server connection successful");
+                //lblStatus.ForeColor = Color.Green;
                 return true;
             }
             catch
             {
-                lblStatus.Text = ("You are not able to connect to the server contact the administrator for further assistance");
-                lblStatus.ForeColor = Color.Red;
+                //lblStatus.Text = lblStatus.Text + (" You are not able to connect to the server contact the administrator for further assistance");
+                //lblStatus.ForeColor = Color.Red;
                 return false;
             }
         }
@@ -84,13 +100,13 @@ namespace Casepro
 
                 connection.Open();
                 connection.Close();
-                onlineLbl.Text = ("connection successful to online server");
+                onlineLbl.Text = onlineLbl.Text +(" connection successful to online server");
                 onlineLbl.ForeColor = Color.Green;
                 return true;
             }
             catch
             {
-                onlineLbl.Text = ("You are not able to connect to the online server contact the administrator for further assistance");
+                onlineLbl.Text = onlineLbl.Text +  (" You are not able to connect to the online server");
                 onlineLbl.ForeColor = Color.Red;
                 return false;
             }
@@ -144,12 +160,11 @@ namespace Casepro
             frm.MdiParent = this;
             frm.Dock = DockStyle.Fill;
             frm.Show();
-
         }
 
         private void toolStripButton3_Click_1(object sender, EventArgs e)
         {
-            HomeForm frm = new HomeForm();
+            StartForm frm = new StartForm();
             frm.MdiParent = this;
             frm.Dock = DockStyle.Fill;
             frm.Show();
@@ -161,7 +176,6 @@ namespace Casepro
             frm.MdiParent = this;
             frm.Dock = DockStyle.Fill;
             frm.Show();
-
         }
 
         private void toolStripButton5_Click(object sender, EventArgs e)
@@ -203,8 +217,8 @@ namespace Casepro
 
         private void companyProfileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           
-           // this.Hide();
+
+            // this.Hide();
         }
 
         private void companyProfileToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -215,7 +229,7 @@ namespace Casepro
 
         private void toolStripButton4_Click_1(object sender, EventArgs e)
         {
-            FeesForm frm = new FeesForm();
+            FeesForm frm = new FeesForm("true");
             frm.MdiParent = this;
             frm.Dock = DockStyle.Fill;
             frm.Show();
@@ -247,6 +261,28 @@ namespace Casepro
             PettyForm frm = new PettyForm();
             frm.MdiParent = this;
             frm.Dock = DockStyle.Fill;
+            frm.Show();
+        }
+
+        private void financialFormToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FinancialForm frm = new FinancialForm();
+            frm.MdiParent = this;
+            frm.Dock = DockStyle.Fill;
+            frm.Show();
+        }
+
+        private void invoicesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FeesForm frm = new FeesForm("false");
+            frm.MdiParent = this;
+            frm.Dock = DockStyle.Fill;
+            frm.Show();
+        }
+
+        private void toolStripButton13_Click(object sender, EventArgs e)
+        {
+            PhoneForm frm = new PhoneForm();            
             frm.Show();
         }
     }
