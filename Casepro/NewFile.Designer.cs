@@ -75,13 +75,19 @@
             this.printdoc1 = new System.Drawing.Printing.PrintDocument();
             this.previewdlg = new System.Windows.Forms.PrintPreviewDialog();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtGrid)).BeginInit();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // progressTxt
             // 
-            this.progressTxt.Location = new System.Drawing.Point(145, 549);
+            this.progressTxt.Location = new System.Drawing.Point(679, 308);
             this.progressTxt.Multiline = true;
             this.progressTxt.Name = "progressTxt";
             this.progressTxt.Size = new System.Drawing.Size(173, 24);
@@ -89,21 +95,21 @@
             // 
             // dueDate
             // 
-            this.dueDate.Location = new System.Drawing.Point(145, 613);
+            this.dueDate.Location = new System.Drawing.Point(679, 372);
             this.dueDate.Name = "dueDate";
             this.dueDate.Size = new System.Drawing.Size(173, 22);
             this.dueDate.TabIndex = 90;
             // 
             // openedDate
             // 
-            this.openedDate.Location = new System.Drawing.Point(145, 581);
+            this.openedDate.Location = new System.Drawing.Point(679, 340);
             this.openedDate.Name = "openedDate";
             this.openedDate.Size = new System.Drawing.Size(173, 22);
             this.openedDate.TabIndex = 89;
             // 
             // noteTxt
             // 
-            this.noteTxt.Location = new System.Drawing.Point(145, 503);
+            this.noteTxt.Location = new System.Drawing.Point(679, 262);
             this.noteTxt.Multiline = true;
             this.noteTxt.Name = "noteTxt";
             this.noteTxt.Size = new System.Drawing.Size(173, 40);
@@ -111,7 +117,7 @@
             // 
             // descriptionTxt
             // 
-            this.descriptionTxt.Location = new System.Drawing.Point(145, 414);
+            this.descriptionTxt.Location = new System.Drawing.Point(679, 173);
             this.descriptionTxt.Multiline = true;
             this.descriptionTxt.Name = "descriptionTxt";
             this.descriptionTxt.Size = new System.Drawing.Size(173, 49);
@@ -120,7 +126,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(81, 619);
+            this.label17.Location = new System.Drawing.Point(615, 378);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(60, 14);
             this.label17.TabIndex = 86;
@@ -129,7 +135,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(63, 589);
+            this.label16.Location = new System.Drawing.Point(597, 348);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(81, 14);
             this.label16.TabIndex = 85;
@@ -141,7 +147,7 @@
             this.stateCbx.Items.AddRange(new object[] {
             "true",
             "false"});
-            this.stateCbx.Location = new System.Drawing.Point(145, 471);
+            this.stateCbx.Location = new System.Drawing.Point(679, 230);
             this.stateCbx.Margin = new System.Windows.Forms.Padding(4);
             this.stateCbx.Name = "stateCbx";
             this.stateCbx.Size = new System.Drawing.Size(173, 22);
@@ -150,7 +156,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(87, 558);
+            this.label15.Location = new System.Drawing.Point(621, 317);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(53, 14);
             this.label15.TabIndex = 83;
@@ -159,7 +165,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(105, 506);
+            this.label14.Location = new System.Drawing.Point(639, 265);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(33, 14);
             this.label14.TabIndex = 82;
@@ -168,7 +174,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(61, 479);
+            this.label13.Location = new System.Drawing.Point(595, 238);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(80, 14);
             this.label13.TabIndex = 81;
@@ -177,7 +183,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(75, 417);
+            this.label12.Location = new System.Drawing.Point(609, 176);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(69, 14);
             this.label12.TabIndex = 80;
@@ -186,7 +192,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(25, 381);
+            this.label11.Location = new System.Drawing.Point(559, 140);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(122, 14);
             this.label11.TabIndex = 79;
@@ -194,42 +200,42 @@
             // 
             // citationTxt
             // 
-            this.citationTxt.Location = new System.Drawing.Point(145, 377);
+            this.citationTxt.Location = new System.Drawing.Point(679, 136);
             this.citationTxt.Name = "citationTxt";
             this.citationTxt.Size = new System.Drawing.Size(173, 22);
             this.citationTxt.TabIndex = 78;
             // 
             // subjectTxt
             // 
-            this.subjectTxt.Location = new System.Drawing.Point(145, 346);
+            this.subjectTxt.Location = new System.Drawing.Point(679, 105);
             this.subjectTxt.Name = "subjectTxt";
             this.subjectTxt.Size = new System.Drawing.Size(173, 22);
             this.subjectTxt.TabIndex = 75;
             // 
             // contactTxt
             // 
-            this.contactTxt.Location = new System.Drawing.Point(145, 315);
+            this.contactTxt.Location = new System.Drawing.Point(311, 344);
             this.contactTxt.Name = "contactTxt";
             this.contactTxt.Size = new System.Drawing.Size(173, 22);
             this.contactTxt.TabIndex = 74;
             // 
             // contactpersonTxt
             // 
-            this.contactpersonTxt.Location = new System.Drawing.Point(145, 280);
+            this.contactpersonTxt.Location = new System.Drawing.Point(311, 309);
             this.contactpersonTxt.Name = "contactpersonTxt";
             this.contactpersonTxt.Size = new System.Drawing.Size(173, 22);
             this.contactpersonTxt.TabIndex = 73;
             // 
             // nameTxt
             // 
-            this.nameTxt.Location = new System.Drawing.Point(145, 249);
+            this.nameTxt.Location = new System.Drawing.Point(311, 278);
             this.nameTxt.Name = "nameTxt";
             this.nameTxt.Size = new System.Drawing.Size(173, 22);
             this.nameTxt.TabIndex = 72;
             // 
             // caseTxt
             // 
-            this.caseTxt.Location = new System.Drawing.Point(145, 218);
+            this.caseTxt.Location = new System.Drawing.Point(311, 247);
             this.caseTxt.Name = "caseTxt";
             this.caseTxt.Size = new System.Drawing.Size(173, 22);
             this.caseTxt.TabIndex = 71;
@@ -237,7 +243,7 @@
             // lawyerCbx
             // 
             this.lawyerCbx.FormattingEnabled = true;
-            this.lawyerCbx.Location = new System.Drawing.Point(145, 181);
+            this.lawyerCbx.Location = new System.Drawing.Point(311, 210);
             this.lawyerCbx.Margin = new System.Windows.Forms.Padding(4);
             this.lawyerCbx.Name = "lawyerCbx";
             this.lawyerCbx.Size = new System.Drawing.Size(173, 22);
@@ -250,7 +256,7 @@
             "Civil",
             "Criminal",
             "Litigation"});
-            this.lawCbx.Location = new System.Drawing.Point(145, 148);
+            this.lawCbx.Location = new System.Drawing.Point(311, 177);
             this.lawCbx.Margin = new System.Windows.Forms.Padding(4);
             this.lawCbx.Name = "lawCbx";
             this.lawCbx.Size = new System.Drawing.Size(173, 22);
@@ -264,7 +270,7 @@
             "Litigation",
             "Conclusive",
             "Non-conclusive"});
-            this.typeCbx.Location = new System.Drawing.Point(145, 114);
+            this.typeCbx.Location = new System.Drawing.Point(311, 143);
             this.typeCbx.Margin = new System.Windows.Forms.Padding(4);
             this.typeCbx.Name = "typeCbx";
             this.typeCbx.Size = new System.Drawing.Size(173, 22);
@@ -273,7 +279,7 @@
             // clientCbx
             // 
             this.clientCbx.FormattingEnabled = true;
-            this.clientCbx.Location = new System.Drawing.Point(145, 81);
+            this.clientCbx.Location = new System.Drawing.Point(311, 110);
             this.clientCbx.Margin = new System.Windows.Forms.Padding(4);
             this.clientCbx.Name = "clientCbx";
             this.clientCbx.Size = new System.Drawing.Size(173, 22);
@@ -282,7 +288,7 @@
             // noLbl
             // 
             this.noLbl.AutoSize = true;
-            this.noLbl.Location = new System.Drawing.Point(145, 51);
+            this.noLbl.Location = new System.Drawing.Point(313, 92);
             this.noLbl.Name = "noLbl";
             this.noLbl.Size = new System.Drawing.Size(22, 14);
             this.noLbl.TabIndex = 65;
@@ -291,7 +297,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(92, 354);
+            this.label10.Location = new System.Drawing.Point(626, 113);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(46, 14);
             this.label10.TabIndex = 64;
@@ -300,7 +306,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(53, 323);
+            this.label9.Location = new System.Drawing.Point(219, 352);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(92, 14);
             this.label9.TabIndex = 63;
@@ -309,7 +315,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(53, 289);
+            this.label8.Location = new System.Drawing.Point(219, 318);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(91, 14);
             this.label8.TabIndex = 62;
@@ -318,7 +324,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(100, 257);
+            this.label7.Location = new System.Drawing.Point(266, 286);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(39, 14);
             this.label7.TabIndex = 61;
@@ -327,7 +333,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(86, 226);
+            this.label6.Location = new System.Drawing.Point(252, 255);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(53, 14);
             this.label6.TabIndex = 60;
@@ -336,7 +342,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(91, 190);
+            this.label5.Location = new System.Drawing.Point(257, 219);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(47, 14);
             this.label5.TabIndex = 59;
@@ -345,7 +351,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(102, 84);
+            this.label4.Location = new System.Drawing.Point(268, 113);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(39, 14);
             this.label4.TabIndex = 58;
@@ -354,7 +360,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(105, 156);
+            this.label3.Location = new System.Drawing.Point(271, 185);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(31, 14);
             this.label3.TabIndex = 57;
@@ -363,7 +369,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(104, 123);
+            this.label2.Location = new System.Drawing.Point(270, 152);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(31, 14);
             this.label2.TabIndex = 56;
@@ -372,7 +378,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(92, 51);
+            this.label1.Location = new System.Drawing.Point(261, 92);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(49, 14);
             this.label1.TabIndex = 55;
@@ -380,7 +386,7 @@
             // 
             // button2
             // 
-            this.button2.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.button2.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.button2.FlatAppearance.BorderSize = 0;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -397,7 +403,7 @@
             // 
             // updateBtn
             // 
-            this.updateBtn.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.updateBtn.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.updateBtn.FlatAppearance.BorderSize = 0;
             this.updateBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.updateBtn.Image = global::Casepro.Properties.Resources.Report_Editor_24;
@@ -413,7 +419,7 @@
             // 
             // saveBtn
             // 
-            this.saveBtn.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.saveBtn.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.saveBtn.FlatAppearance.BorderSize = 0;
             this.saveBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.saveBtn.Image = global::Casepro.Properties.Resources.Save_24__1_;
@@ -429,7 +435,7 @@
             // 
             // button1
             // 
-            this.button1.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.button1.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Image = global::Casepro.Properties.Resources.Cancel_24;
@@ -450,30 +456,33 @@
             this.panel1.Controls.Add(this.dtGrid);
             this.panel1.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.panel1.Location = new System.Drawing.Point(359, 40);
+            this.panel1.Location = new System.Drawing.Point(6, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(707, 602);
+            this.panel1.Size = new System.Drawing.Size(1052, 573);
             this.panel1.TabIndex = 101;
             // 
             // dtGrid
             // 
+            this.dtGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dtGrid.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dtGrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dtGrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dtGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtGrid.ColumnHeadersVisible = false;
-            this.dtGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtGrid.GridColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dtGrid.Location = new System.Drawing.Point(0, 0);
             this.dtGrid.Name = "dtGrid";
             this.dtGrid.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dtGrid.RowHeadersVisible = false;
-            this.dtGrid.Size = new System.Drawing.Size(705, 600);
+            this.dtGrid.Size = new System.Drawing.Size(1045, 571);
             this.dtGrid.TabIndex = 101;
             // 
             // button3
             // 
-            this.button3.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.button3.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.button3.FlatAppearance.BorderSize = 0;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Image = global::Casepro.Properties.Resources.Print_24;
@@ -494,7 +503,7 @@
             // 
             // button4
             // 
-            this.button4.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.button4.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.button4.FlatAppearance.BorderSize = 0;
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.Image = global::Casepro.Properties.Resources.Print_24;
@@ -520,11 +529,76 @@
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.panel2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1077, 40);
             this.panel2.TabIndex = 104;
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Location = new System.Drawing.Point(3, 40);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(1063, 603);
+            this.tabControl1.TabIndex = 105;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.panel1);
+            this.tabPage1.Location = new System.Drawing.Point(4, 23);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(1055, 576);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Bill of Costs";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.descriptionTxt);
+            this.tabPage2.Controls.Add(this.label2);
+            this.tabPage2.Controls.Add(this.label3);
+            this.tabPage2.Controls.Add(this.label4);
+            this.tabPage2.Controls.Add(this.progressTxt);
+            this.tabPage2.Controls.Add(this.label5);
+            this.tabPage2.Controls.Add(this.dueDate);
+            this.tabPage2.Controls.Add(this.label1);
+            this.tabPage2.Controls.Add(this.label6);
+            this.tabPage2.Controls.Add(this.openedDate);
+            this.tabPage2.Controls.Add(this.label7);
+            this.tabPage2.Controls.Add(this.noteTxt);
+            this.tabPage2.Controls.Add(this.label8);
+            this.tabPage2.Controls.Add(this.label9);
+            this.tabPage2.Controls.Add(this.label17);
+            this.tabPage2.Controls.Add(this.label10);
+            this.tabPage2.Controls.Add(this.label16);
+            this.tabPage2.Controls.Add(this.noLbl);
+            this.tabPage2.Controls.Add(this.stateCbx);
+            this.tabPage2.Controls.Add(this.clientCbx);
+            this.tabPage2.Controls.Add(this.label15);
+            this.tabPage2.Controls.Add(this.typeCbx);
+            this.tabPage2.Controls.Add(this.label14);
+            this.tabPage2.Controls.Add(this.lawCbx);
+            this.tabPage2.Controls.Add(this.label13);
+            this.tabPage2.Controls.Add(this.lawyerCbx);
+            this.tabPage2.Controls.Add(this.label12);
+            this.tabPage2.Controls.Add(this.caseTxt);
+            this.tabPage2.Controls.Add(this.label11);
+            this.tabPage2.Controls.Add(this.nameTxt);
+            this.tabPage2.Controls.Add(this.citationTxt);
+            this.tabPage2.Controls.Add(this.contactpersonTxt);
+            this.tabPage2.Controls.Add(this.contactTxt);
+            this.tabPage2.Controls.Add(this.subjectTxt);
+            this.tabPage2.Location = new System.Drawing.Point(4, 23);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(1058, 576);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Profile";
+            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // NewFile
             // 
@@ -534,47 +608,13 @@
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(1078, 655);
             this.ControlBox = false;
+            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.progressTxt);
-            this.Controls.Add(this.dueDate);
-            this.Controls.Add(this.openedDate);
-            this.Controls.Add(this.noteTxt);
-            this.Controls.Add(this.descriptionTxt);
-            this.Controls.Add(this.label17);
-            this.Controls.Add(this.label16);
-            this.Controls.Add(this.stateCbx);
-            this.Controls.Add(this.label15);
-            this.Controls.Add(this.label14);
-            this.Controls.Add(this.label13);
-            this.Controls.Add(this.label12);
-            this.Controls.Add(this.label11);
-            this.Controls.Add(this.citationTxt);
             this.Controls.Add(this.updateBtn);
             this.Controls.Add(this.saveBtn);
-            this.Controls.Add(this.subjectTxt);
-            this.Controls.Add(this.contactTxt);
-            this.Controls.Add(this.contactpersonTxt);
-            this.Controls.Add(this.nameTxt);
-            this.Controls.Add(this.caseTxt);
-            this.Controls.Add(this.lawyerCbx);
-            this.Controls.Add(this.lawCbx);
-            this.Controls.Add(this.typeCbx);
-            this.Controls.Add(this.clientCbx);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.noLbl);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -584,8 +624,11 @@
             this.Leave += new System.EventHandler(this.NewFile_Leave);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtGrid)).EndInit();
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -637,5 +680,8 @@
         private System.Drawing.Printing.PrintDocument printdoc1;
         private System.Windows.Forms.PrintPreviewDialog previewdlg;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
     }
 }

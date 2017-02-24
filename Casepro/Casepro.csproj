@@ -65,6 +65,9 @@
     <Reference Include="WebCam_Capture">
       <HintPath>..\..\..\..\WinFormCharpWebCam\WebCam_Capture.dll</HintPath>
     </Reference>
+    <Reference Include="WindowsFormsCalendar">
+      <HintPath>..\..\..\..\CalendarForked\WindowsFormsCalendar.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClientForm.cs">
@@ -450,12 +453,6 @@
     <Content Include="Resources\adds.png" />
     <None Include="Resources\case.png" />
     <None Include="Resources\Folder-24 %281%29.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\..\System.Windows.Forms.Calendar\System.Windows.Forms.Calendar\System.Windows.Forms.Calendar.csproj">
-      <Project>{25649F08-3046-4891-ADB8-7EA787B57063}</Project>
-      <Name>System.Windows.Forms.Calendar</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

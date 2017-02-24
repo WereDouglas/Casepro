@@ -48,7 +48,7 @@ namespace Casepro
             connection.Open();
             Reader = command.ExecuteReader();
             // create and execute query  
-            //t = new DataTable();
+            t = new DataTable();
             t.Columns.Add("id", typeof(string));
             t.Columns.Add(new DataColumn("Select", typeof(bool)));
             t.Columns.Add("Date", typeof(string));//14

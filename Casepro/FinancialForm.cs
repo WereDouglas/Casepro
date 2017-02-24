@@ -144,5 +144,10 @@ namespace Casepro
             month = Convert.ToDateTime(monthPicker.Text).ToString("yyyy-MM");
             loadDis();
         }
+
+        private void FinancialForm_Leave(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

@@ -20,12 +20,16 @@ namespace Casepro
         public static List<Client> _clientList = new List<Client> { };
         public static DataTable table = new DataTable();
         DataTable t = new DataTable();
-        MySqlDataReader Reader;
+       
         public ClientForm()
         {
             InitializeComponent();
             LoadClients();
             //dtGrid.DataSource = _clientList;
+            searchCbx.Items.Add("Name");
+            searchCbx.Items.Add("E-mail");
+            searchCbx.Items.Add("Contact");
+            searchCbx.Items.Add("Status");
         }
         public void LoadClients()
         {
@@ -40,8 +44,8 @@ namespace Casepro
             connection.Open();
             Reader = command.ExecuteReader();
             // create and execute query  
+            t = new DataTable();
 
-           
             t.Columns.Add("clientID");           
             t.Columns.Add("uri");
             t.Columns.Add(new DataColumn("Select", typeof(bool)));
@@ -55,13 +59,6 @@ namespace Casepro
             t.Columns.Add("created");
             t.Columns.Add("Edit");  //0 
             t.Columns.Add("Delete");  //0 
-
-
-            searchCbx.Items.Add("Name");
-            searchCbx.Items.Add("E-mail");
-            searchCbx.Items.Add("Contact");
-            searchCbx.Items.Add("Status");
-           
 
             Bitmap b = new Bitmap(50, 50);
 
@@ -90,8 +87,7 @@ namespace Casepro
 
             dtGrid.DataSource = t;
             dtGrid.RowTemplate.Height = 50;          
-            dtGrid.Columns[1].Visible = false;
-            dtGrid.Columns[0].Visible = false;
+           
 
             this.dtGrid.Columns[11].DefaultCellStyle.BackColor = Color.Green;
             this.dtGrid.Columns[12].DefaultCellStyle.BackColor = Color.Red;
@@ -128,7 +124,9 @@ namespace Casepro
             });
 
          
-            dtGrid.AllowUserToAddRows = false;          
+            dtGrid.AllowUserToAddRows = false;
+            dtGrid.Columns[1].Visible = false;
+            dtGrid.Columns[0].Visible = false;
             connection.Close();
            
 

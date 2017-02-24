@@ -32,6 +32,13 @@ namespace Casepro
         bool bFirstPage = false; //Used to check whether we are printing first page
         bool bNewPage = false;// Used to check whether we are printing a new page
         int iHeaderHeight = 0; //Used for the header height
+        Dictionary<string, string> EventDictionary = new Dictionary<string, string>();
+        Dictionary<string, string> ExpDictionary = new Dictionary<string, string>();
+        Dictionary<string, string> DisDictionary = new Dictionary<string, string>();
+        double totalEvent = 0;
+        double totalDis = 0;
+        double totalExp = 0;
+
         public NewFile(string fileID)
         {
             id = fileID;
@@ -82,7 +89,7 @@ namespace Casepro
             previewdlg.Document = printdoc1;
             previewdlg.ShowDialog();
         }
-        
+
         public void thisFile(string id)
         {
             MySqlConnection connection = new MySqlConnection(DBConnect.conn);
@@ -159,14 +166,19 @@ namespace Casepro
             t.Columns.Add("METHOD", typeof(string));
             t.Columns.Add("DETAILS", typeof(string));
             t.Rows.Add(new object[] { "", " ", "", "FILE SUMMARY", "", "" });
-           
+
             t.Rows.Add(new object[] { " ", " ", "", "", "", "" });
             t.Rows.Add(new object[] { "DISBURSEMENTS", " ", "", "", "", "" });
-            t.Rows.Add(new object[] { "Date", "Invoice No.", "Amount", "Balance", "Method", "Details" });          
+            t.Rows.Add(new object[] { "Date", "Invoice No.", "Amount", "Balance", "Method", "Details" });
+            DisDictionary.Clear();
             while (Reader.Read())
             {
-                t.Rows.Add(new object[] { (Reader.IsDBNull(14) ? "none" : Reader.GetString(14)), (Reader.IsDBNull(7) ? "none" : Reader.GetString(7)), (Reader.IsDBNull(9) ? "none" : Reader.GetString(9)), (Reader.IsDBNull(11) ? "none" : Reader.GetString(11)), (Reader.IsDBNull(8) ? "none" : Reader.GetString(8)), (Reader.IsDBNull(35) ? "none" : Reader.GetString(35)) });
+                DisDictionary.Add((Reader.IsDBNull(0) ? "none" : Reader.GetString(0)), (Reader.IsDBNull(9) ? "0" : Reader.GetString(9)));
+
+                t.Rows.Add(new object[] { (Reader.IsDBNull(14) ? "none" : Reader.GetString(14)), (Reader.IsDBNull(7) ? "none" : Reader.GetString(7)), Convert.ToDouble(Reader.IsDBNull(9) ? "0" : Reader.GetString(9)).ToString("n0"), Convert.ToDouble(Reader.IsDBNull(11) ? "none" : Reader.GetString(11)).ToString("n0"), (Reader.IsDBNull(8) ? "none" : Reader.GetString(8)), (Reader.IsDBNull(35) ? "none" : Reader.GetString(35)) });
             }
+            totalDis = DisDictionary.Sum(m => Convert.ToDouble(m.Value));
+            t.Rows.Add(new object[] { "", " Total", totalDis.ToString("n0"), "", "", "" });
             connection.Close();
             MySqlConnection connection2 = new MySqlConnection(DBConnect.conn);
             MySqlCommand command2 = connection2.CreateCommand();
@@ -174,13 +186,18 @@ namespace Casepro
             command2.CommandText = "SELECT *  FROM expenses LEFT JOIN client ON client.clientID = expenses.clientID LEFT JOIN file ON file.fileID = expenses.fileID WHERE expenses.fileID='" + id + "';";
             connection2.Open();
             Reader2 = command2.ExecuteReader();
-            t.Rows.Add(new object[] { "", " ", "", "", "","" });
-            t.Rows.Add(new object[] { "EXPENSES", " ", "", "", "","" });
+            t.Rows.Add(new object[] { "", " ", "", "", "", "" });
+            t.Rows.Add(new object[] { "EXPENSES", " ", "", "", "", "" });
             t.Rows.Add(new object[] { "Date", "Invoice No.", "Amount", "Balance", "Method", "Details" });
+            ExpDictionary.Clear();
             while (Reader2.Read())
             {
-                t.Rows.Add(new object[] { (Reader2.IsDBNull(11) ? "none" : Reader2.GetString(11)), " ", (Reader2.IsDBNull(7) ? "none" : Reader2.GetString(7)), (Reader2.IsDBNull(8) ? "none" : Reader2.GetString(8)), (Reader2.IsDBNull(36) ? "none" : Reader2.GetString(36)), (Reader2.IsDBNull(6) ? "none" : Reader2.GetString(6)) });
+                ExpDictionary.Add((Reader2.IsDBNull(0) ? "none" : Reader2.GetString(0)), (Reader2.IsDBNull(7) ? "0" : Reader2.GetString(7)));
+
+                t.Rows.Add(new object[] { (Reader2.IsDBNull(11) ? "none" : Reader2.GetString(11)), " ", Convert.ToDouble(Reader2.IsDBNull(7) ? "0" : Reader2.GetString(7)).ToString("n0"), (Reader2.IsDBNull(8) ? "none" : Reader2.GetString(8)), (Reader2.IsDBNull(36) ? "none" : Reader2.GetString(36)), (Reader2.IsDBNull(6) ? "none" : Reader2.GetString(6)) });
             }
+            totalExp = ExpDictionary.Sum(m => Convert.ToDouble(m.Value));
+            t.Rows.Add(new object[] { "", "Total ", totalExp.ToString("n0"), "", "", "" });
             connection2.Close();
 
             MySqlConnection connection3 = new MySqlConnection(DBConnect.conn);
@@ -191,17 +208,24 @@ namespace Casepro
             Reader3 = command3.ExecuteReader();
             t.Rows.Add(new object[] { "", " ", "", "", "", "" });
             t.Rows.Add(new object[] { "EVENTS", "SCHEDULES ", "", "", "", "" });
-            t.Rows.Add(new object[] { "Date", "Event", "Start", "End", "Progress", "Status"});
+            t.Rows.Add(new object[] { "Date", "Event", "Start", "End", "Progress", "Cost" });
             while (Reader3.Read())
             {
-                t.Rows.Add(new object[] { (Reader3.IsDBNull(10) ? "none" : Reader3.GetString(10)), (Reader3.IsDBNull(1) ? "none" : Reader3.GetString(1)), (Reader3.IsDBNull(2) ? "none" : Reader3.GetString(2)), (Reader3.IsDBNull(3) ? "none" : Reader3.GetString(3)), (Reader3.IsDBNull(16) ? "none" : Reader3.GetString(16)), (Reader3.IsDBNull(8) ? "none" : Reader3.GetString(8)) });
+                EventDictionary.Add((Reader3.IsDBNull(0) ? "none" : Reader3.GetString(0)), (Reader3.IsDBNull(18) ? "0" : Reader3.GetString(18)));
+
+                t.Rows.Add(new object[] { (Reader3.IsDBNull(10) ? "none" : Reader3.GetString(10)), (Reader3.IsDBNull(1) ? "none" : Reader3.GetString(1)), Convert.ToDateTime(Reader3.IsDBNull(2) ? "none" : Reader3.GetString(2)).ToString("H:mm:s"), Convert.ToDateTime(Reader3.IsDBNull(3) ? "none" : Reader3.GetString(3)).ToString("H:mm:s"), (Reader3.IsDBNull(16) ? "none" : Reader3.GetString(16)) + "  " + (Reader3.IsDBNull(8) ? "none" : Reader3.GetString(8)), Convert.ToDouble(Reader3.IsDBNull(18) ? "0" : Reader3.GetString(18)).ToString("n0") });
             }
+            totalEvent = EventDictionary.Sum(m => Convert.ToDouble(m.Value));
+            t.Rows.Add(new object[] { "", " ", "", "", "Total", totalEvent.ToString("n0") });
+            t.Rows.Add(new object[] { "", " ", "", "", "", "" });
+            t.Rows.Add(new object[] { "", " ", "", "", "Total", (totalDis - ( totalEvent +totalExp)).ToString("n0") });
             connection3.Close();
             dtGrid.DataSource = t;
             dtGrid.Rows[1].DefaultCellStyle.BackColor = Color.Beige;
-          
+
 
         }
+
         public void LoadUsers()
         {
             _userList.Clear();
@@ -288,7 +312,7 @@ namespace Casepro
 
         private void NewFile_Leave(object sender, EventArgs e)
         {
-            // this.Close();
+            Close();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -495,7 +519,7 @@ namespace Casepro
             }
         }
         #endregion
-       
+
         private void button4_Click(object sender, EventArgs e)
         {
             Print(this.panel1);
