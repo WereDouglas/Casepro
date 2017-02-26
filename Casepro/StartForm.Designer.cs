@@ -35,27 +35,28 @@
             this.fileLbl1 = new System.Windows.Forms.Label();
             this.clientLbl1 = new System.Windows.Forms.Label();
             this.documentLbl1 = new System.Windows.Forms.Label();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.orgLbl1 = new System.Windows.Forms.Label();
             this.nameLbl1 = new System.Windows.Forms.Label();
             this.contactLbl1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.SuspendLayout();
             // 
             // calendar1
             // 
             this.calendar1.AllowDrop = true;
-            this.calendar1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.calendar1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.calendar1.Font = new System.Drawing.Font("Calibri", 9F);
             this.calendar1.ItemsBackgroundColor = System.Drawing.Color.Red;
-            this.calendar1.ItemsFont = new System.Drawing.Font("Calibri", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.calendar1.ItemsFont = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.calendar1.ItemsForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.calendar1.Location = new System.Drawing.Point(3, 3);
             this.calendar1.MaximumFullDays = 15;
             this.calendar1.Name = "calendar1";
-            this.calendar1.Size = new System.Drawing.Size(933, 552);
+            this.calendar1.Size = new System.Drawing.Size(933, 575);
             this.calendar1.TabIndex = 1;
             this.calendar1.Text = "calendar1";
             this.calendar1.TimeScale = WindowsFormsCalendar.CalendarTimeScale.SixtyMinutes;
@@ -88,70 +89,67 @@
             // 
             this.uploadTxt.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.uploadTxt.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.uploadTxt.Location = new System.Drawing.Point(0, 576);
+            this.uploadTxt.Location = new System.Drawing.Point(15, 596);
             this.uploadTxt.Multiline = true;
             this.uploadTxt.Name = "uploadTxt";
-            this.uploadTxt.Size = new System.Drawing.Size(951, 44);
+            this.uploadTxt.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.uploadTxt.Size = new System.Drawing.Size(936, 50);
             this.uploadTxt.TabIndex = 3;
+            this.uploadTxt.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // eventLbl1
             // 
             this.eventLbl1.AutoSize = true;
             this.eventLbl1.BackColor = System.Drawing.Color.MistyRose;
             this.eventLbl1.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.eventLbl1.Location = new System.Drawing.Point(954, 213);
+            this.eventLbl1.Location = new System.Drawing.Point(978, 194);
             this.eventLbl1.Name = "eventLbl1";
-            this.eventLbl1.Size = new System.Drawing.Size(64, 26);
+            this.eventLbl1.Size = new System.Drawing.Size(45, 26);
             this.eventLbl1.TabIndex = 4;
-            this.eventLbl1.Text = "label1";
+            this.eventLbl1.Text = "info";
+            this.eventLbl1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // fileLbl1
             // 
             this.fileLbl1.AutoSize = true;
             this.fileLbl1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.fileLbl1.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.fileLbl1.Location = new System.Drawing.Point(954, 278);
+            this.fileLbl1.Location = new System.Drawing.Point(978, 267);
             this.fileLbl1.Name = "fileLbl1";
-            this.fileLbl1.Size = new System.Drawing.Size(64, 26);
+            this.fileLbl1.Size = new System.Drawing.Size(45, 26);
             this.fileLbl1.TabIndex = 5;
-            this.fileLbl1.Text = "label2";
+            this.fileLbl1.Text = "info";
+            this.fileLbl1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // clientLbl1
             // 
             this.clientLbl1.AutoSize = true;
             this.clientLbl1.BackColor = System.Drawing.Color.LightSalmon;
             this.clientLbl1.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.clientLbl1.Location = new System.Drawing.Point(954, 242);
+            this.clientLbl1.Location = new System.Drawing.Point(978, 230);
             this.clientLbl1.Name = "clientLbl1";
-            this.clientLbl1.Size = new System.Drawing.Size(64, 26);
+            this.clientLbl1.Size = new System.Drawing.Size(45, 26);
             this.clientLbl1.TabIndex = 6;
-            this.clientLbl1.Text = "label3";
+            this.clientLbl1.Text = "info";
+            this.clientLbl1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // documentLbl1
             // 
             this.documentLbl1.AutoSize = true;
             this.documentLbl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.documentLbl1.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.documentLbl1.Location = new System.Drawing.Point(954, 314);
+            this.documentLbl1.Location = new System.Drawing.Point(978, 302);
             this.documentLbl1.Name = "documentLbl1";
-            this.documentLbl1.Size = new System.Drawing.Size(64, 26);
+            this.documentLbl1.Size = new System.Drawing.Size(45, 26);
             this.documentLbl1.TabIndex = 7;
-            this.documentLbl1.Text = "label2";
-            // 
-            // pictureBox5
-            // 
-            this.pictureBox5.Location = new System.Drawing.Point(1025, 340);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(100, 89);
-            this.pictureBox5.TabIndex = 8;
-            this.pictureBox5.TabStop = false;
-            this.pictureBox5.Click += new System.EventHandler(this.pictureBox5_Click);
+            this.documentLbl1.Text = "info";
+            this.documentLbl1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // orgLbl1
             // 
             this.orgLbl1.AutoSize = true;
             this.orgLbl1.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.orgLbl1.Location = new System.Drawing.Point(954, 180);
+            this.orgLbl1.Location = new System.Drawing.Point(981, 494);
             this.orgLbl1.Name = "orgLbl1";
             this.orgLbl1.Size = new System.Drawing.Size(42, 15);
             this.orgLbl1.TabIndex = 9;
@@ -161,7 +159,7 @@
             // 
             this.nameLbl1.AutoSize = true;
             this.nameLbl1.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nameLbl1.Location = new System.Drawing.Point(954, 427);
+            this.nameLbl1.Location = new System.Drawing.Point(980, 527);
             this.nameLbl1.Name = "nameLbl1";
             this.nameLbl1.Size = new System.Drawing.Size(42, 15);
             this.nameLbl1.TabIndex = 10;
@@ -171,7 +169,7 @@
             // 
             this.contactLbl1.AutoSize = true;
             this.contactLbl1.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.contactLbl1.Location = new System.Drawing.Point(954, 461);
+            this.contactLbl1.Location = new System.Drawing.Point(980, 555);
             this.contactLbl1.Name = "contactLbl1";
             this.contactLbl1.Size = new System.Drawing.Size(42, 15);
             this.contactLbl1.TabIndex = 11;
@@ -179,22 +177,36 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(971, 499);
+            this.button1.BackColor = System.Drawing.Color.LightGreen;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.button1.Location = new System.Drawing.Point(981, 168);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(170, 23);
+            this.button1.Size = new System.Drawing.Size(183, 23);
             this.button1.TabIndex = 12;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Text = "Add";
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.panel1.Controls.Add(this.calendar1);
             this.panel1.Location = new System.Drawing.Point(12, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(939, 558);
+            this.panel1.Size = new System.Drawing.Size(939, 581);
             this.panel1.TabIndex = 13;
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.Location = new System.Drawing.Point(981, 340);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(159, 118);
+            this.pictureBox5.TabIndex = 8;
+            this.pictureBox5.TabStop = false;
+            this.pictureBox5.Click += new System.EventHandler(this.pictureBox5_Click);
             // 
             // StartForm
             // 
@@ -202,9 +214,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(1192, 632);
-            this.Controls.Add(this.panel1);
+            this.ClientSize = new System.Drawing.Size(1192, 649);
             this.Controls.Add(this.button1);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.contactLbl1);
             this.Controls.Add(this.nameLbl1);
             this.Controls.Add(this.orgLbl1);
@@ -219,8 +231,10 @@
             this.Name = "StartForm";
             this.Text = "StartForm";
             this.Load += new System.EventHandler(this.StartForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            this.Leave += new System.EventHandler(this.StartForm_Leave);
+            this.Validated += new System.EventHandler(this.StartForm_Validated);
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

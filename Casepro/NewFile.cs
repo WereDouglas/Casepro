@@ -295,7 +295,11 @@ namespace Casepro
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            if (Helper.Exists("file", "name", nameTxt.Text))
+            {
+                MessageBox.Show("File name exists");
+                return;
+            }
             string fileID = Guid.NewGuid().ToString();
 
             string Query = "INSERT INTO file(fileID,orgID, client, contact, lawyer, no, details, type, subject, citation, law, name, created, status, sync,`case`,note, progress, opened, due, contact_person, contact_number) VALUES ('" + fileID + "','" + Helper.orgID + "','" + this.clientCbx.Text + "','" + this.contactTxt.Text + "','" + this.lawyerCbx.Text + "','" + this.noLbl.Text + "','" + this.descriptionTxt.Text + "','" + this.typeCbx.Text + "','" + subjectTxt.Text + "','" + this.citationTxt.Text + "','" + this.lawCbx.Text + "','" + this.nameTxt.Text + "','" + DateTime.Now.Date.ToString("yyyy-MM-dd") + "','" + this.stateCbx.Text + "','f','" + this.caseTxt.Text + "','" + this.noteTxt.Text + "','" + this.progressTxt.Text + "','" + Convert.ToDateTime(this.openedDate.Text).ToString("yyyy-MM-dd") + "','" + Convert.ToDateTime(this.dueDate.Text).ToString("yyyy-MM-dd") + "','" + this.contactpersonTxt.Text + "','" + this.contactTxt.Text + "');";

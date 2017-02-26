@@ -240,6 +240,11 @@ namespace Casepro
 
         private void button1_Click_1(object sender, EventArgs e)
         {
+            if (Helper.Exists("client", "name", nameTxtBx.Text))
+            {
+                MessageBox.Show("Client name exists");
+                return;
+            }
             string clientID = Guid.NewGuid().ToString();
             string paths = @"c:\Case\images";
             if (!Directory.Exists(paths))

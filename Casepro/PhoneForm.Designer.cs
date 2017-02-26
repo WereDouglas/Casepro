@@ -31,12 +31,13 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.KeyPad = new System.Windows.Forms.Panel();
+            this.infoTxt = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.destinationIP = new System.Windows.Forms.TextBox();
             this.myIPTxt = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.infoTxt = new System.Windows.Forms.TextBox();
+            this.button3 = new System.Windows.Forms.Button();
             this.KeyPad.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -71,6 +72,16 @@
             this.KeyPad.Name = "KeyPad";
             this.KeyPad.Size = new System.Drawing.Size(563, 280);
             this.KeyPad.TabIndex = 2;
+            // 
+            // infoTxt
+            // 
+            this.infoTxt.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.infoTxt.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.infoTxt.Location = new System.Drawing.Point(15, 137);
+            this.infoTxt.Multiline = true;
+            this.infoTxt.Name = "infoTxt";
+            this.infoTxt.Size = new System.Drawing.Size(187, 123);
+            this.infoTxt.TabIndex = 9;
             // 
             // label1
             // 
@@ -115,15 +126,15 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // infoTxt
+            // button3
             // 
-            this.infoTxt.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            this.infoTxt.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.infoTxt.Location = new System.Drawing.Point(15, 137);
-            this.infoTxt.Multiline = true;
-            this.infoTxt.Name = "infoTxt";
-            this.infoTxt.Size = new System.Drawing.Size(187, 123);
-            this.infoTxt.TabIndex = 9;
+            this.button3.Location = new System.Drawing.Point(15, 301);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 10;
+            this.button3.Text = "Call";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // PhoneForm
             // 
@@ -131,6 +142,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(600, 331);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.KeyPad);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -152,5 +164,6 @@
         private System.Windows.Forms.TextBox myIPTxt;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox infoTxt;
+        private System.Windows.Forms.Button button3;
     }
 }

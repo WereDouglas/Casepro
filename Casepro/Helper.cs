@@ -141,6 +141,33 @@ namespace Casepro
 
             return strBuilder.ToString();
         }
+        public static bool Exists(string table, string field, string value)
+        {
+            string exists = "";
+            MySqlConnection connection = new MySqlConnection(DBConnect.conn);
+            MySqlCommand command = connection.CreateCommand();
+            MySqlDataReader Reader;
+            command.CommandText = "SELECT * FROM " + table + " WHERE " + field + "= '" + value + "'";
+            connection.Open();
+            Reader = command.ExecuteReader();
+            while (Reader.Read())
+            {
+                exists = Reader.IsDBNull(0) ? "" : Reader.GetString(0);
+            }
+            connection.Close();
+
+            if (exists != "")
+            {
+
+                return true;
+            }
+            else
+            {
+
+
+                return false;
+            }
+        }
         [DllImport("wininet.dll")]
         private extern static bool InternetGetConnectedState(out int description, int reservedValue);
 

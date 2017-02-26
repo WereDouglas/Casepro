@@ -41,15 +41,24 @@ namespace Casepro
             userprofile();
             //StartRunMail();
 
-            if (!bwEmail.IsBusy)
-            {
-                bwEmail.RunWorkerAsync();
-                bwEmail.WorkerReportsProgress = true;
-                //  bw.WorkerSupportsCancellation = true;
-                bwEmail.DoWork += new DoWorkEventHandler(bw_Email);
-            }
+           
+            LoadingCalendar();
+         
 
+        }
+        #region Calendar Methods
 
+        /// <summary>
+        /// Handles the LoadItems event of the calendar1 control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="WindowsFormsCalendar.CalendarLoadEventArgs"/> instance containing the event data.</param>
+        private void calendar1_LoadItems(object sender, CalendarLoadEventArgs e)
+        {
+            
+            PlaceItems();
+        }
+        private void backgrounds() {
 
             if (!bwDownload.IsBusy)
             {
@@ -59,6 +68,13 @@ namespace Casepro
                 bwDownload.DoWork += new DoWorkEventHandler(bw_Download);
             }
 
+            if (!bwEmail.IsBusy)
+            {
+                bwEmail.RunWorkerAsync();
+                bwEmail.WorkerReportsProgress = true;
+                //  bw.WorkerSupportsCancellation = true;
+                bwEmail.DoWork += new DoWorkEventHandler(bw_Email);
+            }
             if (!bw.IsBusy)
             {
                 bw.RunWorkerAsync();
@@ -73,24 +89,6 @@ namespace Casepro
                 bwMessage.DoWork += new DoWorkEventHandler(bw_Message);
             }
 
-
-            // CalendarItem item = new CalendarItem(this.calendar1, DateTime.Now, DateTime.Now, "TEST");
-
-            //_items.Add(item);
-            LoadingCalendar();
-
-        }
-        #region Calendar Methods
-
-        /// <summary>
-        /// Handles the LoadItems event of the calendar1 control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="WindowsFormsCalendar.CalendarLoadEventArgs"/> instance containing the event data.</param>
-        private void calendar1_LoadItems(object sender, CalendarLoadEventArgs e)
-        {
-            
-            PlaceItems();
         }
         private void PlaceItems()
         {
@@ -242,19 +240,20 @@ namespace Casepro
 
         private void StartForm_Load(object sender, EventArgs e)
         {
-
+            backgrounds();
         }
 
         private void Downloading()
         {
+            Invoke((MethodInvoker)delegate
+            {
+                uploadTxt.Text = uploadTxt.Text + " Downloading file information" + "\r\n";
+                uploadTxt.ForeColor = Color.RoyalBlue;
+                uploadTxt.ScrollToCaret();
+            });
             try
             {
-                Invoke((MethodInvoker)delegate
-                {
-                    uploadTxt.Text = uploadTxt.Text + " Downloading file information" + "\r\n";
-                    uploadTxt.ForeColor = Color.RoyalBlue;
-                    uploadTxt.ScrollToCaret();
-                });
+               
                 DownloadFiles();
             }
             catch
@@ -449,6 +448,63 @@ namespace Casepro
             }
             connection.Close();
         }
+        private void Deletion()
+        {
+            try
+            {
+                Invoke((MethodInvoker)delegate
+                {
+                    uploadTxt.Text = uploadTxt.Text + " Deleting online data " + "\r\n";
+                    uploadTxt.ForeColor = Color.Green;
+                    uploadTxt.ScrollToCaret();
+                });
+                MySqlConnection connection = new MySqlConnection(DBConnect.remoteConn);
+                MySqlCommand command = connection.CreateCommand();
+                MySqlDataReader Reader;
+                command.CommandText = "SELECT * FROM deletion;";
+                try
+                {
+                    connection.Open();
+                }
+                catch { }
+                Reader = command.ExecuteReader();
+                int totalRow = 0;
+
+                while (Reader.Read())
+                {
+                    totalRow++;
+
+                    string Query2 = "DELETE from " + Reader.GetString(1) + " WHERE " + Reader.GetString(3) + " ='" + Reader.GetString(2) + "'";
+                    Helper.Execute(Query2, DBConnect.remoteConn);
+
+                    string Query = "DELETE from deletion WHERE id ='" + Reader.GetString(0) + "'";
+                    Helper.Execute(Query, DBConnect.conn);
+
+                }
+                connection.Close();
+
+            }
+            catch
+            {
+                try
+                {
+                    Invoke((MethodInvoker)delegate
+                    {
+                        uploadTxt.Text = uploadTxt.Text + " Deleting online data failed " + "\r\n";
+                        uploadTxt.ForeColor = Color.Red;
+                        uploadTxt.ScrollToCaret();
+                    });
+                }
+                catch
+                {
+
+
+                }
+
+            }
+           
+        }
+
         private void Uploading()
         {
             try
@@ -877,16 +933,14 @@ namespace Casepro
                     uploadTxt.ScrollToCaret();
                 });
             }
-            System.Threading.Thread.Sleep(500);
+            System.Threading.Thread.Sleep(5000);
 
         }
         private void bw_Download(object sender, DoWorkEventArgs e)
         {
-
-
             Downloading();
-            System.Threading.Thread.Sleep(500);
-
+            Deletion();
+            System.Threading.Thread.Sleep(5000);
         }
 
         void userprofile()
@@ -1286,13 +1340,27 @@ namespace Casepro
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {           
-          //  calendar1.SetDaysMode(CalendarDaysMode.Short);
+        {
+            //  calendar1.SetDaysMode(CalendarDaysMode.Short);
+            NewEvent frm = new NewEvent(null);
+            frm.MdiParent = MainForm.ActiveForm;
+            frm.Show();
+            this.Close();
         }
 
         private void pictureBox5_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void StartForm_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void StartForm_Leave(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

@@ -65,6 +65,10 @@
     <Reference Include="WebCam_Capture">
       <HintPath>..\..\..\..\WinFormCharpWebCam\WebCam_Capture.dll</HintPath>
     </Reference>
+    <Reference Include="WhatsAppApi, Version=1.0.2.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Whatsapp.NET.1.2.2\lib\WhatsAppApi.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="WindowsFormsCalendar">
       <HintPath>..\..\..\..\CalendarForked\WindowsFormsCalendar.dll</HintPath>
     </Reference>
@@ -367,6 +371,7 @@
     <EmbeddedResource Include="UserForm.resx">
       <DependentUpon>UserForm.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -411,6 +416,7 @@
     <None Include="Resources\Date-24.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Principal-01-481.png" />
     <None Include="Resources\Phone-48.png" />
     <None Include="Resources\Document-01-48.png" />
     <None Include="Resources\Date-48.png" />

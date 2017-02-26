@@ -1,4 +1,3 @@
-C:\Users\DOUGLAS\Documents\Visual Studio 2015\Projects\Casepro\Casepro\bin\Debug\System.Windows.Forms.Calendar.dll
 C:\Users\DOUGLAS\Documents\Visual Studio 2015\Projects\Casepro\Casepro\obj\Debug\Casepro.ClientForm.resources
 C:\Users\DOUGLAS\Documents\Visual Studio 2015\Projects\Casepro\Casepro\obj\Debug\Casepro.DisForm.resources
 C:\Users\DOUGLAS\Documents\Visual Studio 2015\Projects\Casepro\Casepro\obj\Debug\Casepro.DocumentForm.resources
@@ -46,3 +45,4 @@ C:\Users\DOUGLAS\Documents\Visual Studio 2015\Projects\Casepro\Casepro\obj\Debug
 C:\Users\DOUGLAS\Documents\Visual Studio 2015\Projects\Casepro\Casepro\obj\Debug\Casepro.exe
 C:\Users\DOUGLAS\Documents\Visual Studio 2015\Projects\Casepro\Casepro\obj\Debug\Casepro.pdb
 C:\Users\DOUGLAS\Documents\Visual Studio 2015\Projects\Casepro\Casepro\obj\Debug\Casepro.StartForm.resources
+C:\Users\DOUGLAS\Documents\Visual Studio 2015\Projects\Casepro\Casepro\bin\Debug\WhatsAppApi.dll

@@ -206,6 +206,8 @@ namespace Casepro
                     {
                         string Query = "DELETE from file WHERE fileID ='" + dtGrid.Rows[e.RowIndex].Cells[0].Value.ToString() + "'";
                         Helper.Execute(Query, DBConnect.conn);
+                        string Query2 = "INSERT INTO `deletion`( `table`, `eid`,`column`, `created`) VALUES ('file','" + dtGrid.Rows[e.RowIndex].Cells[0].Value.ToString() + "','fileID','" + DateTime.Now.Date.ToString("yyyy-MM-dd") + "');";
+                        Helper.Execute(Query2, DBConnect.conn);
                         MessageBox.Show("Information deleted");
 
                     }
@@ -232,11 +234,14 @@ namespace Casepro
                 {
                     string Query = "DELETE from file WHERE fileID ='" + item + "'";
                     Helper.Execute(Query, DBConnect.conn);
-                  //  MessageBox.Show("Information deleted");
+                    string Query2 = "INSERT INTO `deletion`( `table`, `eid`,`column`, `created`) VALUES ('file','" + item + "','fileID','" + DateTime.Now.Date.ToString("yyyy-MM-dd") + "');";
+                    Helper.Execute(Query2, DBConnect.conn);
+                   
                 }
+                MessageBox.Show("Information deleted");
 
             }
-            
+
         }
     }
 }

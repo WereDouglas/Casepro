@@ -238,7 +238,7 @@ namespace Casepro
             {
                 notify = "true";
             }
-            string Query = "INSERT INTO `events`(`id`, `name`, `start`, `end`, `user`, `file`, `created`, `action`, `status`, `orgID`, `date`, `hours`, `court`, `notify`,`priority`, `sync`,`progress`,`client`,`cost`) VALUES ('" + ID + "','" + this.detailsTxt.Text + "','" + start + "','" + end + "','" + lawyerCbx.Text + "','" + fileCbx.Text + "','" + DateTime.Now.Date.ToString("yyyy-MM-dd") + "','create','" + progressTxt.Text + "','" + Helper.orgID + "','" + Convert.ToDateTime(this.openedDate.Text).ToString("yyyy-MM-dd") + "','1','" + court + "','" + notify + "','" + priorityCbx.Text + "','f','" + progressTxt.Text + "','" + clientCbx.Text + "','"+cost+"');";
+            string Query = "INSERT INTO `events`(`id`, `name`, `start`, `end`, `user`, `file`, `created`, `action`, `status`, `orgID`, `date`, `hours`, `court`, `notify`,`priority`, `sync`,`progress`,`client`,`cost`) VALUES ('" + ID + "','" + this.detailsTxt.Text + "','" + start + "','" + end + "','" + lawyerCbx.Text + "','" + fileCbx.Text + "','" + DateTime.Now.Date.ToString("yyyy-MM-dd") + "','create','" + progressTxt.Text + "','" + Helper.orgID + "','" + Convert.ToDateTime(this.openedDate.Text).ToString("yyyy-MM-dd") + "','1','" + court + "','" + notify + "','" + priorityCbx.Text + "','f','" + progressTxt.Text + "','" + clientCbx.Text + "','"+ Convert.ToDouble(costTxt.Text)+"');";
             Helper.Execute(Query, DBConnect.conn);
             MessageBox.Show("Information saved");
             // var request = (HttpWebRequest)WebRequest.Create(Helper.msgUrl);
@@ -288,7 +288,7 @@ namespace Casepro
             }
 
            // string fileID = Guid.NewGuid().ToString();
-            string Query = "UPDATE `events` SET `name`='" + this.detailsTxt.Text + "',`start`='" + start + "',`end`='" + end + "',`user`='" + lawyerCbx.Text + "',`file`='" + fileCbx.Text + "',`action`='update',`status`='true',`date`='"+ Convert.ToDateTime(this.openedDate.Text).ToString("yyyy-MM-dd") + "',`hours`='"+daysTxt.Text+ "',`court`='" + court + "',`priority`='" + priorityCbx.Text + "',`sync`='f',`notify`='" + notify + "',`progress`='" + progressTxt.Text + "',`client`='" + clientCbx.Text + "' WHERE id ='" + id + "'";
+            string Query = "UPDATE `events` SET `name`='" + this.detailsTxt.Text + "',`start`='" + start + "',`end`='" + end + "',`user`='" + lawyerCbx.Text + "',`file`='" + fileCbx.Text + "',`action`='update',`status`='true',`date`='"+ Convert.ToDateTime(this.openedDate.Text).ToString("yyyy-MM-dd") + "',`hours`='"+daysTxt.Text+ "',`court`='" + court + "',`priority`='" + priorityCbx.Text + "',`sync`='f',`notify`='" + notify + "',`progress`='" + progressTxt.Text + "',`client`='" + clientCbx.Text + "',`cost`='" + Convert.ToDouble( costTxt.Text) + "' WHERE id ='" + id + "'";
             Helper.Execute(Query, DBConnect.conn);
            
             this.Close();

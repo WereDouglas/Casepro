@@ -453,6 +453,16 @@ namespace Casepro.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Principal_01_481 {
+            get {
+                object obj = ResourceManager.GetObject("Principal-01-481", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Print_24 {
             get {
                 object obj = ResourceManager.GetObject("Print-24", resourceCulture);

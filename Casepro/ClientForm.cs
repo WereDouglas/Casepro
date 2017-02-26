@@ -253,10 +253,12 @@ namespace Casepro
 
                 if (e.ColumnIndex == dtGrid.Columns[12].Index && e.RowIndex >= 0)
                 {
-                    if (MessageBox.Show("YES or No?", "Are you sure you want to delete this file? ", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                    if (MessageBox.Show("YES or No?", "Are you sure you want to delete this Client? ", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                     {
                         string Query = "DELETE from file WHERE fileID ='" + dtGrid.Rows[e.RowIndex].Cells[0].Value.ToString() + "'";
                         Helper.Execute(Query, DBConnect.conn);
+                        string Query2 = "INSERT INTO `deletion`( `table`, `eid`,`column`, `created`) VALUES ('client','" + dtGrid.Rows[e.RowIndex].Cells[0].Value.ToString() + "','clientID','" + DateTime.Now.Date.ToString("yyyy-MM-dd") + "');";
+                        Helper.Execute(Query2, DBConnect.conn);
                         MessageBox.Show("Information deleted");
 
                     }
@@ -278,8 +280,11 @@ namespace Casepro
                 {
                     string Query = "DELETE from client WHERE clientID ='" + item + "'";
                     Helper.Execute(Query, DBConnect.conn);
-                    //  MessageBox.Show("Information deleted");
+                 
+                    string Query2 = "INSERT INTO `deletion`( `table`, `eid`,`column`, `created`) VALUES ('client','" + item + "','clientID','" + DateTime.Now.Date.ToString("yyyy-MM-dd") + "');";
+                    Helper.Execute(Query2, DBConnect.conn);
                 }
+                 MessageBox.Show("Information deleted");
 
             }
 

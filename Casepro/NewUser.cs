@@ -147,6 +147,16 @@ namespace Casepro
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (Helper.Exists("users", "name", nameTxtBx.Text))
+            {
+                MessageBox.Show("User name exists");
+                return;
+            }
+            if (Helper.Exists("users", "contact", contactTxtBx.Text))
+            {
+                MessageBox.Show("User contact exists");
+                return;
+            }
             string userID = Guid.NewGuid().ToString();
             string paths = @"c:\Case\images";
             if (!Directory.Exists(paths))

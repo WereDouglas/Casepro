@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -192,12 +193,21 @@ namespace Casepro
 
         private void myTreeView_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            MessageBox.Show((myTreeView.SelectedNode.Text));
+           // MessageBox.Show((myTreeView.SelectedNode.Text));
             string path =  myTreeView.SelectedNode.Text;
-            using (var fileStream = new FileStream(path, FileMode.Open))
+            
+            string file = path;
+            ProcessStartInfo pi = new ProcessStartInfo(file);
+            pi.Arguments = Path.GetFileName(file);
+            pi.UseShellExecute = true;
+            pi.WorkingDirectory = Path.GetDirectoryName(file);
+            pi.FileName = path;
+            pi.Verb = "OPEN";
+            try
             {
-                // read from file or write to file
+                Process.Start(pi);
             }
+            catch { }
         }
 
         private void myTreeView_Click(object sender, EventArgs e)

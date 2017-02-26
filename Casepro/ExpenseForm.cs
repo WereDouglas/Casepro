@@ -338,6 +338,8 @@ namespace Casepro
                     {
                         string Query = "DELETE from expenses WHERE expenseID ='" + dtGrid.Rows[e.RowIndex].Cells[0].Value.ToString() + "'";
                         Helper.Execute(Query, DBConnect.conn);
+                        string Query2 = "INSERT INTO `deletion`( `table`, `eid`,`column`, `created`) VALUES ('expenses','" + dtGrid.Rows[e.RowIndex].Cells[0].Value.ToString() + "','expenseID','" + DateTime.Now.Date.ToString("yyyy-MM-dd") + "');";
+                        Helper.Execute(Query2, DBConnect.conn);
                         MessageBox.Show("Information deleted");
                     }
                     Console.WriteLine("DELETE on row {0} clicked", e.RowIndex + dtGrid.Rows[e.RowIndex].Cells[0].Value.ToString() + dtGrid.Rows[e.RowIndex].Cells[2].Value.ToString());

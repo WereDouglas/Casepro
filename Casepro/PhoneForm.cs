@@ -12,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WhatsAppApi;
 
 namespace Casepro
 {
@@ -135,6 +136,33 @@ namespace Casepro
             mediaReceiver.Detach();
             mediaSender.Detach();
             connector.Dispose();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            string from = "9199876543210"; //(Enter Your Mobile Number)
+            string to = destinationIP.Text;
+            string msg = infoTxt.Text;
+            WhatsApp wa = new WhatsApp(from, "WhatsAppPassword", "NickName", false, false);
+            wa.OnConnectSuccess += () =>
+            {
+                MessageBox.Show("Connected to WhatsApp...");
+                wa.OnLoginSuccess += (phonenumber, data) =>
+                {
+                    wa.SendMessage(to, msg);
+                    MessageBox.Show("Message Sent...");
+                };
+                wa.OnLoginFailed += (data) =>
+                {
+                    MessageBox.Show("Login Failed : {0} : ", data);
+                };
+
+                wa.Login();
+            };
+            wa.OnConnectFailed += (Exception) =>
+            {
+                MessageBox.Show("Connection Failed...");
+            };
         }
     }
 }

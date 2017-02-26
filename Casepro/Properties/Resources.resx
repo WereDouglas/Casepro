@@ -121,9 +121,6 @@
   <data name="Folder-24 (1)1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Folder-24 (1)1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Bill-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Bill-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="adds" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\adds.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -133,17 +130,11 @@
   <data name="Garbage-Open-24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Garbage-Open-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Calendar-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Calendar-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Customize-02-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Customize-02-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Business-Man-Add-01-24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Business-Man-Add-01-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Media-Play-256" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Media-Play-256.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Save-16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Save-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -157,8 +148,8 @@
   <data name="User-Group-48 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\User-Group-48 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Folder-Copy-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Folder-Copy-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Debit-Card-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Debit-Card-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Employee-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Employee-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -175,8 +166,8 @@
   <data name="Document-01-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Document-01-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Save-24 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Save-24 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="cp_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cp_logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Home-48 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Home-48 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -190,14 +181,14 @@
   <data name="case" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\case.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Report-Editor-24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Report-Editor-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Folder-24 (1)2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Folder-24 (1)2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="cp_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\cp_logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Cancel-241" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Cancel-241.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Media-Play-256" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Media-Play-256.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Save-24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Save-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -205,8 +196,17 @@
   <data name="Principal-01-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Principal-01-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Close-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Close-481.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Folder-24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Folder-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="temp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\temp1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Phone-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Phone-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Close-24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Close-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -214,14 +214,17 @@
   <data name="Cancel-24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Cancel-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Debit-Card-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Debit-Card-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Calendar-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Calendar-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Cheque-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Cheque-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Close-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Close-481.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Save-24 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Save-24 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mail" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mail.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Date-32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Date-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -250,14 +253,14 @@
   <data name="Home-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Home-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="mail" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\mail.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Report-Editor-24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Report-Editor-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Cancel-241" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Cancel-241.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Folder-Copy-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Folder-Copy-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="temp" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\temp1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Bill-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Bill-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="bg" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bg.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -268,7 +271,7 @@
   <data name="wallpaper_12617" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\wallpaper_12617.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Phone-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Phone-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Principal-01-481" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Principal-01-481.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
